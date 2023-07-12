@@ -1,0 +1,15 @@
+POST /index.php HTTP/1.1
+Host: 10.10.11.211
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 119
+Origin: http://10.10.11.211
+Connection: close
+Referer: http://10.10.11.211/index.php
+Cookie: Cacti=23da43fb4e79e651bb8f11757a09e697; CactiDateTime=Mon Jul 10 2023 18:26:55 GMT+0200 (Central European Summer Time); CactiTimeZone=120
+Upgrade-Insecure-Requests: 1
+
+__csrf_magic=sid%3A8c8f63f98ac63a17e41ed17c5bee3e817d0311e5%2C1689006419&action=login&login_username=e&login_password=e

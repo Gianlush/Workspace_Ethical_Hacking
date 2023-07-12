@@ -1,0 +1,4 @@
+# Nmap 7.93 scan initiated Tue Mar 28 06:36:58 2023 as: nmap -sC -sV -p- -T5 --min-rate 5000 -oA nmap/full 10.129.246.136
+Host: 10.129.246.136 ()	Status: Up
+Host: 10.129.246.136 ()	Ports: 6379/open/tcp//redis//Redis key-value store 5.0.7/
+# Nmap done at Tue Mar 28 06:37:31 2023 -- 1 IP address (1 host up) scanned in 33.05 seconds

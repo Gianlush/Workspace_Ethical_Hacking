@@ -1,0 +1,15 @@
+POST /login HTTP/1.1
+Host: soc-player.soccer.htb
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 38
+Origin: http://soc-player.soccer.htb
+Connection: close
+Referer: http://soc-player.soccer.htb/login
+Cookie: connect.sid=s%3A4il0o8p8DV9Wuw80GNMgkz8QVNv_Lihj.0PVLyxSz3nJFuBCqNOfIrPn42Il%2BURssnRvF9k8bBvI
+Upgrade-Insecure-Requests: 1
+
+email=email%40email.com&password=prova

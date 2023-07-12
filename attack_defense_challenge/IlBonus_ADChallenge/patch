@@ -1,0 +1,3 @@
+challenge 1:
+patch nel file ./includes/loggin.inc.php nel metodo login_with_password:
+-	aggiunto il triplo uguale === nel controllo strcmp fra password inserita e password vera
