@@ -11,8 +11,8 @@ app.get(
   asyncWrapper(async (req, res) => {
     const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0;
     const { rows } = await db.query(
-      //'SELECT * FROM "products" ORDER BY id DESC OFFSET $1 LIMIT 10',
-      'SELECT id,name FROM "products" ORDER BY id DESC OFFSET $1 LIMIT 10',
+      'SELECT * FROM "products" ORDER BY id DESC OFFSET $1 LIMIT 10',
+      //'SELECT id,name FROM "products" ORDER BY id DESC OFFSET $1 LIMIT 10',
       [offset]
     );
 

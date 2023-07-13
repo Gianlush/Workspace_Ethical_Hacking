@@ -1,0 +1,22 @@
+sistemare tulip:
+	- copiare il .env.example(per avere un backup) e compilarlo correttamente con data, durata del round, ip e servizi e SOPRATUTTO la cartella TRAFFIC_DIR_HOST="./services/pcaps" (meglio crearne una nuova per differenziarla dagli example)
+	-  fare la stessa cosa e compilare con gli stessi dati il file service/configuration.py
+	
+	- in teoria bisogna buildare tramite lo scrpit dev.sh ma non è scritto correttamente e manca la build del frontend, quindi o lo si corregge o si fa la build classica complssiva
+
+fare le raccolte pcap:
+	- è preferibile farle dopo la prima ora quando ci si accorge che qualcuno ha già iniziato ad attaccare (per non appensatnire le macchine) e fare una raccolta di almeno 5 minuti (2 round e mezzo) e poi mettere il pcap nella cartella creata prima
+	- per fare le raccolta c'è già uno scrpit che usava alessandro pronto molto comodo
+	
+
+come usare tulip:
+	- è comunque molto simili a caronte ma lo si può configurare senza doverlo rebuildare ogni volta
+	- una volta fatto partire mostra tutte le richieste e i vari filtri (flag_in o flag_out) per vedere quando subiamo attacchi ma MOLTO IMPORTATNTE  anche quando il game server inserisce le flag (flag_in) perchè cosi possiamo vedere DOVE le inserisce e farci un'idea
+	- la creazione automatica dello scrpit in realtà replica solo la richiesta HTTP quindi comunque capire il ragionamento e sistemarlo opportunamente
+	
+	
+	
+altri consigli generali utili per l'esame:
+	- per prima cosa fare un backup delle cartelle sia sulla VM che fare un copia locale su ognuno dei nostri PC e poi leggere il codice da li anzichè stare connessi in ssh rischiando di fare modifiche non volute
+	- quando invece si vuole fare la patch è conveniente comunque tenere una copia (locale) in una cartella apposita del file in questione opportunamente patchato (anche per una questione di ordine durante il report)
+	- mi ha consigliato di usare vs code perchè permette con un plugin di connettersi tramite ssh e visualizzare un progetto remoto (quindi senza doversi ammazzare ad usare nano ecc)
