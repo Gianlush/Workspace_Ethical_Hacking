@@ -74,7 +74,7 @@ def log_email(session, envelope):
     print(f'{session.peer[0]} - - {repr(envelope.mail_from)}:{repr(envelope.rcpt_tos)}:{repr(envelope.content)}', flush=True)
 
 def esc(s: str):
-    return  s 
+    return  s
 
 class Handler:
      async def handle_RCPT(self, server, session, envelope, address, rcpt_options):

@@ -1,0 +1,14 @@
+POST /wp-admin/admin-ajax.php HTTP/1.1
+Host: metapress.htb
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0
+Accept: application/json, text/plain, */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 991
+Origin: http://metapress.htb
+Connection: close
+Referer: http://metapress.htb/events/
+Cookie: wp-settings-2=mfold%3Do; wp-settings-time-2=1680120318; PHPSESSID=otnh2ab9u4lvlf9kh1ifric1li
+
+action=bookingpress_before_book_appointment&appointment_data%5Bselected_category%5D=1&appointment_data%5Bselected_cat_name%5D=&appointment_data%5Bselected_service%5D=1&appointment_data%5Bselected_service_name%5D=Startup%20meeting&appointment_data%5Bselected_service_price%5D=%240.00&appointment_data%5Bservice_price_without_currency%5D=0&appointment_data%5Bselected_date%5D=2023-04-25&appointment_data%5Bselected_start_time%5D=09%3A00&appointment_data%5Bselected_end_time%5D=09%3A30&appointment_data%5Bcustomer_name%5D=&appointment_data%5Bcustomer_firstname%5D=prova&appointment_data%5Bcustomer_lastname%5D=prova&appointment_data%5Bcustomer_phone%5D=654654&appointment_data%5Bcustomer_email%5D=prova%40gmail.com&appointment_data%5Bappointment_note%5D=&appointment_data%5Bselected_payment_method%5D=&appointment_data%5Bcustomer_phone_country%5D=US&appointment_data%5Btotal_services%5D=&appointment_data%5Bstime%5D=1682365685&appointment_data%5Bspam_captcha%5D=wKqkfpBID98y&_wpnonce=4f9fabf4c0

@@ -74,7 +74,7 @@ def log_email(session, envelope):
     print(f'{session.peer[0]} - - {repr(envelope.mail_from)}:{repr(envelope.rcpt_tos)}:{repr(envelope.content)}', flush=True)
 
 def esc(s: str):
-    return  s 
+    return  s.replace("{","").replace("}","").replace("flag.txt","").replace("%","")
 
 class Handler:
      async def handle_RCPT(self, server, session, envelope, address, rcpt_options):
@@ -106,7 +106,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     username = ''.join(random.choice(string.ascii_lowercase) for i in range(12))
-    address = f"{username}_patch@{os.environ.get('HOSTNAME', 'example.com')}"
+    address = f"{username}@{os.environ.get('HOSTNAME', 'example.com')}"
     if not address in mails.keys():
         if active_addr.full():
             del mails[active_addr.get()]

