@@ -74,7 +74,7 @@ def log_email(session, envelope):
     print(f'{session.peer[0]} - - {repr(envelope.mail_from)}:{repr(envelope.rcpt_tos)}:{repr(envelope.content)}', flush=True)
 
 def esc(s: str):
-    return  s.replace("{","").replace("}","").replace("flag.txt","").replace("%","")
+    return  s.replace("{","").replace("}","").replace("%","")
 
 class Handler:
      async def handle_RCPT(self, server, session, envelope, address, rcpt_options):
@@ -142,11 +142,8 @@ def login():
        
         if user:
             db.execute("""SELECT info FROM users WHERE username=%s LIMIT 1""", (username,))
-            if username == "administrator":
-            	return f'Logged in! {user[0][0]} - sorry no flag!!!!'
-            else:
-            	content = b58decode(db.fetchall()[0][0])
-            	return f'Logged in! {user[0][0]} - {b64encode(content.decode("utf-8").encode())}' 
+            content = b58decode(db.fetchall()[0][0])
+            return f'Logged in! {user[0][0]} - {b64encode(content.decode("utf-8").encode())}' 
         
         else:
             return 'Invalid credentials!' + '''

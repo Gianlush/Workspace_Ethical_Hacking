@@ -74,7 +74,7 @@ def log_email(session, envelope):
     print(f'{session.peer[0]} - - {repr(envelope.mail_from)}:{repr(envelope.rcpt_tos)}:{repr(envelope.content)}', flush=True)
 
 def esc(s: str):
-    return  s
+    return  s.replace("{","").replace("}","").replace("%","")
 
 class Handler:
      async def handle_RCPT(self, server, session, envelope, address, rcpt_options):
@@ -125,6 +125,7 @@ def mailbox(id):
 @app.route('/download', methods=['GET'])
 def download():
     filepath = request.args.get("filepath")
+    filepath = filepath.replace("..","")
     return open("./static/files/"+filepath, "r").read()
     
 
@@ -136,11 +137,11 @@ def login():
         password = request.form.get('password')
 
         # Execute the SELECT query
-        db.execute(f"SELECT username FROM users WHERE username='{username}' AND password='{password}'")
+        db.execute("""SELECT username FROM users WHERE username=%s AND password=%s""", (username, password))
         user = db.fetchall()
        
         if user:
-            db.execute(f"SELECT info FROM users WHERE username='{username}' LIMIT 1")
+            db.execute("""SELECT info FROM users WHERE username=%s LIMIT 1""", (username,))
             content = b58decode(db.fetchall()[0][0])
             return f'Logged in! {user[0][0]} - {b64encode(content.decode("utf-8").encode())}' 
         
