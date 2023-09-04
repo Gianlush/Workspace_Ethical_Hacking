@@ -1,4 +1,0 @@
-httpd/bin
-httpd/obj
-.env
-docker-compose.yml

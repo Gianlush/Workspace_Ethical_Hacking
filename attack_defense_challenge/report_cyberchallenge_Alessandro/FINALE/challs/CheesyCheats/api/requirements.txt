@@ -1,5 +1,0 @@
-grpcio
-grpcio-tools
-sqlitedict
-grpc-interceptor
-pycryptodome

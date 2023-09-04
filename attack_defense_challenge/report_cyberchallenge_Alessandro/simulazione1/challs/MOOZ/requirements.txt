@@ -1,8 +1,0 @@
-flask
-Flask-SQLAlchemy
-Flask-Login
-Flask-WTF
-Flask-Admin
-bcrypt
-pycryptodome
-gunicorn
