@@ -1,0 +1,1 @@
+as suggested from the program, you can put a bigger input than the buffer size. So you can just use de Bruijin sequence to overflow the stack and find where the Return Address is, and override it with the ret2win function address that you can find with some decompiler tool

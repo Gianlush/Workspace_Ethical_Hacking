@@ -1,0 +1,2 @@
+here there is no string "flag.txt" so you need to actually put it in the memory. Using Ghidra you can see the memory map and find out which section is WRITEBLE and its size. To write "flag.txt" only 8bytes are needed; usually you can use section .bss or .data.
+Once this is done, using rop gadget to write into memory space, you just call the function provided "print_file" passing the string written before.
