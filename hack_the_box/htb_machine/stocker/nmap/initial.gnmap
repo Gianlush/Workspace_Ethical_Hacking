@@ -1,4 +1,0 @@
-# Nmap 7.93 scan initiated Fri Apr 28 19:41:46 2023 as: nmap -sV -sC -oA nmap/initial 10.10.11.196
-Host: 10.10.11.196 (stocker.htb)	Status: Up
-Host: 10.10.11.196 (stocker.htb)	Ports: 22/open/tcp//ssh//OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)/, 80/open/tcp//http//nginx 1.18.0 (Ubuntu)/	Ignored State: closed (998)
-# Nmap done at Fri Apr 28 19:42:03 2023 -- 1 IP address (1 host up) scanned in 17.06 seconds

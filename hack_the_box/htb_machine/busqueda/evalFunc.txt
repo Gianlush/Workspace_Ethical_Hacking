@@ -1,4 +1,0 @@
-url = eval(f"Engine.{engine}.search('{query}', copy_url={copy}, open_web={open})")
-
-
-exploit = '), exec("import os; os.system('sleep 3')")#

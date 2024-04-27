@@ -1,2 +1,0 @@
-# Nmap 7.93 scan initiated Mon Apr  3 17:31:48 2023 as: nmap -sC -sV -oA nmap/initial 10.10.11.202
-# Nmap done at Mon Apr  3 17:31:51 2023 -- 1 IP address (0 hosts up) scanned in 3.51 seconds

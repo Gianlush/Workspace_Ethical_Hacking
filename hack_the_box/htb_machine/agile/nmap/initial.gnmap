@@ -1,4 +1,0 @@
-# Nmap 7.93 scan initiated Mon May  8 17:39:49 2023 as: nmap -sV -sC -oA nmap/initial 10.10.11.203
-Host: 10.10.11.203 (superpass.htb)	Status: Up
-Host: 10.10.11.203 (superpass.htb)	Ports: 22/open/tcp//ssh//OpenSSH 8.9p1 Ubuntu 3ubuntu0.1 (Ubuntu Linux; protocol 2.0)/, 80/open/tcp//http//nginx 1.18.0 (Ubuntu)/	Ignored State: closed (998)
-# Nmap done at Mon May  8 17:41:01 2023 -- 1 IP address (1 host up) scanned in 72.68 seconds
