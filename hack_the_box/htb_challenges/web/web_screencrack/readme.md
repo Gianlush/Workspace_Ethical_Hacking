@@ -1,5 +1,5 @@
 # ScreenCrack HTB challenge WRITEUP
-[Exploit.py](exploit.py) Made by: ([@Gianlush]), ([@heisengit])
+[Exploit.py](exploit.py) Made by: [Gianlush](https://github.com/Gianlush/), [heisengit](https://github.com/heisengit)
 
 ## step 1: tentativo di SSRF
 Non si può accedere banalmente all'indirizzo localhost poichè il backend fa un controllo e filtra l'url che viene inserito nel form. Quindi il primo passo è stato cercare un metodo per bypassare quei filtri. La soluzione trovata è stata utilizzare un dominio particolare (nip.io) che consente di personalizzare la risoluzione dns di qualsiasi url.
