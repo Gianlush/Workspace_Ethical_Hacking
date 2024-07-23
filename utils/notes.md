@@ -35,6 +35,7 @@ intercept and modify requests, public endpoint:
 
 # notes
 bypass http blacklist filter with `dict://` `gopher://`
+test antivirus or signature check using EICAR Files
 ## Reverse Shell Upgrade
 quando si ottiene la shell, comunque non è possibile usare le frecce ecc perché escono caratteri strani quindi serve fare un "upgrade" della shell tramite 
 
@@ -48,8 +49,10 @@ in aggiunta:
     export TERM=xterm 
 in aggiunta: (per sistemare le stringhe lunghe) 
 
-    stty -a sulla prorpai macchina 
+    stty -a sulla propria macchina 
     stty rows ** columns **  (copiando i valori del result della propria macchina al passo 6 
+## CSS Injection
+when page header are set like font: None *
 ## Jinja2 SSTI
 bypass blacklisted character: https://ctf.zeyu2001.com/2022/securinets-ctf-finals-2022/strong \
 using filter to get arguments from url or headers or form (if it is a post) which contains desidered blacklisted char\
