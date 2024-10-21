@@ -1,0 +1,4 @@
+# Nmap 7.94SVN scan initiated Thu Jul 25 09:05:57 2024 as: nmap -sC -sV -oA nmap/initial 10.10.11.25
+Host: 10.10.11.25 (greenhorn.htb)	Status: Up
+Host: 10.10.11.25 (greenhorn.htb)	Ports: 22/open/tcp//ssh//OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)/, 80/open/tcp//http//nginx 1.18.0 (Ubuntu)/, 3000/open/tcp//ppp?///	Ignored State: closed (997)
+# Nmap done at Thu Jul 25 09:09:26 2024 -- 1 IP address (1 host up) scanned in 209.42 seconds

