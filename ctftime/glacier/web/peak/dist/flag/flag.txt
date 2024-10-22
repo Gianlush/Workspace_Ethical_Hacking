@@ -1,1 +1,0 @@
-gctf{SOME_FLAG}
