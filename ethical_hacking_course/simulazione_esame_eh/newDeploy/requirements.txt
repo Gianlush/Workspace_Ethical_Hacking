@@ -1,4 +1,0 @@
-flask
-aiosmtpd
-base58
-mysql-connector-python
