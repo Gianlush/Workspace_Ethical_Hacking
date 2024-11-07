@@ -1,0 +1,1 @@
+password in /app/config. It was the DB password but worked also for the ssh to the user mtz (03F6lY3uXAP2bkW8)

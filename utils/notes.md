@@ -6,10 +6,11 @@
     - [paths](#paths)
     - [commands](#commands)
     - [websites](#websites)
-- [Notes from older exploits](#notes-from-older-exploits)
     - [Implanting SSH keys](#implanting-ssh-keys)
     - [Transferring files with SCP](#transferring-files-with-scp)
     - [Reverse Shell Upgrade](#reverse-shell-upgrade)
+    - [Privilege Escalation](#privilege-escalation)
+- [Notes from older exploits](#notes-from-older-exploits)
     - [CSS Injection](#css-injection)
     - [SSTI](#ssti)
         - [Cross Origin problems](#cross-origin-problems)
@@ -53,10 +54,6 @@ intercept and modify requests, public endpoint:
 - https://webhook.site/#!/view/36d22d40-393f-4680-a239-cf0d7488e238 
 - https://testt.free.beeceptor.com
 
-# Notes from older exploits
-bypass http blacklist filter with `dict://` `gopher://`
-test antivirus or signature check using EICAR Files
-
 ## Implanting SSH keys
 `echo "Your SSH public key here (id_rsa.pub)" > /home/<user>/.ssh/authorized_keys`
 
@@ -82,6 +79,13 @@ additionally: (to fix terminal when writing very long payloads)\
 `stty -a`  on own machine to read rows and columns values\
 `stty rows ** columns **`  using same values seen on own machine
 
+## Privilege Escalation
+
+ - if you can modify perms of a file with sudo, you can create a symlink to passwd e grant yoursef perms to W and add a user with perms to root like "test::0:0:test:/root:/bin/bash"
+
+# Notes from older exploits
+bypass http blacklist filter with `dict://` `gopher://`
+test antivirus or signature check using EICAR Files
     
 ## CSS Injection
 when page header are set like font: None *
