@@ -1,0 +1,70 @@
+--- NMAP RESULTS: ---
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-11-07 14:10 CET
+Nmap scan report for sightless.htb (10.10.11.32)
+Host is up (0.14s latency).
+Not shown: 997 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp
+| fingerprint-strings: 
+|   GenericLines: 
+|     220 ProFTPD Server (sightless.htb FTP Server) [::ffff:10.10.11.32]
+|     Invalid command: try being more creative
+|_    Invalid command: try being more creative
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 c9:6e:3b:8f:c6:03:29:05:e5:a0:ca:00:90:c9:5c:52 (ECDSA)
+|_  256 9b:de:3a:27:77:3b:1b:e1:19:5f:16:11:be:70:e0:56 (ED25519)
+80/tcp open  http    nginx 1.18.0 (Ubuntu)
+|_http-title: Sightless.htb
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port21-TCP:V=7.94SVN%I=7%D=11/7%Time=672CBC6E%P=x86_64-pc-linux-gnu%r(G
+SF:enericLines,A0,"220\x20ProFTPD\x20Server\x20\(sightless\.htb\x20FTP\x20
+SF:Server\)\x20\[::ffff:10\.10\.11\.32\]\r\n500\x20Invalid\x20command:\x20
+SF:try\x20being\x20more\x20creative\r\n500\x20Invalid\x20command:\x20try\x
+SF:20being\x20more\x20creative\r\n");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+
+--------------- 
+root@c184118df0a6:/var# find / -name docker* 2> /dev/null
+find / -name docker* 2> /dev/null
+/etc/apt/apt.conf.d/docker-no-languages
+/etc/apt/apt.conf.d/docker-gzip-indexes
+/etc/apt/apt.conf.d/docker-clean
+/etc/apt/apt.conf.d/docker-autoremove-suggests
+/etc/dpkg/dpkg.cfg.d/docker
+/etc/dpkg/dpkg.cfg.d/docker-apt-speedup
+/etc/docker-entrypoint.d
+/usr/local/bin/docker-entrypoint.sh
+/usr/app/docker-compose.yml
+/usr/app/drivers/clickhouse/docker-compose.yml
+/usr/app/drivers/crate/docker-compose.yml
+/usr/app/drivers/postgres/docker-compose.yml
+/usr/app/drivers/mysql/docker-compose.yml
+/usr/app/drivers/cassandra/docker-compose.yml
+/usr/app/drivers/vertica/docker-compose.yml
+/usr/app/drivers/hdb/docker-compose.yml
+/usr/app/drivers/redshift/docker-compose.yml
+/usr/app/drivers/drill/docker-compose.yml
+/usr/app/drivers/presto/docker-compose.yml
+/usr/app/drivers/pinot/docker-compose.yml
+/usr/app/drivers/mysql2/docker-compose.yml
+/usr/app/drivers/sqlserver/docker-compose.yml
+/usr/app/drivers/trino/docker-compose.yml
+/usr/app/node_modules/sqlite3/tools/docker
+/usr/app/node_modules/ldapjs/docker-compose.yml
+/docker-entrypoint
+
+--------------------
+Linpeas found this:
+
+michael:$6$mG3Cp2VPGY.FDE8u$KVWVIHzqTzhOSYkzJIpFc2EsgmqvPa.q2Z9bLUU6tlBWaEwuxCDEP9UFHIXNUcF2rBnsaFYuJa6DUh/pL2IJD/:19860:0:99999:7:::
+
+which can be crack with johntheripper using rockyou.txt to get password: insaneclownposse to access ssh michael
+
+
+
+--------
+Linpeas also found some other vhost like admin.sightless.htb which I later somehow figured out it was related to another service running only locally on port 8080. So i tried to port forward it with Chisel (didnt work) and with SSH (worked: ssh -L 9090:localhost:8080 michael@sightless.htb). But it first needed to set the new domain 'admin.sightless.htb' on /etc/hosts with ip: 127.0.0.1 (because of port forwarding)
+

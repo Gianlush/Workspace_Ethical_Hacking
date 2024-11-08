@@ -3,9 +3,10 @@
 
 - [Table of Content](#table-of-content)
 - [Useful stuff](#useful-stuff)
-    - [paths](#paths)
-    - [commands](#commands)
-    - [websites](#websites)
+    - [Paths](#paths)
+    - [Commands](#commands)
+    - [Port Forwarding](#port-forwarding)
+    - [Websites](#websites)
     - [Implanting SSH keys](#implanting-ssh-keys)
     - [Transferring files with SCP](#transferring-files-with-scp)
     - [Reverse Shell Upgrade](#reverse-shell-upgrade)
@@ -19,33 +20,43 @@
 
 <!-- /TOC -->
 # Useful stuff
-## paths
+## Paths
 /etc/nginx/nginx.conf\
 /etc/nginx/sites-enabled/(deafult)\
 /etc/nginx/sites-available\
 /etc/hosts\
 $HOME/.shh/id_rsa\
 /proc/self/environ\
-/proc/self/cmdline
+/proc/self/cmdline\
+/etc/shadow
 
 Nella root della webApp:\
 index.js/html\
 main.js/html
 
-## commands
+## Commands
 netstat -antp\
 sudo -l\
 whoami\
 linpeas - WINpeas\
 
 Bypass ip filter or perform SSRF to localhost:
-- http://localtest.me
-- Append to url: .nip.io
+1. http://localtest.me
+2. Append to url: .nip.io
 
 ngrok tcp 80\
 `dig` to resolve your tunnel hostname and use ip instead
 
-## websites
+## Port Forwarding
+when you find a service on a machine running only locally you can forward it to your local port using:\
+- when you already have ssh (user):\
+`ssh -L 9090:localhost:8080 remote_user@host.htb`\
+then visiting localhost:9090 you can access the service on host.htb:8080 (might need to add domain to /etc/hosts)
+- when you dont have but a simple remote shell:\
+`search chisel or others`
+
+
+## Websites
 bypass local security restriction: https://gtfobins.github.io/ \
 payload: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XSS%20Injection/README.md \
 https://book.hacktricks.xyz/ \
