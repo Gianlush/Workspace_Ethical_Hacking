@@ -66,5 +66,11 @@ which can be crack with johntheripper using rockyou.txt to get password: insanec
 
 
 --------
-Linpeas also found some other vhost like admin.sightless.htb which I later somehow figured out it was related to another service running only locally on port 8080. So i tried to port forward it with Chisel (didnt work) and with SSH (worked: ssh -L 9090:localhost:8080 michael@sightless.htb). But it first needed to set the new domain 'admin.sightless.htb' on /etc/hosts with ip: 127.0.0.1 (because of port forwarding)
+Linpeas also found some other vhost like admin.sightless.htb which I later somehow figured out it was related to another service running only locally on port 8080. So i tried to port forward it with Chisel (didnt work) and with SSH (worked: ssh -L 9090:localhost:8080 michael@sightless.htb). But i first needed to set the new domain 'admin.sightless.htb' on /etc/hosts with ip: 127.0.0.1 (because of port forwarding)
 
+now we need to find credentials for this page. Running linpeas.sh we can see highlighted in orange that there is a service running with option --remote-debugging-port=0 for which there is a way of see the logs that goes through (https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/chrome-remote-debugger-pentesting/) but we need to find the right port (option 0 is default and its chosen random). Repeating the process as before (with ssh -L 9091:localhost:8080 michael@sightless.htb) we forward each port at a time (the ones listed with netstat -tnlp) and at the same we set chrome debug options as explained in the guide (for us it will be localhost:9091) and we wait until we see some service on the debug page. Once we see it, we can inspect it, see the network logs and find out which password is being used to log in. (loginname: admin password: ForlorfroxAdmin) so now we can exploit the fact that admin can change the command for php-fpm restart command and use to cp the root flag
+
+
+alternative: you can change web1 passwd or create a new user, then log in to froxlor with it and then set a new ftp passwd for it. You can then log into it with lftp after using 'set ssl:verify-certificate false' and you can download database.kdb that you can open with keepass cli (kpcli) but there is nothing on it
+
+EwnzHmdqyx

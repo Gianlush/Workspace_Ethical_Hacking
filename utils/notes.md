@@ -39,6 +39,8 @@ netstat -antp\
 sudo -l\
 whoami\
 linpeas - WINpeas\
+find / -perm -4000 2>/dev/null
+
 
 Bypass ip filter or perform SSRF to localhost:
 1. http://localtest.me
@@ -48,7 +50,7 @@ ngrok tcp 80\
 `dig` to resolve your tunnel hostname and use ip instead
 
 ## Port Forwarding
-when you find a service on a machine running only locally you can forward it to your local port using:\
+when you find a service on a machine running only locally you can forward it to your local port using: Esempio: [exploit.](../hack_the_box/htb_machines/sightless/writeup.md)
 - when you already have ssh (user):\
 `ssh -L 9090:localhost:8080 remote_user@host.htb`\
 then visiting localhost:9090 you can access the service on host.htb:8080 (might need to add domain to /etc/hosts)
@@ -92,7 +94,7 @@ additionally: (to fix terminal when writing very long payloads)\
 
 ## Privilege Escalation
 
- - if you can modify perms of a file with sudo, you can create a symlink to passwd e grant yoursef perms to W and add a user with perms to root like "test::0:0:test:/root:/bin/bash"
+ - if you can modify perms of a file with sudo, you can create a symlink to passwd e grant yoursef perms to W and add a user with perms to root like "test::0:0:test:/root:/bin/bash".  Esempio: [exploit.](../hack_the_box/htb_challenges/web/NextPath/writeup.md)
 
 # Notes from older exploits
 bypass http blacklist filter with `dict://` `gopher://`
