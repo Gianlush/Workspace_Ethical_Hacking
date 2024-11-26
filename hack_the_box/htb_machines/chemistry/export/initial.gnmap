@@ -1,0 +1,4 @@
+# Nmap 7.94SVN scan initiated Tue Nov 26 11:15:16 2024 as: /usr/lib/nmap/nmap --privileged -sC -sV -oA export/initial 10.10.11.38
+Host: 10.10.11.38 ()	Status: Up
+Host: 10.10.11.38 ()	Ports: 22/open/tcp//ssh//OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)/, 5000/open/tcp//upnp?///	Ignored State: closed (998)
+# Nmap done at Tue Nov 26 11:17:21 2024 -- 1 IP address (1 host up) scanned in 124.59 seconds
