@@ -28,7 +28,8 @@
 $HOME/.shh/id_rsa\
 /proc/self/environ\
 /proc/self/cmdline\
-/etc/shadow
+/etc/shadow\
+/etc/apache2/apache2.conf
 
 Nella root della webApp:\
 index.js/html\
