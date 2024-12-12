@@ -5,6 +5,7 @@
 - [Useful stuff](#useful-stuff)
     - [Paths](#paths)
     - [Commands](#commands)
+    - [Tools](#tools)
     - [Port Forwarding](#port-forwarding)
     - [Websites](#websites)
     - [Implanting SSH keys](#implanting-ssh-keys)
@@ -12,6 +13,7 @@
     - [Reverse Shell Upgrade](#reverse-shell-upgrade)
     - [Privilege Escalation](#privilege-escalation)
 - [Notes from older exploits](#notes-from-older-exploits)
+    - [git Directory](#git-directory)
     - [CSS Injection](#css-injection)
     - [SSTI](#ssti)
         - [Cross Origin problems](#cross-origin-problems)
@@ -40,6 +42,17 @@ sudo -l\
 whoami\
 linpeas - WINpeas\
 find / -perm -4000 2>/dev/null
+
+## Tools
+gitleaks\
+pspy\
+ghidra\
+gobuster\
+hashcat\
+johntheripper\
+nmap\
+
+
 
 
 Bypass ip filter or perform SSRF to localhost:
@@ -99,7 +112,9 @@ additionally: (to fix terminal when writing very long payloads)\
 # Notes from older exploits
 bypass http blacklist filter with `dict://` `gopher://`
 test antivirus or signature check using EICAR Files
-    
+  
+## .git Directory
+controllarne lo stato con git status ed eventualmente ripristinarlo con git restore. Spesso i segreti sono nascosti nelle commit di nuovi file o file modificati.
 ## CSS Injection
 when page header are set like font: None *
 ## SSTI

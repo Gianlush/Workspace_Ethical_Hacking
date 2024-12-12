@@ -50,4 +50,7 @@ Ubuntu_snapd<2.37_dirty_sock_Local_Privilege_Escalation(CVE-2019-7304)
 CVE-2021-3560.
 
 
-ssh -L 9090:localhost:8080 rosa@10.10.11.38 
+ssh -L 9090:localhost:8080 rosa@10.10.11.38
+
+il serivzio interno AOI è vulneravile a path traversal
+

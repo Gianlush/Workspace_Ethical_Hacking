@@ -1,0 +1,37 @@
+file> /var/lib/ghost/config.production.json
+{
+  "url": "http://localhost:2368",
+  "server": {
+    "port": 2368,
+    "host": "::"
+  },
+  "mail": {
+    "transport": "Direct"
+  },
+  "logging": {
+    "transports": ["stdout"]
+  },
+  "process": "systemd",
+  "paths": {
+    "contentPath": "/var/lib/ghost/content"
+  },
+  "spam": {
+    "user_login": {
+        "minWait": 1,
+        "maxWait": 604800000,
+        "freeRetries": 5000
+    }
+  },
+  "mail": {
+     "transport": "SMTP",
+     "options": {
+      "service": "Google",
+      "host": "linkvortex.htb",
+      "port": 587,
+      "auth": {
+        "user": "bob@linkvortex.htb",
+        "pass": "fibber-talented-worth"
+        }
+      }
+    }
+}

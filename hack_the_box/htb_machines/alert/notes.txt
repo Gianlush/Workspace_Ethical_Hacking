@@ -1,0 +1,21 @@
+trovati i path url:
+
+/uploads
+/messages
+/messages.php
+
+
+XSS possibile su MD visualizer con <style onload="alert(0)">
+
+
+statistics.alert.htb requires a login
+
+the page contact.php apparently parse everyhting you put in the message and it visit every valid url it finds
+so you can send a XSS payload to the main page, then copy the url and put it in the contact payload so that the XSS is executed by the server and you can leak info
+../../../etc/apache2/sites-enabled/000-default.conf
+../../../var/www/statistics.alert.htb/.htpasswd
+
+there is an hash you can crack to find ssh login
+
+for root you launch linpeas, see perms and files and process running, a good tool is pspy
+you find out a process running every minute that execute a php file including a php file that you can modify to copy the root to another location

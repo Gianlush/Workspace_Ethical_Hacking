@@ -1,0 +1,4 @@
+# Nmap 7.94SVN scan initiated Thu Dec  5 13:36:14 2024 as: /usr/lib/nmap/nmap --privileged -sC -sV -oA export/initial alert.htb
+Host: 10.10.11.44 (alert.htb)	Status: Up
+Host: 10.10.11.44 (alert.htb)	Ports: 22/open/tcp//ssh//OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)/, 80/open/tcp//http//Apache httpd 2.4.41 ((Ubuntu))/	Ignored State: closed (998)
+# Nmap done at Thu Dec  5 13:36:26 2024 -- 1 IP address (1 host up) scanned in 12.66 seconds

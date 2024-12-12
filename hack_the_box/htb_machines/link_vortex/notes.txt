@@ -1,0 +1,52 @@
+trovati vhost dev.
+
+trovati files /.git                 (Status: 301) [Size: 239] [--> http://dev.linkvortex.htb/.git/]
+/.hta                 (Status: 403) [Size: 199]
+/.git/logs/           (Status: 200) [Size: 868]
+/.git/config          (Status: 200) [Size: 201]
+/.git/HEAD            (Status: 200) [Size: 41]
+/.htaccess            (Status: 403) [Size: 199]
+/.htpasswd            (Status: 403) [Size: 199]
+Progress: 198 / 4735 (4.18%)[ERROR] context deadline exceeded (Client.Timeout or context cancellation while reading body)
+Progress: 845 / 4735 (17.85%)[ERROR] Get "http://dev.linkvortex.htb/attach_mod": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+/cgi-bin/             (Status: 403) [Size: 199]
+/index.html           (Status: 200) [Size: 2538]
+
+
+scaricata la repo git trovata aprendo il file /.git/logs/HEAD
+
+
+robots.txt del main domain:
+
+Disallow: /ghost/
+Disallow: /p/
+Disallow: /email/
+Disallow: /r/
+
+
+scaricata la dir .git da dev.linkvortex e poi ripristina con git restore. Ho cercato password al suo interno, anche tenendo conto dei file modificati in successive commit e ho trovato:
+
+con comandi come grep -r password e poi anche più facilmente con git status che mostra un file authentication.js modificato al cui intenro si trova:
+
+newPassword: 'thisissupersafe',
+const password = 'OctopiFociPilfer45'; 
+
+Ora per trovare la mail ho eseguito: grep -r -P -o -e [a-zA-Z0-9]+[@][a-z]+[.][a-z]+ -h trovando cosi tutte le possibili email.. ora scartando quelle come @test o @example le più probabili sono le @linkvortex.htb o @ghost.org. Lo username più probabilme è invece admin
+
+loggato come admin si ha accesso a tante info: Cercando exploit sulla versione ghost si trova:
+https://github.com/0xyassine/CVE-2023-40028
+
+
+tramite la poc posso fare file inclusion, ma per evitare di cercare a caso ho eseguto:
+grep -r -P -o -e '(/[a-zA-Z0-9._-]+)+' -h | sort | uniq > all_paths.txt
+e poi ho cercato paths che iniziassero con nomi quali /usr /var /root /dev /home e per mia fortuna ho trovato:
+/var/lib/ghost/config.production.json
+
+al cui interno:
+        "user": "bob@linkvortex.htb",
+        "pass": "fibber-talented-worth"
+con cui riesco ad accedere ad ssh
+
+
+per la root, già eseguendo sudo -l trovo qualcosa
+si bypassa facilmente con un doppio link simbolico a root ma anche facendo la export di CHECK_CONTENT a true

@@ -1,0 +1,12 @@
+decompilato il file apk con jadx-gui
+
+ho fatto ricerca nel testo di cose come:
+-   http://
+-   logs
+-   admin
+-   instant.htb
+
+
+ho trovato l'uso di API e i subdomain mywalletv1.instant.htb e swagger-ui.instant.htb e un Authorizaiton Token tramite cui fare chiamate aPI come admin
+
+la API read_logs è debole a path traversal
