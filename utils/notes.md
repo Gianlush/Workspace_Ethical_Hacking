@@ -4,8 +4,8 @@
 - [Table of Content](#table-of-content)
 - [Useful stuff](#useful-stuff)
     - [Paths](#paths)
-    - [Commands](#commands)
     - [Tools](#tools)
+    - [Commands](#commands)
     - [Port Forwarding](#port-forwarding)
     - [Websites](#websites)
     - [Implanting SSH keys](#implanting-ssh-keys)
@@ -37,13 +37,6 @@ Nella root della webApp:\
 index.js/html\
 main.js/html
 
-## Commands
-netstat -antp\
-sudo -l\
-whoami\
-linpeas - WINpeas\
-find / -perm -4000 2>/dev/null
-
 ## Tools
 gitleaks\
 pspy\
@@ -53,8 +46,12 @@ hashcat\
 johntheripper\
 nmap\
 
-
-
+## Commands
+netstat -antp\
+sudo -l\
+whoami\
+linpeas - WINpeas\
+find / -perm -4000 2>/dev/null
 
 Bypass ip filter or perform SSRF to localhost:
 1. http://localtest.me
