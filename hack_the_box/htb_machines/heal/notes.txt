@@ -1,0 +1,31 @@
+lfi in /downloads
+
+subdomain:
+api e take-surveys
+
+lfi con wordlist trovata online in 
+/usr/share/wordlists/SecLists/Fuzzing/LFI/LFI-gracefulsecurity-linux.txt
+https://github.com/hussein98d/LFI-files/blob/master/list.txt
+
+il file /proc/self/fd/15 contiene:
+ralph@heal.htb$2a$12$dUZ/O7KJT3.zE4TOK8p4RuxH3t.Bz45DSr7A94VLvY9SWx1GCSZnG2024-09-27 07:49:31.6148582024-09-27 07:49:31.614858Administratorralph
+
+crackando quella pwd: $2a$12$dUZ/O7KJT3.zE4TOK8p4RuxH3t.Bz45DSr7A94VLvY9SWx1GCSZnG si ottiene: 147258369
+con cui accedere al portale http://take-survey.heal.htb/index.php/admin/authentication/sa/login 
+usando come utente: ralph@heal.htb che si trova sulla home di take-survey
+
+qui si usa la seguente poc:
+https://github.com/Y1LD1R1M-1337/Limesurvey-RCE/blob/main/README.md
+
+una volta dentro si cerca nei vari file:
+
+config/security.php:
+$config['encryptionnonce'] = '758cd0c7b0b01a41e8aeda2370aa42d5334e14664abcdd4d';
+$config['encryptionsecretboxkey'] = 'be016b622d092be46bacd2f4d6e09228ef5ba56cb6290edd558456746ee81448';
+
+password db dentro application/config/config.php: 
+AdmiDi0_pA$$w0rd
+niente da vedere dentro il db postgres
+
+
+password riutilizzata per l'utente ronexit

