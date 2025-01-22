@@ -1,0 +1,42 @@
+ho lanciato diverse discovery sul sito senza trovare nulla di interessante.
+
+Ho notato che l'endpoint /contact.php faceva visitare un url che veniva inserito nel campo website. Quindi ho provato ad avviare un server python con un html malevolo e farlo visitare dalla webapp, senza però ottenere niente di utile.
+
+ulteriori discovery hanno mostrato la presenza di file e directory ricorsive, cioè sotto il path /themes/bike tutti i contenuti presenti in / si ripetevano. Questo mi ha fatto provare a lanciare una discovery specifica sul quel path che mi ha fatto trovare le stesse cose trovate in precedenza. 
+Provando ad usare diverse wordlist sono riuscito a trovare i file README.md e version:
+
+# WonderCMS bike theme
+
+## Description
+Includes animations.
+
+## Author: turboblack
+
+## Preview
+![Theme preview](/preview.jpg)
+
+## How to use
+1. Login to your WonderCMS website.
+2. Click "Settings" and click "Themes".
+3. Find theme in the list and click "install".
+4. In the "General" tab, select theme to activate it.
+
+
+version: 3.2.0
+https://gist.github.com/prodigiousMind/fc69a79629c4ba9ee88a7ad526043413#exploitpy
+
+
+
+dentro /var/www/sea/data/database.js si trova:
+$2y$10$iOrk210RQSAzNCx6Vyq2X.aJ\/D.GuE4jRIikYiWrD3TM\/PjDnXm4q
+
+che crackato da:
+mychemicalromance
+
+utilizzabile per ssh su user: amay
+
+
+
+per root:
+web server su 8080, forwardato in locale. chiede un login bypassabile con le credenziali ssh già trovate
+intercept della post per l'accesso ai file e command injection bash per leggere la flag

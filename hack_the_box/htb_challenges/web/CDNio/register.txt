@@ -1,0 +1,19 @@
+POST / HTTP/1.1
+Host: localhost:1337
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Content-Type: application/json
+X-Requested-With: XMLHttpRequest
+Content-Length: 39
+Origin: http://localhost:1337
+Connection: close
+Referer: http://localhost:1337/
+Cookie: default-theme=ngax
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+Priority: u=0
+
+{"username":"test1","password":"test1"}
