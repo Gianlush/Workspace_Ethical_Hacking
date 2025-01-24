@@ -1,0 +1,4 @@
+# Nmap 7.95 scan initiated Wed Jan 22 13:40:49 2025 as: /usr/lib/nmap/nmap --privileged -sC -sV -oA export/nmap 10.10.11.33
+Host: 10.10.11.33 ()	Status: Up
+Host: 10.10.11.33 ()	Ports: 22/open/tcp//ssh//OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)/, 80/open/tcp//http-proxy//HAProxy http proxy 2.0.0 or later/, 8080/open/tcp//http//Jetty/	Ignored State: closed (997)
+# Nmap done at Wed Jan 22 13:41:03 2025 -- 1 IP address (1 host up) scanned in 13.54 seconds

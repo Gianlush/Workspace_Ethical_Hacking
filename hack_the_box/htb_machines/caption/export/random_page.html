@@ -1,0 +1,94 @@
+[INFO] h2c stream established successfully.
+:status: 302
+server: Werkzeug/3.0.1 Python/3.10.12
+date: Fri, 24 Jan 2025 10:32:34 GMT
+content-type: text/html; charset=utf-8
+content-length: 189
+location: /
+x-varnish: 196624
+age: 0
+via: 1.1 varnish (Varnish/6.6)
+x-cache: MISS
+
+<!doctype html>
+<html lang=en>
+<title>Redirecting...</title>
+<h1>Redirecting...</h1>
+<p>You should be redirected automatically to the target URL: <a href="/">/</a>. If not, click the link.
+
+
+
+
+[INFO] Requesting - /download?url=http://127.0.0.1:3923/hadoops_logs
+:status: 200
+server: Werkzeug/3.0.1 Python/3.10.12
+date: Fri, 24 Jan 2025 10:32:35 GMT
+content-type: text/html; charset=utf-8
+content-length: 1895
+x-varnish: 196625
+age: 0
+via: 1.1 varnish (Varnish/6.6)
+x-cache: MISS
+accept-ranges: bytes
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>copyparty</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=0.8">
+	<meta name="theme-color" content="#333">
+
+	<link rel="stylesheet" media="screen" href="/.cpr/splash.css?_=k1ey">
+	<link rel="stylesheet" media="screen" href="/.cpr/ui.css?_=k1ey">
+</head>
+
+<body>
+	<div id="wrap">
+		<a id="a" href="/?h" class="af">refresh</a>
+		<a id="v" href="/?hc" class="af">connect</a>
+			<p id="b">howdy stranger &nbsp; <small>(you're not logged in)</small></p>
+		<div id="msg">
+			<h1 id="n">404 not found &nbsp;┐( ´ -`)┌</h1><p><a id="r" href="/?h">go home</a></p>
+		</div>
+
+		<h1 id="cc">client config:</h1>
+		<ul>
+			
+			<li><a id="i" href="/?k304=y" class="r">enable k304</a> (currently disabled)
+			
+			<blockquote id="j">enabling this will disconnect your client on every HTTP 304, which can prevent some buggy proxies from getting stuck (suddenly not loading pages), <em>but</em> it will also make things slower in general</blockquote></li>
+			
+			<li><a id="k" href="/?reset" class="r" onclick="localStorage.clear();return true">reset client settings</a></li>
+		</ul>
+
+		<h1 id="l">login for more:</h1>
+		<div>
+			<form method="post" enctype="multipart/form-data" action="/hadoops_logs">
+				<input type="hidden" name="act" value="login" />
+				<input type="password" name="cppwd" />
+				<input type="submit" value="Login" />
+				
+			</form>
+		</div>
+	</div>
+	<a href="#" id="repl">π</a>
+	<span id="pb"><span>powered by</span> <a href="https://github.com/9001/copyparty">copyparty </a></span>
+	<script>
+
+var SR = "",
+	lang="eng",
+	dfavico="🎉 000 none";
+
+document.documentElement.className=localStorage.theme||"az a z";
+
+</script>
+<script src="/.cpr/util.js?_=k1ey"></script>
+<script src="/.cpr/splash.js?_=k1ey"></script>
+</body>
+</html>
+
+
+

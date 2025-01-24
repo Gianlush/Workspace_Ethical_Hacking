@@ -1,0 +1,186 @@
+[INFO] h2c stream established successfully.
+:status: 302
+server: Werkzeug/3.0.1 Python/3.10.12
+date: Fri, 24 Jan 2025 10:28:51 GMT
+content-type: text/html; charset=utf-8
+content-length: 189
+location: /
+x-varnish: 98526
+age: 0
+via: 1.1 varnish (Varnish/6.6)
+x-cache: MISS
+
+<!doctype html>
+<html lang=en>
+<title>Redirecting...</title>
+<h1>Redirecting...</h1>
+<p>You should be redirected automatically to the target URL: <a href="/">/</a>. If not, click the link.
+
+
+
+
+[INFO] Requesting - /download?url=http://127.0.0.1:3923/
+:status: 200
+server: Werkzeug/3.0.1 Python/3.10.12
+date: Fri, 24 Jan 2025 10:28:51 GMT
+content-type: text/html; charset=utf-8
+content-length: 4400
+x-varnish: 98527
+age: 0
+via: 1.1 varnish (Varnish/6.6)
+x-cache: MISS
+accept-ranges: bytes
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>💾🎉</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=0.8, minimum-scale=0.6">
+	<meta name="theme-color" content="#333">
+
+	<link rel="stylesheet" media="screen" href="/.cpr/ui.css?_=k1ey">
+	<link rel="stylesheet" media="screen" href="/.cpr/browser.css?_=k1ey">
+</head>
+
+<body>
+	<div id="ops"></div>
+
+	<div id="op_search" class="opview">
+		<div id="srch_form" class="opbox"></div>
+		<div id="srch_q"></div>
+	</div>
+
+	<div id="op_player" class="opview opbox opwide"></div>
+
+	<div id="op_bup" class="opview opbox act">
+		<div id="u2err"></div>
+		<form method="post" enctype="multipart/form-data" accept-charset="utf-8" action="">
+			<input type="hidden" name="act" value="bput" />
+			<input type="file" name="f" multiple /><br />
+			<input type="submit" value="start upload">
+		</form>
+		<a id="bbsw" href="?b=u" rel="nofollow"><br />switch to basic browser</a>
+	</div>
+
+	<div id="op_mkdir" class="opview opbox act">
+		<form method="post" enctype="multipart/form-data" accept-charset="utf-8" action="">
+			<input type="hidden" name="act" value="mkdir" />
+			📂<input type="text" name="name" class="i" placeholder="awesome mix vol.1">
+			<input type="submit" value="make directory">
+		</form>
+	</div>
+
+	<div id="op_new_md" class="opview opbox">
+		<form method="post" enctype="multipart/form-data" accept-charset="utf-8" action="">
+			<input type="hidden" name="act" value="new_md" />
+			📝<input type="text" name="name" class="i" placeholder="weekend-plans">
+			<input type="submit" value="new markdown doc">
+		</form>
+	</div>
+
+	<div id="op_msg" class="opview opbox act">
+		<form method="post" enctype="application/x-www-form-urlencoded" accept-charset="utf-8" action="">
+			📟<input type="text" name="msg" class="i" placeholder="lorem ipsum dolor sit amet">
+			<input type="submit" value="send msg to srv log">
+		</form>
+	</div>
+
+	<div id="op_unpost" class="opview opbox"></div>
+
+	<div id="op_up2k" class="opview"></div>
+
+	<div id="op_cfg" class="opview opbox opwide"></div>
+	
+	<h1 id="path">
+		<a href="#" id="entree">🌲</a>
+		<a href="/">/</a>
+	</h1>
+	
+	<div id="tree"></div>
+
+<div id="wrap">
+	<div id="bdoc"></div>
+
+	<div id="pro" class="logue"></div>
+
+	<table id="files">
+		<thead>
+			<tr>
+				<th name="lead"><span>c</span></th>
+				<th name="href"><span>File Name</span></th>
+				<th name="sz" sort="int"><span>Size</span></th>
+				<th name="ext"><span>T</span></th>
+				<th name="ts"><span>Date</span></th>
+			</tr>
+		</thead>
+<tbody>
+<tr><td>-</td><td><a href="fw_logs">fw_logs</a></td><td>14209</td>
+<td>%</td><td>2024-03-06 12:15:18</td></tr>
+<tr><td>-</td><td><a href="hadoop_logs">hadoop_logs</a></td><td>16685</td>
+<td>%</td><td>2024-03-06 14:40:52</td></tr>
+<tr><td>-</td><td><a href="ssh_logs">ssh_logs</a></td><td>15300</td>
+<td>%</td><td>2024-03-06 14:38:09</td></tr>
+<tr><td>-</td><td><a href="zk_logs">zk_logs</a></td><td>13145</td>
+<td>%</td><td>2024-03-06 14:41:03</td></tr>
+
+		</tbody>
+	</table>
+	
+	<div id="epi" class="logue"></div>
+
+	<h2 id="wfp"><a href="/?h" id="goh">control-panel</a></h2>
+	
+	<a href="#" id="repl">π</a>
+
+</div>
+	<div id="srv_info"><span>caption</span> // <span>2.71 GiB free of 8.76 GiB</span></div>
+
+	<div id="widget"></div>
+
+	<script>
+		var SR = "",
+			TS = "k1ey",
+			acct = "*",
+			perms = ["read"],
+			dgrid = false,
+			themes = 8,
+			dtheme = "az a z",
+			srvinf = "caption</span> // <span>2.71 GiB free of 8.76 GiB",
+			lang = "eng",
+			dfavico = "🎉 000 none",
+			def_hcols = [],
+			have_up2k_idx = false,
+			have_tags_idx = false,
+			have_acode = false,
+			have_mv = true,
+			have_del = true,
+			have_unpost = 43200,
+			have_zip = true,
+			sb_md = "downloads forms popups scripts top-navigation-by-user-activation",
+			sb_lg = "downloads forms popups scripts top-navigation-by-user-activation",
+			lifetime = 0,
+			turbolvl = 0,
+			idxh = 0,
+			frand = false,
+			u2sort = "s",
+			have_emp = false,
+			txt_ext = "txt nfo diz cue readme",
+			logues = ["", ""],
+			readme = "",
+			ls0 = null;
+
+		document.documentElement.className = localStorage.theme || dtheme;
+	</script>
+	<script src="/.cpr/util.js?_=k1ey"></script>
+	<script src="/.cpr/baguettebox.js?_=k1ey"></script>
+	<script src="/.cpr/browser.js?_=k1ey"></script>
+	<script src="/.cpr/up2k.js?_=k1ey"></script>
+</body>
+
+</html>
+
+
+

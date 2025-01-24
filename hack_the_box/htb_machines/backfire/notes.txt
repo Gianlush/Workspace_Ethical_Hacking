@@ -1,1 +1,1 @@
-echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAsCmcDAEy7amDxwQvkLuf/LwTlGyEbH3ATnikFXQQ5q kali@kali" >> ~/.ssh/authorized_keys
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOZMJiKr0UC8iecvo0lS24Ajk8VSkbicki6sFMuJVzLs kali@kali" >> ~/.ssh/authorized_keys

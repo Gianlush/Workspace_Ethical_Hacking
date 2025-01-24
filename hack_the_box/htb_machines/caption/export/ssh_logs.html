@@ -1,0 +1,212 @@
+[INFO] h2c stream established successfully.
+:status: 302
+server: Werkzeug/3.0.1 Python/3.10.12
+date: Fri, 24 Jan 2025 10:04:48 GMT
+content-type: text/html; charset=utf-8
+content-length: 189
+location: /
+x-varnish: 98497
+age: 0
+via: 1.1 varnish (Varnish/6.6)
+x-cache: MISS
+
+<!doctype html>
+<html lang=en>
+<title>Redirecting...</title>
+<h1>Redirecting...</h1>
+<p>You should be redirected automatically to the target URL: <a href="/">/</a>. If not, click the link.
+
+
+
+
+[INFO] Requesting - /download?url=http://127.0.0.1:3923/ssh_logs
+:status: 200
+server: Werkzeug/3.0.1 Python/3.10.12
+date: Fri, 24 Jan 2025 10:04:48 GMT
+content-type: text/html; charset=utf-8
+content-length: 15300
+x-varnish: 98498
+age: 0
+via: 1.1 varnish (Varnish/6.6)
+x-cache: MISS
+accept-ranges: bytes
+
+Mar  6 07:20:08 ubuntu systemd-logind[814]: New seat seat0.
+Mar  6 07:20:09 ubuntu sshd[1025]: Server listening on 0.0.0.0 port 22.
+Mar  6 07:20:09 ubuntu sshd[1025]: Server listening on :: port 22.
+Mar  6 07:20:42 ubuntu login[1016]: pam_unix(login:session): session opened for user root(uid=0) by LOGIN(uid=0)
+Mar  6 07:20:42 ubuntu systemd-logind[814]: New session 1 of user root.
+Mar  6 07:20:42 ubuntu systemd: pam_unix(systemd-user:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 07:20:18 ubuntu sshd[1025]: Received signal 15; terminating.
+Mar  6 07:20:18 ubuntu sshd[1265]: Server listening on 0.0.0.0 port 22.
+Mar  6 07:20:18 ubuntu sshd[1265]: Server listening on :: port 22.
+Mar  6 07:20:37 ubuntu sshd[1267]: Accepted password for root from 10.10.14.13 port 44796 ssh2
+Mar  6 07:20:37 ubuntu sshd[1267]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 07:20:37 ubuntu systemd-logind[814]: New session 3 of user root.
+Mar  6 07:21:25 ubuntu groupadd[2484]: new group: name=haproxy, GID=120
+Mar  6 07:21:25 ubuntu chage[2497]: changed password expiry for haproxy
+Mar  6 07:21:27 ubuntu groupadd[2600]: new group: name=varnish, GID=121
+Mar  6 07:21:27 ubuntu usermod[2613]: change user 'varnish' password
+Mar  6 07:21:27 ubuntu chage[2620]: changed password expiry for varnish
+Mar  6 07:21:27 ubuntu usermod[2633]: change user 'vcache' password
+Mar  6 07:21:27 ubuntu chage[2640]: changed password expiry for vcache
+Mar  6 07:21:27 ubuntu usermod[2653]: change user 'varnishlog' password
+Mar  6 07:21:27 ubuntu chage[2660]: changed password expiry for varnishlog
+Mar  6 07:21:39 ubuntu sshd[1265]: Received signal 15; terminating.
+Mar  6 07:21:40 ubuntu sshd[3223]: Server listening on 0.0.0.0 port 22.
+Mar  6 07:21:40 ubuntu sshd[3223]: Server listening on :: port 22.
+Mar  6 08:13:02 ubuntu groupadd[6091]: new group: name=margo, GID=1000
+Mar  6 08:13:06 ubuntu passwd[6108]: pam_unix(passwd:chauthtok): password changed for margo
+Mar  6 08:13:07 ubuntu chfn[6109]: changed user 'margo' information
+Mar  6 08:14:05 ubuntu passwd[6119]: pam_unix(passwd:chauthtok): password changed for margo
+Mar  6 08:14:21 ubuntu su: (to margo) root on pts/0
+Mar  6 08:14:21 ubuntu su: pam_unix(su:session): session opened for user margo(uid=1000) by root(uid=0)
+Mar  6 08:15:06 ubuntu sshd[6147]: Accepted password for margo from 10.10.14.13 port 40890 ssh2
+Mar  6 08:15:06 ubuntu sshd[6147]: pam_unix(sshd:session): session opened for user margo(uid=1000) by (uid=0)
+Mar  6 08:15:07 ubuntu systemd-logind[814]: New session 4 of user margo.
+Mar  6 08:15:07 ubuntu systemd: pam_unix(systemd-user:session): session opened for user margo(uid=1000) by (uid=0)
+Mar  6 08:15:14 ubuntu sshd[6211]: Received disconnect from 10.10.14.13 port 40890:11: disconnected by user
+Mar  6 08:15:14 ubuntu sshd[6211]: Disconnected from user margo 10.10.14.13 port 40890
+Mar  6 08:15:14 ubuntu sshd[6147]: pam_unix(sshd:session): session closed for user margo
+Mar  6 08:15:14 ubuntu systemd-logind[814]: Session 4 logged out. Waiting for processes to exit.
+Mar  6 08:15:14 ubuntu systemd-logind[814]: Removed session 4.
+Mar  6 08:17:01 ubuntu CRON[6247]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 08:17:01 ubuntu CRON[6247]: pam_unix(cron:session): session closed for user root
+Mar  6 08:22:16 ubuntu sshd[6272]: Accepted password for root from 10.10.14.13 port 54076 ssh2
+Mar  6 08:22:16 ubuntu sshd[6272]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 08:22:16 ubuntu systemd-logind[814]: New session 7 of user root.
+Mar  6 08:23:46 ubuntu sshd[6272]: Received disconnect from 10.10.14.13 port 54076:11: disconnected by user
+Mar  6 08:23:46 ubuntu sshd[6272]: Disconnected from user root 10.10.14.13 port 54076
+Mar  6 08:23:46 ubuntu sshd[6272]: pam_unix(sshd:session): session closed for user root
+Mar  6 08:23:46 ubuntu systemd-logind[814]: Session 7 logged out. Waiting for processes to exit.
+Mar  6 08:23:46 ubuntu systemd-logind[814]: Removed session 7.
+Mar  6 08:24:04 ubuntu sshd[6898]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.10.14.13  user=root
+Mar  6 08:24:06 ubuntu sshd[6898]: Failed password for root from 10.10.14.13 port 35094 ssh2
+Mar  6 08:24:08 ubuntu sshd[6898]: Accepted password for root from 10.10.14.13 port 35094 ssh2
+Mar  6 08:24:08 ubuntu sshd[6898]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 08:24:08 ubuntu systemd-logind[814]: New session 8 of user root.
+Mar  6 08:24:22 ubuntu sshd[6898]: Received disconnect from 10.10.14.13 port 35094:11: disconnected by user
+Mar  6 08:24:22 ubuntu sshd[6898]: Disconnected from user root 10.10.14.13 port 35094
+Mar  6 08:24:22 ubuntu sshd[6898]: pam_unix(sshd:session): session closed for user root
+Mar  6 08:24:22 ubuntu systemd-logind[814]: Session 8 logged out. Waiting for processes to exit.
+Mar  6 08:24:22 ubuntu systemd-logind[814]: Removed session 8.
+Mar  6 08:25:00 ubuntu sshd[7217]: Accepted password for root from 10.10.14.13 port 58112 ssh2
+Mar  6 08:25:00 ubuntu sshd[7217]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 08:25:00 ubuntu systemd-logind[814]: New session 9 of user root.
+Mar  6 08:27:49 ubuntu sshd[7217]: Received disconnect from 10.10.14.13 port 58112:11: disconnected by user
+Mar  6 08:27:49 ubuntu sshd[7217]: Disconnected from user root 10.10.14.13 port 58112
+Mar  6 08:27:49 ubuntu sshd[7217]: pam_unix(sshd:session): session closed for user root
+Mar  6 08:27:49 ubuntu systemd-logind[814]: Session 9 logged out. Waiting for processes to exit.
+Mar  6 08:27:49 ubuntu systemd-logind[814]: Removed session 9.
+Mar  6 08:29:31 ubuntu sshd[8075]: Accepted password for root from 10.10.14.13 port 37836 ssh2
+Mar  6 08:29:31 ubuntu sshd[8075]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 08:29:31 ubuntu systemd-logind[814]: New session 10 of user root.
+Mar  6 08:29:37 ubuntu su: (to margo) root on pts/1
+Mar  6 08:29:37 ubuntu su: pam_unix(su:session): session opened for user margo(uid=1000) by root(uid=0)
+Mar  6 08:59:49 ubuntu su: pam_unix(su:session): session closed for user margo
+Mar  6 08:59:51 ubuntu sshd[8075]: Exiting on signal 15
+Mar  6 08:59:51 ubuntu sshd[8075]: pam_unix(sshd:session): session closed for user root
+Mar  6 08:59:51 ubuntu sshd[1267]: Exiting on signal 15
+Mar  6 08:59:51 ubuntu sshd[1267]: pam_unix(sshd:session): session closed for user root
+Mar  6 08:59:51 ubuntu su: pam_unix(su:session): session closed for user margo
+Mar  6 08:59:51 ubuntu sshd[3223]: Received signal 15; terminating.
+Mar  6 08:59:51 ubuntu systemd-logind[814]: Session 1 logged out. Waiting for processes to exit.
+Mar  6 08:59:51 ubuntu systemd-logind[814]: Session 10 logged out. Waiting for processes to exit.
+Mar  6 09:01:16 caption systemd-logind[823]: New seat seat0.
+Mar  6 09:01:17 caption CRON[976]: pam_unix(cron:session): session opened for user margo(uid=1000) by (uid=0)
+Mar  6 09:01:17 caption CRON[977]: pam_unix(cron:session): session opened for user margo(uid=1000) by (uid=0)
+Mar  6 09:01:17 caption sshd[991]: Server listening on 0.0.0.0 port 22.
+Mar  6 09:01:17 caption sshd[991]: Server listening on :: port 22.
+Mar  6 09:11:53 caption sshd[1408]: Accepted password for root from 10.10.14.13 port 54756 ssh2
+Mar  6 09:11:53 caption sshd[1408]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 09:11:53 caption systemd-logind[823]: New session 3 of user root.
+Mar  6 09:11:53 caption systemd: pam_unix(systemd-user:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 09:13:40 caption su: (to margo) root on pts/0
+Mar  6 09:13:40 caption su: pam_unix(su:session): session opened for user margo(uid=1000) by root(uid=0)
+Mar  6 09:13:57 caption su: pam_unix(su:session): session closed for user margo
+Mar  6 09:15:23 caption su: (to margo) root on pts/0
+Mar  6 09:15:23 caption su: pam_unix(su:session): session opened for user margo(uid=1000) by root(uid=0)
+Mar  6 09:15:56 caption su: pam_unix(su:session): session closed for user margo
+Mar  6 09:16:59 caption sshd[1619]: Accepted publickey for margo from 10.10.14.13 port 35916 ssh2: ECDSA SHA256:ui/tjroDv1J8dgCcGNIaAr3QIk9BBLFDJVwiH9emcSQ
+Mar  6 09:16:59 caption sshd[1619]: pam_unix(sshd:session): session opened for user margo(uid=1000) by (uid=0)
+Mar  6 09:16:59 caption systemd-logind[823]: New session 5 of user margo.
+Mar  6 09:16:59 caption systemd: pam_unix(systemd-user:session): session opened for user margo(uid=1000) by (uid=0)
+Mar  6 09:17:01 caption CRON[1691]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 09:17:01 caption CRON[1691]: pam_unix(cron:session): session closed for user root
+Mar  6 09:17:36 caption sshd[1408]: Received disconnect from 10.10.14.13 port 54756:11: disconnected by user
+Mar  6 09:17:36 caption sshd[1408]: Disconnected from user root 10.10.14.13 port 54756
+Mar  6 09:17:36 caption sshd[1408]: pam_unix(sshd:session): session closed for user root
+Mar  6 09:17:36 caption systemd-logind[823]: Session 3 logged out. Waiting for processes to exit.
+Mar  6 09:17:36 caption systemd-logind[823]: Removed session 3.
+Mar  6 09:17:38 caption sshd[1682]: Received disconnect from 10.10.14.13 port 35916:11: disconnected by user
+Mar  6 09:17:38 caption sshd[1682]: Disconnected from user margo 10.10.14.13 port 35916
+Mar  6 09:17:38 caption sshd[1619]: pam_unix(sshd:session): session closed for user margo
+Mar  6 09:17:38 caption systemd-logind[823]: Session 5 logged out. Waiting for processes to exit.
+Mar  6 09:17:38 caption systemd-logind[823]: Removed session 5.
+Mar  6 09:17:46 caption systemd: pam_unix(systemd-user:session): session closed for user root
+Mar  6 09:35:20 caption sshd[1748]: Accepted password for root from 10.10.14.13 port 51694 ssh2
+Mar  6 09:35:20 caption sshd[1748]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 09:35:20 caption systemd-logind[823]: New session 8 of user root.
+Mar  6 09:35:20 caption systemd: pam_unix(systemd-user:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 09:35:23 caption su: (to margo) root on pts/0
+Mar  6 09:35:23 caption su: pam_unix(su:session): session opened for user margo(uid=1000) by root(uid=0)
+Mar  6 09:51:02 caption su: pam_unix(su:session): session closed for user margo
+Mar  6 09:51:03 caption sshd[1748]: Exiting on signal 15
+Mar  6 09:51:03 caption sshd[1748]: pam_unix(sshd:session): session closed for user root
+Mar  6 09:51:03 caption sshd[991]: Received signal 15; terminating.
+Mar  6 09:51:03 caption systemd-logind[823]: Session 8 logged out. Waiting for processes to exit.
+Mar  6 09:53:57 caption systemd-logind[823]: New seat seat0.
+Mar  6 09:53:57 caption systemd-logind[823]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar  6 09:53:57 caption systemd-logind[823]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+Mar  6 09:53:58 caption CRON[968]: pam_unix(cron:session): session opened for user margo(uid=1000) by (uid=0)
+Mar  6 09:53:58 caption CRON[969]: pam_unix(cron:session): session opened for user margo(uid=1000) by (uid=0)
+Mar  6 09:53:58 caption sshd[986]: Server listening on 0.0.0.0 port 22.
+Mar  6 09:53:58 caption sshd[986]: Server listening on :: port 22.
+Mar  6 10:00:04 caption sshd[1401]: Accepted password for root from 10.10.14.13 port 34384 ssh2
+Mar  6 10:00:04 caption sshd[1401]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 10:00:04 caption systemd-logind[823]: New session 3 of user root.
+Mar  6 10:00:04 caption systemd: pam_unix(systemd-user:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 10:00:38 caption sshd[1401]: Exiting on signal 15
+Mar  6 10:00:38 caption sshd[1401]: pam_unix(sshd:session): session closed for user root
+Mar  6 10:00:38 caption sshd[986]: Received signal 15; terminating.
+Mar  6 10:00:38 caption systemd-logind[823]: Session 3 logged out. Waiting for processes to exit.
+Mar  6 10:03:33 caption systemd-logind[822]: New seat seat0.
+Mar  6 10:03:33 caption systemd-logind[822]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar  6 10:03:33 caption systemd-logind[822]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+Mar  6 10:03:33 caption CRON[967]: pam_unix(cron:session): session opened for user margo(uid=1000) by (uid=0)
+Mar  6 10:03:34 caption CRON[966]: pam_unix(cron:session): session opened for user margo(uid=1000) by (uid=0)
+Mar  6 10:03:34 caption sshd[994]: Server listening on 0.0.0.0 port 22.
+Mar  6 10:03:34 caption sshd[994]: Server listening on :: port 22.
+Mar  6 10:07:18 caption sshd[1400]: Accepted password for root from 10.10.14.13 port 44930 ssh2
+Mar  6 10:07:18 caption sshd[1400]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 10:07:18 caption systemd-logind[822]: New session 3 of user root.
+Mar  6 10:07:18 caption systemd: pam_unix(systemd-user:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 10:17:01 caption CRON[1573]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 10:17:01 caption CRON[1573]: pam_unix(cron:session): session closed for user root
+Mar  6 10:37:45 caption sshd[5443]: Accepted password for root from 10.10.14.13 port 48528 ssh2
+Mar  6 10:37:45 caption sshd[5443]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 10:37:45 caption systemd-logind[822]: New session 6 of user root.
+Mar  6 10:42:20 caption sshd[5443]: Received disconnect from 10.10.14.13 port 48528:11: disconnected by user
+Mar  6 10:42:20 caption sshd[5443]: Disconnected from user root 10.10.14.13 port 48528
+Mar  6 10:42:20 caption sshd[5443]: pam_unix(sshd:session): session closed for user root
+Mar  6 10:42:20 caption systemd-logind[822]: Session 6 logged out. Waiting for processes to exit.
+Mar  6 10:42:20 caption systemd-logind[822]: Removed session 6.
+Mar  6 11:17:01 caption CRON[8508]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 11:17:01 caption CRON[8508]: pam_unix(cron:session): session closed for user root
+Mar  6 11:56:20 caption CRON[966]: pam_unix(cron:session): session closed for user margo
+Mar  6 11:56:30 caption su: (to margo) root on pts/0
+Mar  6 11:56:30 caption su: pam_unix(su:session): session opened for user margo(uid=1000) by root(uid=0)
+Mar  6 11:59:28 caption su: pam_unix(su:session): session closed for user margo
+Mar  6 11:59:37 caption su: (to margo) root on pts/0
+Mar  6 11:59:37 caption su: pam_unix(su:session): session opened for user margo(uid=1000) by root(uid=0)
+Mar  6 12:05:53 caption sshd[11670]: Accepted password for root from 10.10.14.13 port 35262 ssh2
+Mar  6 12:05:53 caption sshd[11670]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 12:05:53 caption systemd-logind[822]: New session 8 of user root.
+Mar  6 12:05:58 caption su: (to margo) root on pts/1
+Mar  6 12:05:58 caption su: pam_unix(su:session): session opened for user margo(uid=1000) by root(uid=0)
+Mar  6 12:09:47 caption su: pam_unix(su:session): session closed for user margo
+Mar  6 12:13:55 caption su: pam_unix(su:session): session closed for user margo
+
+
+
+

