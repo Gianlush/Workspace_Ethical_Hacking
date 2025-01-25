@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Fri Jan 24 06:25:54 2025 as: /usr/lib/nmap/nmap -p22,80 -sV -sC -T4 -Pn -oA enum/nmap.txt -&#45;min-rate 500 -T5 -O -A 10.10.11.36 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -p22,80 -sV -sC -T4 -Pn -oA enum/nmap.txt -&#45;min-rate 500 -T5 -O -A 10.10.11.36" start="1737717954" startstr="Fri Jan 24 06:25:54 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1737717954" endtime="1737717965"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.11.36" addrtype="ipv4"/>
+<hostnames>
+<hostname name="10.10.11.36" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="9.6p1 Ubuntu 3ubuntu13.5" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:9.6p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  256 a2:ed:65:77:e9:c4:2f:13:49:19:b0:b8:09:eb:56:36 (ECDSA)&#xa;  256 bc:df:25:35:5c:97:24:f2:69:b4:ce:60:17:50:3c:f0 (ED25519)"><table>
+<elem key="fingerprint">a2ed6577e9c42f134919b0b809eb5636</elem>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNb9gG2HwsjMe4EUwFdFE9H8NguzJkfCboW4CveSS+cr2846RitFyzx3a9t4X7S3xE3OgLnmgj8PtKCcOnVh8nQ=</elem>
+</table>
+<table>
+<elem key="fingerprint">bcdf25355c9724f269b4ce6017503cf0</elem>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIEZKWYurAF2kFS4bHCSCBvsQ+55/NxhAtZGCykcOx9b6</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Caddy httpd" method="probed" conf="10"><cpe>cpe:/a:matt_holt:caddy</cpe></service><script id="http-title" output="Did not follow redirect to http://yummy.htb/"><elem key="redirect_url">http://yummy.htb/</elem>
+</script><script id="http-server-header" output="Caddy"><elem>Caddy</elem>
+</script></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="udp" portid="34766"/>
+<osmatch name="Linux 2.6.32 - 3.13" accuracy="96" line="59907">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 5.0 - 5.14" accuracy="96" line="71713">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="5.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:5</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 3.2 - 4.14" accuracy="96" line="68432">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="4.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:4</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 4.15 - 5.19" accuracy="96" line="70534">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="4.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:4</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="5.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:5</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.32 - 3.10" accuracy="96" line="59874">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 4.15" accuracy="95" line="70405">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="4.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:4.15</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 5.0" accuracy="95" line="71689">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="5.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:5.0</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 3.10 - 4.11" accuracy="94" line="66652">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="94"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="4.X" accuracy="94"><cpe>cpe:/o:linux:linux_kernel:4</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.32 - 3.5" accuracy="93" line="60084">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="93"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="93"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+<osmatch name="HP P2000 G3 NAS device" accuracy="93" line="37819">
+<osclass type="storage-misc" vendor="HP" osfamily="embedded" accuracy="93"><cpe>cpe:/h:hp:p2000_g3</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="3992490" lastboot="Mon Dec  9 01:24:35 2024"/>
+<distance value="2"/>
+<tcpsequence index="259" difficulty="Good luck!" values="74D49D5A,C081297A,EC5CD9C,3CDB0309,BCAF84F8,2BE872EF"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="EDF887EF,EDF88853,EDF888B8,EDF8891B,EDF88980,EDF889E5"/>
+<trace port="80" proto="tcp">
+<hop ttl="1" ipaddr="10.10.14.1" rtt="40.78" host="10.10.14.1"/>
+<hop ttl="2" ipaddr="10.10.11.36" rtt="40.83" host="10.10.11.36"/>
+</trace>
+<times srtt="41409" rttvar="1033" to="50000"/>
+</host>
+<runstats><finished time="1737717965" timestr="Fri Jan 24 06:26:05 2025" summary="Nmap done at Fri Jan 24 06:26:05 2025; 1 IP address (1 host up) scanned in 11.27 seconds" elapsed="11.27" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

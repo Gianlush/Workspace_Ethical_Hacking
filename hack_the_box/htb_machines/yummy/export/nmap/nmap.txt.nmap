@@ -1,0 +1,25 @@
+# Nmap 7.95 scan initiated Fri Jan 24 06:25:54 2025 as: /usr/lib/nmap/nmap -p22,80 -sV -sC -T4 -Pn -oA enum/nmap.txt --min-rate 500 -T5 -O -A 10.10.11.36
+Nmap scan report for 10.10.11.36 (10.10.11.36)
+Host is up (0.041s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 9.6p1 Ubuntu 3ubuntu13.5 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 a2:ed:65:77:e9:c4:2f:13:49:19:b0:b8:09:eb:56:36 (ECDSA)
+|_  256 bc:df:25:35:5c:97:24:f2:69:b4:ce:60:17:50:3c:f0 (ED25519)
+80/tcp open  http    Caddy httpd
+|_http-title: Did not follow redirect to http://yummy.htb/
+|_http-server-header: Caddy
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Aggressive OS guesses: Linux 2.6.32 - 3.13 (96%), Linux 5.0 - 5.14 (96%), Linux 3.2 - 4.14 (96%), Linux 4.15 - 5.19 (96%), Linux 2.6.32 - 3.10 (96%), Linux 4.15 (95%), Linux 5.0 (95%), Linux 3.10 - 4.11 (94%), Linux 2.6.32 - 3.5 (93%), HP P2000 G3 NAS device (93%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE (using port 80/tcp)
+HOP RTT      ADDRESS
+1   40.78 ms 10.10.14.1 (10.10.14.1)
+2   40.83 ms 10.10.11.36 (10.10.11.36)
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Jan 24 06:26:05 2025 -- 1 IP address (1 host up) scanned in 11.27 seconds

