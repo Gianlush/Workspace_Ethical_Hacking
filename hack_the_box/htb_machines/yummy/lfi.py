@@ -148,6 +148,7 @@ def main():
         lfi_list = f.read().splitlines()
 
     # Processa la lista di LFI con i thread
+    #tmp_lfi_list = ['/data/scripts/fixer-v99']
     process_lfi_with_threads(lfi_list)
 
 if __name__ == "__main__":
