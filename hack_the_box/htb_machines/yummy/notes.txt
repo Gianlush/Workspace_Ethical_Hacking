@@ -1,0 +1,22 @@
+lfi vuln, with that you leak all the source code and also the jwt logic, which is vulnerable because it leaves exposed the N and E value so you create a jwt for the role administrator and sql inject there.
+
+you can write into file so you overwrite the script in cronjob and wait for rev shell
+
+
+after getting rev shell you are mysql user, but in the script dir you have write privilege and we know from crontab that app_backup.sh is executed by www-data, so we can delete the script and a new one in order to escalte to www-data
+
+after that you can go into app-qatesting and find and hidden folder .hg
+
+doing ls -al */* to see every file you can see a py.i so we see strings in it
+
+#md5
+9    'user': 'chef',
+    'password': '3wDo7gSRZIwIHRxZ!',
+'user': 'qa',
+    'password': 'jPAd!XQCtn8Oc@2B',
+
+
+sudo -l:
+
+User qa may run the following commands on localhost:
+    (dev : dev) /usr/bin/hg pull /home/dev/app-production/

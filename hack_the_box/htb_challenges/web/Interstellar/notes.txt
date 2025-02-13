@@ -1,0 +1,24 @@
+you can see there is a function that calls to some domain that ends with motherlands.com and that there are some functions that are only allowed if performed by localhost so the first thing intuitevily is that you have to somehow make the server call himself.
+
+but why? the protected endpoint lets you change your name in the db, but there isnt actualy a way to escalate since the sql request is prepared so its safe from any injection. 
+
+looking better at the init.sql file i noticed that there is a particular procedure that calls a custom sql request in itself, so causing the prepared statement to be useless. So if we can change user name to some sqli payload and then reload the page we can inject into searchUser procedure and do something.
+
+
+First, lets bypass the filter on the /communicate endpoint.
+we need to get through this:
+
+if(filter_var($url, FILTER_VALIDATE_URL)) {
+            $parsedUrl= parse_url($url);
+            if(preg_match('/motherland\.com$/', $parsedUrl['host'])) {
+
+the last is done by simply appending: motherland.com
+using the file test.php i tried different chars and way to break the regex but still get through and i landed on
+s://127.0.0.1:80\motherland.com:80
+
+after this, you simply change the body of the post request and add the parameter requested (new_name and action) and you can then test sqli which we know works because simply using the ' as new_name you break the page.
+
+now for the sqli, we need a way to read a file (which name is random) and the output it. So the first and easiest way is to write a webshell into the filesystem and access it. so seaching for mariadb doc i found the command:
+into dumpfile 
+that lets you write raw bytes.
+asking chatgpt to convert a webshell and send it using INTO DUMPFILE it converted it into hex so thats what i did.
