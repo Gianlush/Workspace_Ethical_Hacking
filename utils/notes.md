@@ -69,7 +69,7 @@ when you find a service on a machine running only locally you can forward it to 
   ```bash
   ssh -L 9090:localhost:8080 remote_user@host.htb
   ```
-  then visiting `localhost:9090` you can access the service on host.htb:8080 (might need to add domain to /etc/hosts). Esempio: [exploit.](../hack_the_box/htb_machines/sightless/writeup.md)
+  then visiting `localhost:9090` you can access the service on host.htb:8080 (might need to add domain to /etc/hosts). Example: [exploit.](../hack_the_box/htb_machines/sightless/writeup.md)
 
 - CHISEL: when you dont have ssh but a simple remote shell
 
@@ -124,14 +124,30 @@ additionally: (to fix terminal when writing very long payloads)\
 
 ## Privilege Escalation
 
- - if you can modify perms of a file with sudo, you can create a symlink to passwd e grant yoursef perms to W and add a user with perms to root like "test::0:0:test:/root:/bin/bash".  Esempio: [exploit.](../hack_the_box/htb_challenges/web/NextPath/writeup.md)
+ - if you can modify perms of a file with sudo, you can create a symlink to passwd e grant yoursef perms to W and add a user with perms to root like "test::0:0:test:/root:/bin/bash".  Example: [exploit.](../hack_the_box/htb_challenges/web/NextPath/writeup.md)
+ - if you can do something with `sudo -l` and the commands is set with a `*` which is a regex, you can execute that commands with all the options you want.
 
 # Notes from older exploits
 bypass http blacklist filter with `dict://` `gopher://`
 test antivirus or signature check using EICAR Files
   
 ## .git Directory
-controllarne lo stato con git status ed eventualmente ripristinarlo con git restore. Spesso i segreti sono nascosti nelle commit di nuovi file o file modificati.
+check its status with `git status` and maybe restore it with `git restore`. Often times there are secret hidden inside older commits, particularly in modified or new files.\
+useful tool `gitdumper`
+## PHP filter_var Bypass
+https://medium.com/@themiddleblue/php-ssrf-techniques-9d422cb28d51 \
+notes from older [exploit.](../hack_the_box/htb_challenges/web/Interstellar/exploit/exploit.py)
+## Nmap privilege escalation
+aside from the things you can do listed on GTFObins, there is an option `--datadir` that lets you modify the default dir of scripts, so you can create a custom script that will be executed with default options like `-sV` or `-sC` or `-p`\
+references from ChatGPT:
+
+changing `nmap-mac-prefixes` and executing `sudo nmap -O 127.0.0.1`\
+changing `nmap-services` and executing  `sudo nmap -p 9999 127.0.0.1`\
+changing `nmap-payloads` and executing  `sudo nmap -p 135 127.0.0.1`\
+changing `nse_main.lua`	and executing  `sudo nmap -sV 127.0.0.1`\
+changing `nse_main.lua`	and executing  `sudo nmap -sV 127.0.0.1`
+
+Example: []
 ## CSS Injection
 when page header are set like font: None *
 ## SSTI
@@ -159,14 +175,14 @@ when trying to exploit it causing Cross Origin requests, the PREFLIGHT requests 
 </html>
 ```
 
-Esempio: [exploit.](../hack_the_box/htb_challenges/web/TornadoService/writeup.md)
+Example: [exploit.](../hack_the_box/htb_challenges/web/TornadoService/writeup.md)
 
 ### Jinja2
 bypass blacklisted character: https://ctf.zeyu2001.com/2022/securinets-ctf-finals-2022/strong \
 using filter to get arguments from url or headers or form (if it is a post) which contains desidered blacklisted char\
 example: https://github.com/Gianlush/Workspace_Ethical_Hacking/tree/main/hack_the_box/htb_challenges/web/DoxPit - `request|attr('args')|list|last`
 
-Esempio: [exploit.](../hack_the_box/htb_challenges/web/DoxPit/writeup.md)
+Example: [exploit.](../hack_the_box/htb_challenges/web/DoxPit/writeup.md)
 
 ## Class Pollution 
 
@@ -186,4 +202,4 @@ def merge(src, dst):
             setattr(dst, k, v)
 ```
 
-Esempio: [exploit.](../hack_the_box/htb_challenges/web/TornadoService/writeup.md)
+Example: [exploit.](../hack_the_box/htb_challenges/web/TornadoService/writeup.md)

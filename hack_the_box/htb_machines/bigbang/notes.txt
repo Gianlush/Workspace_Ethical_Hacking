@@ -68,3 +68,13 @@ standard tools dont work, so i searched online and found out that it exists a to
 developer:bigbang
 
 sulla sua home c'è un apk che decodo con apktool d file
+al suo interno ho cercato roba tipo HTTP per vedere se ci fosse delle chiamate http da sfruttare ed in effetti ho trovato degli endpoint /login e /command
+
+non era ben chiaro il funzionamento quindi ho chiesto a chatgpt come usare quelle funzioni e se ci fosse un modo per exploitarle:
+
+payload = {
+    "command": "send_image",
+    "output_file": "file \n touch test.txt"
+}
+
+si ottiene command execution e da qui si può stampare la flag root e leggerla.

