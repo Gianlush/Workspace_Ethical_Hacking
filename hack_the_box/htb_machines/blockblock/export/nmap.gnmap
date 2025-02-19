@@ -1,0 +1,4 @@
+# Nmap 7.95 scan initiated Wed Feb 19 11:00:39 2025 as: /usr/lib/nmap/nmap --privileged -sC -sV -oA export/nmap 10.10.11.43
+Host: 10.10.11.43 ()	Status: Up
+Host: 10.10.11.43 ()	Ports: 22/open/tcp//ssh//OpenSSH 9.7 (protocol 2.0)/, 80/open/tcp//http//Werkzeug httpd 3.0.3 (Python 3.12.3)/	Ignored State: closed (998)
+# Nmap done at Wed Feb 19 11:00:48 2025 -- 1 IP address (1 host up) scanned in 8.79 seconds

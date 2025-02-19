@@ -1,0 +1,39 @@
+reading the invite.js we find out the endpoint /api/v1/invite/how/to/generate which give the response:
+
+{"0":200,"success":1,"data":{"data":"Va beqre gb trarengr gur vaivgr pbqr, znxr n CBFG erdhrfg gb \/ncv\/i1\/vaivgr\/trarengr","enctype":"ROT13"},"hint":"Data is encrypted ... We should probbably check the encryption type in order to decrypt it..."}
+
+decrypting with ROT13 we see:
+
+/api/v1/invite/generate:
+
+"code":"WEsxN00tVVVUS1ktTlNNSDItQ1Y5UVg=",
+frombase64: XK17M-UUTKY-NSMH2-CV9QX
+
+so we can finally login:
+
+with the new cookie, we can access endpoint /api/v1 and see that there are more endpoin, like admin/USk6hm0C5HZ4nnpM6AfzwqOX4lc2dmVAXljavte80s7sLl3GUFtunMxERwKBgQCC
+trying to use it, it gives error about missing parameters, so i add them until i see is_admin which i put as 1 so i become admin
+
+if i then check auth i actually am admin
+
+so now i try using some endpoint that were prohibited before, like vpn/generate
+and i noticed i can inject code in there. so i did a reverse shell
+
+
+inside .env file:
+
+DB_DATABASE=htb_prod
+DB_USERNAME=admin
+DB_PASSWORD=SuperDuperPass123
+
+reused for ssh
+
+
+
+ https://book.hacktricks.xyz/linux-hardening/privilege-escalation/interesting-groups-linux-pe#pe-method-2          
+[Configuration]
+AdminIdentities=unix-group:sudo;unix-group:admin
+
+
+look in /var/mail/admin
+then search https://github.com/xkaneiki/CVE-2023-0386

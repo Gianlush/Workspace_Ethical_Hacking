@@ -1,0 +1,9 @@
+download the 0.pcap and read:
+
+220 (vsFTPd 3.0.3)
+USER nathan
+PASS Buck3tH4TF0RM3!
+
+which works also on ssh
+
+running linpeas, there is python with cap setuid, so running it and executing os.setuid(0) you can then launch a root bash shell

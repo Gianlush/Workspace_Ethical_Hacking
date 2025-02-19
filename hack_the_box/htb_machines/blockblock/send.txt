@@ -1,0 +1,15 @@
+POST /api/send_message HTTP/1.1
+Host: 10.10.11.43
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://10.10.11.43/chat
+Content-Type: application/json
+Content-Length: 24
+Origin: http://10.10.11.43
+Connection: keep-alive
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczOTk1OTI2NSwianRpIjoiNWJlMzVmNTItMzJiZC00MzNmLThhYWUtNTcwMjgyZTMzYWYyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InRlc3QiLCJuYmYiOjE3Mzk5NTkyNjUsImV4cCI6MTc0MDU2NDA2NX0.Gq8AQLGWrns1qGgPTK4cOGi69x1mCO99l9Mxd47Kbpc
+Priority: u=0
+
+{"content":"*"}

