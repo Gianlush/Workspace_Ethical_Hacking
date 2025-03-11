@@ -1,0 +1,42 @@
+https://github.com/nilsteampassnet/TeamPass
+https://security.snyk.io/vuln/SNYK-PHP-NILSTEAMPASSNETTEAMPASS-3367612
+
+key:wFVUGdYjRCwELJYJYagbSesq4CQvMN2pyW7R2TKbFkQ8kSd3Hf
+
+There are 2 users in the system:
+admin: $2y$10$lKCae0EIUNj6f96ZnLqnC.LbWqrBQCT1LuHEFht6PmE4yH75rpWya
+bob: $2y$10$yMypIj1keU.VAqBI692f..XXn0vfyBL7C1EhOs35G59NxmtpJ/tiy
+
+bob:cheerleader
+
+on the account there is:
+
+ssh:bob
+ssh-pwd:hiccup-publicly-genesis
+
+
+
+bookstack:bob@checker.htb
+bookstack:mYSeCr3T_w1kI_P4sSw0rD
+
+https://fluidattacks.com/blog/lfr-via-blind-ssrf-book-stack/
+adptaing the exploit for ssrf: https://github.com/synacktiv/php_filter_chains_oracle_exploit
+
+you can leak files. The file i want to read is the ~/.google_authenticator which i assume exist by googling the prompt for ssh.
+but it seems i cant read inside home folder.
+
+but reading the books on the webapp, is shows an insecure copy to /backup/backup_home so i try to read it from there and it works
+http://checker.htb/books/linux-security/page/basic-backup-with-cp
+
+https://it-tools.tech/otp-generator
+otp secret: DVDBRAODLCWF7I2ONA4K5LQLUE
+
+so i generate the otp and log in with ssh
+
+
+
+
+═════════╣ SGID
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#sudo-and-suid   
+
+/usr/bin/bash

@@ -1,0 +1,4 @@
+# Nmap 7.95 scan initiated Fri Mar  7 15:54:33 2025 as: /usr/lib/nmap/nmap --privileged -sC -sV -sU -oA export/nmap 10.10.11.107
+Host: 10.10.11.107 ()	Status: Up
+Host: 10.10.11.107 ()	Ports: 161/open/udp//snmp//SNMPv1 server (public)/	Ignored State: closed (999)
+# Nmap done at Fri Mar  7 16:11:19 2025 -- 1 IP address (1 host up) scanned in 1005.35 seconds

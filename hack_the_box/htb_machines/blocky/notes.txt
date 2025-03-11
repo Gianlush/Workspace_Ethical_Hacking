@@ -1,0 +1,13 @@
+lots of enumration with burp, wpscan, gobuster
+
+jar file insede /plugins/
+
+inside them strings:
+
+localhost
+root
+8YsqfCTnvxAUeduzjNSXe22
+
+used for ssh on notch
+
+then just sudo -i cause we are part of sudoers group

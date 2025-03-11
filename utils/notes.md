@@ -14,6 +14,8 @@
     - [Privilege Escalation](#privilege-escalation)
 - [Notes from older exploits](#notes-from-older-exploits)
     - [git Directory](#git-directory)
+    - [PHP filter_var Bypass](#php-filter_var-bypass)
+    - [Nmap privilege escalation](#nmap-privilege-escalation)
     - [CSS Injection](#css-injection)
     - [SSTI](#ssti)
         - [Cross Origin problems](#cross-origin-problems)
@@ -43,6 +45,8 @@ gitleaks\
 pspy\
 ghidra\
 gobuster\
+smbscan\
+wpscan\
 hashcat\
 johntheripper\
 nmap\
@@ -52,6 +56,7 @@ chisel
 ## Commands
 netstat -antp\
 sudo -l\
+sudo -i\
 whoami\
 linpeas - WINpeas\
 find / -perm -4000 2>/dev/null

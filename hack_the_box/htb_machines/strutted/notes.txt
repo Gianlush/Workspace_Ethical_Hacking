@@ -1,0 +1,9 @@
+found RCE cve in the source code with the struts pom.xml dependencies
+and in the file tomcat_user there is the real password:
+
+IT14d6SSP81k for the user james 
+
+
+sudo tcpdump
+
+https://gtfobins.github.io/gtfobins/tcpdump/
