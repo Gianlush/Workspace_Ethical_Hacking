@@ -1,0 +1,14 @@
+inject special chars on all possibile params
+
+get an error with {{ on /forgot/
+
+then seach for goolang STTI and leak variables
+
+Email Sent To: {1 ippsec@hacking.esports ippsSecretPassword}
+
+root:
+
+there is nginx backdoor module enabled
+
+https://github.com/limithit/NginxExecute
+

