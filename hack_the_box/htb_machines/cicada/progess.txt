@@ -1,0 +1,18 @@
+pass spraying got me:
+
+michael.wrightson:Cicada$M6Corpb*@Lp#nZp!8
+
+this users doenst have any other shares, but using it to enumare other users on smb it shows some user with clear creds in the description
+
+david.orelious:aRt$Lp#7t*VQ!3
+
+there on the smb there is a backup.ps1 containing creds for anotother user
+
+emily.oscars:Q!3@Lp#M6b*7t*Vt
+
+she has permission to read and write on other smb dir like C and ADMIN
+
+
+C:\Users\emily.oscars.CICADA\Documents> Copy-FileSeBackupPrivilege C:\Users\Administrator\Desktop\root.txt C:\Users\emily.oscars.CICADA\Docu
+ments -Overwrite
+

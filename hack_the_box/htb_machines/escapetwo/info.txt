@@ -68,3 +68,6 @@ escalation:
 
 we run:
 bloodhound -u ryan -p "XXXXXXXXXXX" -d sequel.htb -ns 10.10.11.51 -c All
+after collecting info, start bloodhound, search for Ryan Node and mark it as owned e click on transitive object control query to find it can writeOwner on ca_svc (responsibale for certificate)
+
+so then with it, you seach fo vulnerable certificates with certipy-ad find and it finds ESC4 vulnerable template
