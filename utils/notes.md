@@ -17,6 +17,7 @@
     - [git Directory](#git-directory)
     - [PHP filter_var Bypass](#php-filter_var-bypass)
     - [Nmap privilege escalation](#nmap-privilege-escalation)
+    - [Python subclass - SSTI - code editor - arbitrary code execution](#python-subclass---ssti---code-editor---arbitrary-code-execution)
     - [CSS Injection](#css-injection)
     - [SSTI](#ssti)
         - [Cross Origin problems](#cross-origin-problems)
@@ -132,6 +133,7 @@ additionally: (to fix terminal when writing very long payloads)\
 
  - if you can modify perms of a file with sudo, you can create a symlink to passwd e grant yoursef perms to W and add a user with perms to root like "test::0:0:test:/root:/bin/bash".  Example: [exploit.](../hack_the_box/htb_challenges/web/NextPath/writeup.md)
  - if you can do something with `sudo -l` and the commands is set with a `*` which is a regex, you can execute that commands with all the options you want.
+ - if you can write files or run tools as sudo that have the options to sync files (so write files as sudo) you can modify `/etc/passwd` to add a super user like root: [example.](https://labex.io/tutorials/explore-privilege-escalation-via-etc-passwd-file-in-nmap-416141)
 
 # Enumeration and footholds
 
@@ -161,6 +163,17 @@ changing `nmap-services` and executing  `sudo nmap -p 9999 127.0.0.1`\
 changing `nmap-payloads` and executing  `sudo nmap -p 135 127.0.0.1`\
 changing `nse_main.lua`	and executing  `sudo nmap -sV 127.0.0.1`\
 changing `nse_main.lua`	and executing  `sudo nmap -sV 127.0.0.1`
+
+## Python subclass - SSTI - code editor - arbitrary code execution
+
+when having the chance to execute Python code, try the classic code execution methods:
+- `import os; os.system('command')`
+- `eval()` / `exec()`
+
+if you are able to access the subclass list with something like `''.__class__.__mro__[1].__subclasses__()` then look for class like `subprocess.Popen` and calculate its index, then exploit it like this:\
+`''.__class__.mro()[1].__subclasses__()[369]('cat flag.txt',shell=True,stdout=-1).communicate()[0].strip()` 
+
+look for similar payload in research about vulnerabilities like SSTI in Python. Example: [exploit.](../hack_the_box/htb_machines/code/rce.py)
 
 ## CSS Injection
 when page header are set like font: None *

@@ -1,0 +1,7 @@
+look rce.py
+
+after getting shell got into DB and crack martin pwd:
+
+martin:nafeelswordsmaster
+
+then ssh 
