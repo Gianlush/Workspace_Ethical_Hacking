@@ -1,4 +1,5 @@
 # Enumeration 
+https://medium.com/@figurx/escapetwo-walkthrough-part-2-23c893a454d4
 ## Nmap Scan
 #### General Information
 
@@ -559,4 +560,85 @@ BloodHound is a vital tool in the arsenal of both red and blue teams. By transfo
 
 Despite its strengths in visual clarity and comprehensive enumeration, BloodHound’s effectiveness depends on high-quality data collection and skilled interpretation. Its potential for generating false positives and the risk of detection during active data collection are challenges that users must manage. Overall, when used correctly, BloodHound can dramatically improve the security posture of an Active Directory environment by exposing vulnerabilities before they can be exploited.
 
-Feel free to ask if you need more specific examples or additional details about any part of BloodHound’s functionality!
+This process involves several stages of privilege escalation by abusing misconfigured Certificate Authority (CA) permissions in an Active Directory (AD) environment. Let’s break down the components, vulnerabilities, and tools involved in this chain of attack.
+
+---
+
+## Privilege Escalation
+
+### 1. Changing Ownership and Modifying ACLs
+
+**Vulnerability Exploited:**  
+Many AD environments have objects—such as the CA service account (e.g., *ca_svc*)—that may have weak or misconfigured permissions. When these objects aren’t tightly secured, an attacker can change their ownership or modify their Access Control Lists (ACLs) to gain elevated privileges.
+
+**Software Utilized:**  
+- **impacket-owneredit:** This tool allows you to change the owner of an AD object. By running:
+  ```
+  impacket-owneredit -action write -new-owner 'ryan' -target 'ca_svc'
+  ```
+  you effectively transfer ownership of the CA service object to your controlled account (here, “ryan”).  
+- **impacket-dacledit:** Once you have changed the owner, you can modify the ACL of the object to grant full control:
+  ```
+  impacket-dacledit -action write -rights FullControl
+  ```
+  This command changes the permissions so that “ryan” now has complete control over the CA object.
+
+**Impact in a Pentest:**  
+Gaining full control over the CA object allows the attacker to potentially manipulate certificate issuance processes. This is crucial because CA privileges can be abused to issue certificates for any user or machine, including highly privileged accounts like Domain Administrators.
+
+---
+
+### 2. Manipulating the Certificate Issuance Process
+
+**Vulnerability Exploited:**  
+In many enterprise environments, certificate services are used to authenticate users and secure communications. When an attacker controls the CA, they can:
+- Issue certificates for accounts without proper authorization.
+- Impersonate trusted entities by creating certificates that appear legitimate.
+- Intercept or trigger certificate requests from high-value accounts (like the Administrator).
+
+**Attack Vector:**  
+By waiting for the Administrator (or any privileged account) to request a certificate, the attacker can leverage the manipulated CA to either:
+- Issue a certificate that the attacker controls, or  
+- Intercept the certificate issuance process in a way that causes the target system to use authentication protocols (like NTLM) in a manner that leaks credential information.
+
+---
+
+### 3. Stealing and Cracking the NTLM Hash
+
+**Process:**  
+When the manipulated CA processes a certificate request (or when it issues a certificate for a privileged account), the underlying authentication mechanism might use NTLM. During this exchange, an NTLM hash of the credentials can be exposed or intercepted.
+
+**Tools for Extraction and Cracking:**  
+- **NTLM Hash Extraction:** By controlling the certificate request or issuance process, you can capture the NTLM hash from the authentication traffic.
+- **Hash Cracking Tools:** Once you have the hash, tools like **Hashcat** or **John the Ripper** can be used to perform offline cracking, potentially revealing the plaintext password.
+  
+**Why It Matters in a Pentest:**  
+Stealing and cracking the NTLM hash is a critical step in moving from a low-privilege account to one with domain-level control. Once you have cracked the password for an account with high privileges, you can escalate your access, pivot laterally, and achieve full system compromise.
+
+---
+
+### 4. Overall Considerations in a Pentest Engagement
+
+**Multi-Step Exploitation:**  
+- **Initial Access:** You begin by identifying misconfigurations in the AD CA service.
+- **Privilege Escalation:** By changing the owner and modifying the ACLs, you directly affect the CA’s ability to issue certificates.
+- **Credential Harvesting:** Manipulating the certificate issuance process gives you an opportunity to capture authentication artifacts (NTLM hashes).
+- **Password Cracking:** Offline cracking of NTLM hashes bridges the gap from partial control to full administrative access.
+
+**Software and Techniques Synergy:**  
+- **Impacket Suite:** Tools like `impacket-owneredit` and `impacket-dacledit` demonstrate how powerful and flexible the impacket framework is for AD exploitation. They allow for precise modifications to security objects that are otherwise difficult to manipulate.
+- **Certificate Authority Abuse:** Controlling a CA is a high-impact attack vector because certificates are trusted components in AD. Misuse of the CA can undermine the entire trust infrastructure.
+- **NTLM Hash Extraction:** NTLM is an older authentication protocol that, if not properly secured, can be exploited. The combination of hash capture and offline cracking highlights a common vulnerability in environments that haven’t migrated to more secure protocols.
+
+**Defensive Implications:**  
+Understanding this process is crucial for defenders as well. It underscores the need to:
+- Harden CA configurations.
+- Enforce strict permissions on critical AD objects.
+- Monitor and audit changes to ownership and ACLs.
+- Use modern authentication methods to reduce the reliance on NTLM.
+
+---
+
+### Conclusion
+
+In summary, by using impacket’s owneredit and dacledit tools, an attacker can seize control of a CA service object, manipulate certificate issuance, and intercept NTLM authentication exchanges. This multi-step exploitation process combines AD misconfigurations with certificate authority abuse and NTLM hash extraction/cracking to escalate privileges. For pentesters, this technique not only demonstrates a practical route for lateral movement and privilege escalation but also highlights key areas for defensive improvement in a Windows environment.
