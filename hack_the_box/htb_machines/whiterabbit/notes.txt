@@ -1,0 +1,5 @@
+intercept login and change value to true
+
+Uptime Kuma
+Version:
+Frontend Version: 1.23.13

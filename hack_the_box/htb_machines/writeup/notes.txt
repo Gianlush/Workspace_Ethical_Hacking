@@ -1,0 +1,14 @@
+cant seem to bust dirs because of a anti DDOS script.
+
+this protection doesn't seem to apply to subdir /writeup
+searching for CMS made simple exploit there is a SQLI exploit which actually seems to work (the used exploit is converted in python3 and crash when the leak is complete with char $)
+
+dump:
+
+password:62def4866937f08cc13bab43bb14e6f7
+salt:5a599ef579066807
+user:jkr
+
+cracking:
+
+jkr:raykayjay9
