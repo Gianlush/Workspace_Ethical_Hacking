@@ -1,0 +1,8 @@
+found encrypted pwd inside smb shares for user svc_tgs
+edBSHOwhZLTjt/QS9FeIcJ83mjWA98gw9guKOhJOdcqh+ZGMeXOsQbCpZ3xUjTLfCuNH8pG5aSVYdYw/NglVmQ
+
+svc_tgs:GPPstillStandingStrong2k18
+
+
+kerberoast: search video solution
+https://academy.hackthebox.com/module/details/25
