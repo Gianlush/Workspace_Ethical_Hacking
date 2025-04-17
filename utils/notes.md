@@ -12,6 +12,7 @@
     - [Transferring files with SCP](#transferring-files-with-scp)
     - [Reverse Shell Upgrade](#reverse-shell-upgrade)
     - [Privilege Escalation](#privilege-escalation)
+        - [Persistence](#persistence)
 - [Enumeration and footholds](#enumeration-and-footholds)
 - [Notes from older exploits](#notes-from-older-exploits)
     - [git Directory](#git-directory)
@@ -134,6 +135,11 @@ additionally: (to fix terminal when writing very long payloads)\
  - if you can modify perms of a file with sudo, you can create a symlink to passwd e grant yoursef perms to W and add a user with perms to root like "test::0:0:test:/root:/bin/bash".  Example: [exploit.](../hack_the_box/htb_challenges/web/NextPath/writeup.md)
  - if you can do something with `sudo -l` and the commands is set with a `*` which is a regex, you can execute that commands with all the options you want.
  - if you can write files or run tools as sudo that have the options to sync files (so write files as sudo) you can modify `/etc/passwd` to add a super user like root: [example.](https://labex.io/tutorials/explore-privilege-escalation-via-etc-passwd-file-in-nmap-416141)
+
+### Persistence
+
+- change bash suid with `chmod +s /usr/bin/bash` and then `/usr/bin/bash -p`
+- write new root user to `/etc/passwd` [like this.](https://labex.io/tutorials/explore-privilege-escalation-via-etc-passwd-file-in-nmap-416141) 
 
 # Enumeration and footholds
 

@@ -1,0 +1,16 @@
+POST /login/index.php HTTP/1.1
+Host: localhost:9000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 55
+Origin: http://localhost:9000
+Connection: keep-alive
+Referer: http://localhost:9000/login/index.php
+Cookie: ajs_anonymous_id=bf5d8bb8-c579-455e-9756-0e9d2eb5746e; ISPCSESS=790jubge4rhns9612cv9e5fbnf
+Upgrade-Insecure-Requests: 1
+Priority: u=0, i
+
+username=admin&password=password&s_mod=login&s_pg=index

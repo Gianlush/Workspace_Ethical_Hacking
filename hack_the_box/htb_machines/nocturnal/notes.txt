@@ -1,0 +1,30 @@
+tried some XSS inside pdf uploaded since it said that a backup was done periodically, but nothing worked
+
+tried path traversal
+
+tried IDOR using username wordlist and found AMANDA with her files readable
+
+GET /view.php?username=amanda&file=*.docx
+containing the password:
+
+amanda:arHkG7HAI68X8s1J
+
+not working on ssh. she is admin though and on the admin page there is all the source code
+reading source code i see some code used to perform the backup, maybe with possible command injeciton
+
+doing the backup lets you also download the DB sqlite3 in which there is:
+
+INSERT INTO users VALUES(1,'admin','d725aeba143f575736b07e045d8ceebb');
+INSERT INTO users VALUES(2,'amanda','df8b20aa0c935023f99ea58358fb63c4');
+INSERT INTO users VALUES(4,'tobias','55c82b1ccd55ab219b3b109b07d5061d');
+
+
+hashcat hashes /usr/share/wordlists/rockyou.txt --user -m 0
+
+tobias:slowmotionapocalypse
+this works on ssh
+
+
+port 8080 open
+
+ispconfig php code injeciton using tobias password and admin as username (you can find the username in /var/log/ispconfig/auth.log)

@@ -89,6 +89,7 @@ to mount a VHD disk (which is usually too bid to download):
 - check permission: `whoami /all`
 - search for vulnerable certificates
 - winPEAS
+- explore "Program files" folders for installed apps
 
 ### Bloodhound
 1. Collect data
