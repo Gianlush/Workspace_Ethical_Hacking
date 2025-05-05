@@ -135,6 +135,7 @@ additionally: (to fix terminal when writing very long payloads)\
  - if you can modify perms of a file with sudo, you can create a symlink to passwd e grant yoursef perms to W and add a user with perms to root like "test::0:0:test:/root:/bin/bash".  Example: [exploit.](../hack_the_box/htb_challenges/web/NextPath/writeup.md)
  - if you can do something with `sudo -l` and the commands is set with a `*` which is a regex, you can execute that commands with all the options you want.
  - if you can write files or run tools as sudo that have the options to sync files (so write files as sudo) you can modify `/etc/passwd` to add a super user like root: [example.](https://labex.io/tutorials/explore-privilege-escalation-via-etc-passwd-file-in-nmap-416141)
+ - if you can run some binary or custom script with sudo: look for others binaries call inside it and particularly if they are called without absolute path so you can try `PATH Injection`. Example: `sudo PATH=/tmp/path.sh /usr/bin/BINARY` so you can change the actual binaries called with custom script. (Another example is manipulating other env variables like `BASH_ENV` when specified in the `env_keep`)
 
 ### Persistence
 

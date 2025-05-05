@@ -1,0 +1,16 @@
+POST /login HTTP/1.1
+Host: environment.htb
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 108
+Origin: http://environment.htb
+Connection: keep-alive
+Referer: http://environment.htb/login
+Cookie: XSRF-TOKEN=eyJpdiI6ImNBaFpvTmpaTlNCa3NVR1NWQWl5d0E9PSIsInZhbHVlIjoiUFk4eUxudW9ZeUcxK0NrNDRReE9RL1dPM2ZlK0tLNm1pQk1QZnBEdEtnZUJiaHRnZlRjTUdha3l3VW5Vd2NtUisxMDYvUU1vRkdBMC81bC9DU2NpeGpUdXdxYWllUkFGeGlWODZEcEZEWVNPQUIxOE5NVmZUWGo0R1NHKzg2Q1QiLCJtYWMiOiI2MWQzOTMyZjZiNGJmZTU4MmJjMmE0MzI1NDRlMGI5NjQ5ZDc4YjI5OGEzNGJjNTM1ODY3NGNkMmJiMTJjNzQyIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6InZ3M3BCMk1OLzdRQmdLc1ozamVZZHc9PSIsInZhbHVlIjoidEIzRllRQ2s2Z2RGcHVyRnIwcDBsQ1FkMTRKalhWKy9aTVIvWEZzOHQrZy80SjYzL2dvV2gzRFA3dzB1U3JIMkFIQXd0OUt1S2prbUw3MHBYTjlrV3pQMXQ4b1BySkl2RmhDNmxGNGw3Y2V5Snc1VWpPNjQzSFh6bERzTXZmNmUiLCJtYWMiOiI0NDM4NjlkMzllZDkzNWNiN2VlMGEwYjJjN2Q0ODZjMTc0ZGRhNThkOGZhNmI5MzExOWUwMzYzMzE0OTQ3M2M5IiwidGFnIjoiIn0%3D
+Upgrade-Insecure-Requests: 1
+Priority: u=0, i
+
+_token=AarB5WPyn8rTVA4I1HTSKJ15uYMqDfdCJaPU4BRD&email=test%40test.com&password=l&remember=False
