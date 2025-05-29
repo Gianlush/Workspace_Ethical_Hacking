@@ -70,3 +70,18 @@ sudo /usr/bin/systeminfo
 
 
 and it works so just let it spawn a root shell
+
+
+
+
+
+
+
+
+
+
+        $new_file_name = $this->helper->translateFromUtf8(
+            trim($this->helper->utf8Pathinfo($file->getClientOriginalName(), "filename"))
+        );
+
+        $extension = $file->getClientOriginalExtension();

