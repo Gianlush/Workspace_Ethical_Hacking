@@ -1,0 +1,1995 @@
+{
+  "Certificate Authorities": {
+    "0": {
+      "CA Name": "fluffy-DC01-CA",
+      "DNS Name": "DC01.fluffy.htb",
+      "Certificate Subject": "CN=fluffy-DC01-CA, DC=fluffy, DC=htb",
+      "Certificate Serial Number": "3670C4A715B864BB497F7CD72119B6F5",
+      "Certificate Validity Start": "2025-04-17 16:00:16+00:00",
+      "Certificate Validity End": "3024-04-17 16:11:16+00:00",
+      "Web Enrollment": {
+        "http": {
+          "enabled": false
+        },
+        "https": {
+          "enabled": false,
+          "channel_binding": null
+        }
+      },
+      "User Specified SAN": "Disabled",
+      "Request Disposition": "Issue",
+      "Enforce Encryption for Requests": "Enabled",
+      "Active Policy": "CertificateAuthority_MicrosoftDefault.Policy",
+      "Disabled Extensions": [
+        "1.3.6.1.4.1.311.25.2"
+      ],
+      "Permissions": {
+        "Owner": "FLUFFY.HTB\\Administrators",
+        "Access Rights": {
+          "1": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\Administrators"
+          ],
+          "2": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\Administrators"
+          ],
+          "512": [
+            "FLUFFY.HTB\\Cert Publishers"
+          ]
+        }
+      },
+      "[!] Vulnerabilities": {
+        "ESC16": "Security Extension is disabled."
+      },
+      "[*] Remarks": {
+        "ESC16": "Other prerequisites may be required for this to be exploitable. See the wiki for more details."
+      }
+    }
+  },
+  "Certificate Templates": {
+    "0": {
+      "Template Name": "KerberosAuthentication",
+      "Display Name": "Kerberos Authentication",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        4194304,
+        134217728
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Server Authentication",
+        "Smart Card Logon",
+        "KDC Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 2,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Enterprise Read-only Domain Controllers",
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ],
+          "Write Property AutoEnroll": [
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ]
+        }
+      }
+    },
+    "1": {
+      "Template Name": "OCSPResponseSigning",
+      "Display Name": "OCSP Response Signing",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        134217728,
+        268435456
+      ],
+      "Enrollment Flag": [
+        4096,
+        16384
+      ],
+      "Extended Key Usage": [
+        "OCSP Signing"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "RA Application Policies": [
+        "msPKI-Asymmetric-Algorithm`PZPWSTR`RSA`msPKI-Hash-Algorithm`PZPWSTR`SHA1`msPKI-Key-Security-Descriptor`PZPWSTR`D:P(A;;FA;;;BA)(A;;FA;;;SY)(A;;GR;;;S-1-5-80-3804348527-3718992918-2141599610-3686422417-2726379419)`msPKI-Key-Usage`DWORD`2`"
+      ],
+      "Authorized Signatures Required": 0,
+      "Schema Version": 3,
+      "Validity Period": "2 weeks",
+      "Renewal Period": "2 days",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "2": {
+      "Template Name": "RASAndIASServer",
+      "Display Name": "RAS and IAS Server",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        134217728,
+        1073741824
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Server Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 2,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\RAS and IAS Servers"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\RAS and IAS Servers"
+          ]
+        }
+      }
+    },
+    "3": {
+      "Template Name": "Workstation",
+      "Display Name": "Workstation Authentication",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        134217728
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 2,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Computers",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Computers",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "4": {
+      "Template Name": "DirectoryEmailReplication",
+      "Display Name": "Directory Email Replication",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        16777216,
+        134217728
+      ],
+      "Enrollment Flag": [
+        1,
+        8,
+        32
+      ],
+      "Extended Key Usage": [
+        "Directory Service Email Replication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 2,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Enterprise Read-only Domain Controllers",
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ],
+          "Write Property AutoEnroll": [
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ]
+        }
+      }
+    },
+    "5": {
+      "Template Name": "DomainControllerAuthentication",
+      "Display Name": "Domain Controller Authentication",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        134217728
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Server Authentication",
+        "Smart Card Logon"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 2,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Enterprise Read-only Domain Controllers",
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ],
+          "Write Property AutoEnroll": [
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ]
+        }
+      }
+    },
+    "6": {
+      "Template Name": "KeyRecoveryAgent",
+      "Display Name": "Key Recovery Agent",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        1,
+        2,
+        4,
+        32
+      ],
+      "Private Key Flag": [
+        16
+      ],
+      "Extended Key Usage": [
+        "Key Recovery Agent"
+      ],
+      "Requires Manager Approval": true,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 2,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "7": {
+      "Template Name": "CAExchange",
+      "Display Name": "CA Exchange",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Enrollment Flag": [
+        1
+      ],
+      "Extended Key Usage": [
+        "Private Key Archival"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 2,
+      "Validity Period": "1 week",
+      "Renewal Period": "1 day",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "8": {
+      "Template Name": "CrossCA",
+      "Display Name": "Cross Certification Authority",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": true,
+      "Any Purpose": true,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Enrollment Flag": [
+        8
+      ],
+      "Private Key Flag": [
+        16
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "RA Application Policies": [
+        "Qualified Subordination"
+      ],
+      "Authorized Signatures Required": 1,
+      "Schema Version": 2,
+      "Validity Period": "5 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "9": {
+      "Template Name": "ExchangeUserSignature",
+      "Display Name": "Exchange Signature Only",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Extended Key Usage": [
+        "Secure Email"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "10": {
+      "Template Name": "ExchangeUser",
+      "Display Name": "Exchange User",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Enrollment Flag": [
+        1
+      ],
+      "Private Key Flag": [
+        16
+      ],
+      "Extended Key Usage": [
+        "Secure Email"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "11": {
+      "Template Name": "CEPEncryption",
+      "Display Name": "CEP Encryption",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": true,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Extended Key Usage": [
+        "Certificate Request Agent"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "12": {
+      "Template Name": "OfflineRouter",
+      "Display Name": "Router (Offline request)",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Extended Key Usage": [
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "13": {
+      "Template Name": "IPSECIntermediateOffline",
+      "Display Name": "IPSec (Offline request)",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Extended Key Usage": [
+        "IP security IKE intermediate"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "14": {
+      "Template Name": "IPSECIntermediateOnline",
+      "Display Name": "IPSec",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        134217728,
+        268435456
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "IP security IKE intermediate"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Computers",
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Computers",
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "15": {
+      "Template Name": "SubCA",
+      "Display Name": "Subordinate Certification Authority",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": true,
+      "Any Purpose": true,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Private Key Flag": [
+        16
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "5 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "16": {
+      "Template Name": "CA",
+      "Display Name": "Root Certification Authority",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": true,
+      "Any Purpose": true,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Private Key Flag": [
+        16
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "5 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "17": {
+      "Template Name": "WebServer",
+      "Display Name": "Web Server",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Extended Key Usage": [
+        "Server Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "18": {
+      "Template Name": "DomainController",
+      "Display Name": "Domain Controller",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        16777216,
+        134217728,
+        268435456
+      ],
+      "Enrollment Flag": [
+        1,
+        8,
+        32
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Server Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Enterprise Read-only Domain Controllers",
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Controllers",
+            "FLUFFY.HTB\\Enterprise Admins",
+            "FLUFFY.HTB\\Enterprise Domain Controllers"
+          ]
+        }
+      }
+    },
+    "19": {
+      "Template Name": "Machine",
+      "Display Name": "Computer",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        134217728,
+        268435456
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Server Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Computers",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Computers",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      },
+      "[+] User Enrollable Principals": [
+        "FLUFFY.HTB\\Domain Computers"
+      ],
+      "[*] Remarks": {
+        "ESC2 Target Template": "Template can be targeted as part of ESC2 exploitation. This is not a vulnerability by itself. See the wiki for more details. Template has schema version 1.",
+        "ESC3 Target Template": "Template can be targeted as part of ESC3 exploitation. This is not a vulnerability by itself. See the wiki for more details. Template has schema version 1."
+      }
+    },
+    "20": {
+      "Template Name": "MachineEnrollmentAgent",
+      "Display Name": "Enrollment Agent (Computer)",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": true,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        134217728,
+        268435456
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Certificate Request Agent"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "21": {
+      "Template Name": "EnrollmentAgentOffline",
+      "Display Name": "Exchange Enrollment Agent (Offline request)",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": true,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        1
+      ],
+      "Extended Key Usage": [
+        "Certificate Request Agent"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "22": {
+      "Template Name": "EnrollmentAgent",
+      "Display Name": "Enrollment Agent",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": true,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Certificate Request Agent"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "23": {
+      "Template Name": "CTLSigning",
+      "Display Name": "Trust List Signing",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Microsoft Trust List Signing"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "24": {
+      "Template Name": "CodeSigning",
+      "Display Name": "Code Signing",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Code Signing"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "25": {
+      "Template Name": "EFSRecovery",
+      "Display Name": "EFS Recovery Agent",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        1,
+        32
+      ],
+      "Private Key Flag": [
+        16
+      ],
+      "Extended Key Usage": [
+        "File Recovery"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "5 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "26": {
+      "Template Name": "Administrator",
+      "Display Name": "Administrator",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        67108864,
+        536870912,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        1,
+        8,
+        32
+      ],
+      "Private Key Flag": [
+        16
+      ],
+      "Extended Key Usage": [
+        "Microsoft Trust List Signing",
+        "Encrypting File System",
+        "Secure Email",
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "27": {
+      "Template Name": "EFS",
+      "Display Name": "Basic EFS",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        1,
+        8,
+        32
+      ],
+      "Private Key Flag": [
+        16
+      ],
+      "Extended Key Usage": [
+        "Encrypting File System"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Users",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Users",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      },
+      "[+] User Enrollable Principals": [
+        "FLUFFY.HTB\\Domain Users"
+      ]
+    },
+    "28": {
+      "Template Name": "SmartcardLogon",
+      "Display Name": "Smartcard Logon",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        2147483648
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Smart Card Logon"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "29": {
+      "Template Name": "ClientAuth",
+      "Display Name": "Authenticated Session",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Users",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Users",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "30": {
+      "Template Name": "SmartcardUser",
+      "Display Name": "Smartcard User",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        67108864,
+        536870912,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        1,
+        8
+      ],
+      "Extended Key Usage": [
+        "Secure Email",
+        "Client Authentication",
+        "Smart Card Logon"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "31": {
+      "Template Name": "UserSignature",
+      "Display Name": "User Signature Only",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        67108864,
+        536870912,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        32
+      ],
+      "Extended Key Usage": [
+        "Secure Email",
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Users",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Users",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      }
+    },
+    "32": {
+      "Template Name": "User",
+      "Display Name": "User",
+      "Certificate Authorities": [
+        "fluffy-DC01-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        33554432,
+        67108864,
+        536870912,
+        2147483648
+      ],
+      "Enrollment Flag": [
+        1,
+        8,
+        32
+      ],
+      "Private Key Flag": [
+        16
+      ],
+      "Extended Key Usage": [
+        "Encrypting File System",
+        "Secure Email",
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Schema Version": 1,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Template Created": "2025-04-17 16:10:16+00:00",
+      "Template Last Modified": "2025-04-17 16:10:16+00:00",
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Users",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "FLUFFY.HTB\\Enterprise Admins",
+          "Full Control Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Owner Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Dacl Principals": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ],
+          "Write Property Enroll": [
+            "FLUFFY.HTB\\Domain Admins",
+            "FLUFFY.HTB\\Domain Users",
+            "FLUFFY.HTB\\Enterprise Admins"
+          ]
+        }
+      },
+      "[+] User Enrollable Principals": [
+        "FLUFFY.HTB\\Domain Users"
+      ],
+      "[*] Remarks": {
+        "ESC2 Target Template": "Template can be targeted as part of ESC2 exploitation. This is not a vulnerability by itself. See the wiki for more details. Template has schema version 1.",
+        "ESC3 Target Template": "Template can be targeted as part of ESC3 exploitation. This is not a vulnerability by itself. See the wiki for more details. Template has schema version 1."
+      }
+    }
+  }
+}

