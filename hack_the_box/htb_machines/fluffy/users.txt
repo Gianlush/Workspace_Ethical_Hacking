@@ -1,4 +1,5 @@
 j.fleischman
+<<<<<<< Updated upstream
 ca_svc
 ldap_svc
 p.agila
@@ -7,3 +8,9 @@ j.coffey
 krbtgt
 Guest
 Administrator
+=======
+p.agila
+ca_svc
+winrm_svc
+ldap_svc
+>>>>>>> Stashed changes

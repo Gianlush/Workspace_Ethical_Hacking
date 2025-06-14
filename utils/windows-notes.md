@@ -133,7 +133,7 @@ The requirements here is having at least one user without Kerberos `pre-authenti
 
 To perform Kerberoasting, only a domain account that can request for TGSs is necessary, which is anyone since no special privileges are required.
 
-The goal is to search for users that are configured with a SPN, so this means that they act kind of as as Service for which we can requests a TGS to Kerberos, which will be encrypted with the user secret shared key (usually shorted than an actual service/machine password) so then try to crack it:
+The goal is to search for users that are configured with a SPN, so this means that they act kind of as as Service for which we can requests a TGS to Kerberos, which will be encrypted with the user secret shared key (usually shorted than an actual service/machine password) so then try to crack it (similar [TargetedKerberoast](https://github.com/ShutdownRepo/targetedKerberoast)):
 - `impacket-GetUserSPNs {domain}/{user}:{password} {-request} {-userfile users.txt}`
 
 ## TargetedKerberoasting (GenericWrite)
