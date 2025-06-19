@@ -46,6 +46,7 @@
 
 - [BloodHound GUI](https://bloodhound.readthedocs.io/en/latest/installation/linux.html)
 - [TargetedKerberoast.py](https://github.com/ShutdownRepo/targetedKerberoast/tree/main)
+- [ESC14 GetWeakExplicitMappings.py](https://github.com/3C4D/GetWeakExplicitMappings/blob/main/GetWeakExplicitMappings.py)
 
 # Enumeration
 search for:
@@ -157,6 +158,10 @@ WriteProperty 	|   Can edit all properties
 FullControl 	|   Full control of object, all properties can be edited
 ```
 
+### ESC1
+---
+ESC1 is the label for a category of misconfigurations that allows attackers to trick AD CS into issuing them certificates that they can use to authenticate as privileged users.
+
 ### ESC4
 ---
 ESC4 is when a user has write privileges over a certificate template. This can for instance be abused to overwrite the configuration of the certificate template to make the template vulnerable to ESC1.
@@ -169,9 +174,12 @@ ESC4 is when a user has write privileges over a certificate template. This can f
 
 so you log in with evil-winrm using the second part of the HASH
 
-### ESC1
----
-ESC1 is the label for a category of misconfigurations that allows attackers to trick AD CS into issuing them certificates that they can use to authenticate as privileged users.
+### ESC14
+This attack exploits configuration errors when explicit mapping is set up. [Learn more.](https://www.thehacker.recipes/ad/movement/adcs/certificate-templates#certificate-mapping)
+
+Detection of weak explicit mapping can be done like this:
+`python3 GetWeakExplicitMappings.py -dc-host $DC_HOST -u $USERNAME -p $PASSWORD -domain $DOMAIN`
+
 
 # Dangerous privilege
 
